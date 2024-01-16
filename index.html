@@ -1,68 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Iframe Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Iframes</title>
 </head>
 <body>
 
-  <form id="channelForm">
+<script>
+    function createIframe(channelValue) {
+        return `<iframe src="https://player.twitch.tv/?channel=${channelValue}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1" style="border: 0px; width: 50vw; height: 50vh; position: absolute;"></iframe>`;
+    }
+
+    function generateIframes() {
+        const channel1 = document.getElementById('channel1').value || 'piratesoftware';
+        const channel2 = document.getElementById('channel2').value || 'ferretsoftware';
+        const channel3 = document.getElementById('channel3').value || '';
+        const channel4 = document.getElementById('channel4').value || '';
+
+        let iframes = [];
+
+        if (channel1) iframes.push(createIframe(channel1));
+        if (channel2) iframes.push(createIframe(channel2));
+        if (channel3) iframes.push(createIframe(channel3));
+        if (channel4) iframes.push(createIframe(channel4));
+
+        document.body.innerHTML += iframes.join('');
+    }
+
+    // Call the function on page load
+    window.onload = function () {
+        generateIframes();
+    };
+</script>
+
+<form>
     <label for="channel1">Channel 1:</label>
-    <input type="text" id="channel1" name="channel1">
+    <input type="text" id="channel1" name="channel1"><br>
 
     <label for="channel2">Channel 2:</label>
-    <input type="text" id="channel2" name="channel2">
+    <input type="text" id="channel2" name="channel2"><br>
 
     <label for="channel3">Channel 3:</label>
-    <input type="text" id="channel3" name="channel3">
+    <input type="text" id="channel3" name="channel3"><br>
 
     <label for="channel4">Channel 4:</label>
-    <input type="text" id="channel4" name="channel4">
+    <input type="text" id="channel4" name="channel4"><br>
 
-    <input type="submit" value="Generate Iframes">
-  </form>
-
-  <script>
-    document.getElementById('channelForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      var channel1 = document.getElementById('channel1').value || 'piratesoftware';
-      var channel2 = document.getElementById('channel2').value || 'ferretsoftware';
-      var channel3 = document.getElementById('channel3').value || null;
-      var channel4 = document.getElementById('channel4').value || null;
-
-      document.body.innerHTML = ''; // Clear existing content
-
-      // Create first two iframes
-      createIframe('frame1', 'frame1', channel1, 0, 0);
-      createIframe('frame2', 'frame2', channel2, '50vw', 0);
-
-      // Create third iframe if channel3 is provided
-      if (channel3 !== null) {
-        createIframe('frame3', 'frame3', channel3, 0, '50vh');
-      }
-
-      // Create fourth iframe if channel4 is provided
-      if (channel4 !== null) {
-        createIframe('frame4', 'frame4', channel4, '50vw', '50vh');
-      }
-    });
-
-    function createIframe(id, name, channel, left, top) {
-      var iframe = document.createElement('iframe');
-      iframe.id = id;
-      iframe.name = name;
-      iframe.src = 'https://player.twitch.tv/?channel=' + channel + '&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1';
-      iframe.style.border = '0px';
-      iframe.style.width = '50vw';
-      iframe.style.height = '50vh';
-      iframe.style.position = 'absolute';
-      iframe.style.left = left;
-      iframe.style.top = top;
-      document.body.appendChild(iframe);
-    }
-  </script>
+    <input type="button" value="Generate Iframes" onclick="generateIframes()">
+</form>
 
 </body>
 </html>
