@@ -29,6 +29,9 @@
 <div id="iframeContainer"></div>
 
 <script>
+    // Variable to store previous channel names
+    var prevChannels = {};
+
     function generateIframes() {
         // Get channel names from the form
         var channel1 = document.getElementById("channel1").value.trim();
@@ -36,36 +39,35 @@
         var channel3 = document.getElementById("channel3").value.trim();
         var channel4 = document.getElementById("channel4").value.trim();
 
-        // Generate iframes only for non-empty channel names
-        var iframeContainer = document.getElementById("iframeContainer");
-        iframeContainer.innerHTML = ""; // Clear previous iframes
-
-        if (channel1 !== "") {
-            createIframe("frame1", channel1, 0, 0);
-        }
-
-        if (channel2 !== "") {
-            createIframe("frame2", channel2, 0, 50);
-        }
-
-        if (channel3 !== "") {
-            createIframe("frame3", channel3, 50, 0);
-        }
-
-        if (channel4 !== "") {
-            createIframe("frame4", channel4, 50, 50);
-        }
+        // Create iframes only for non-empty channel names
+        createIframe("frame1", channel1, 0, 0);
+        createIframe("frame2", channel2, 0, 50);
+        createIframe("frame3", channel3, 50, 0);
+        createIframe("frame4", channel4, 50, 50);
     }
 
     function createIframe(id, channel, top, left) {
-        var iframe = document.createElement("iframe");
-        iframe.id = id;
-        iframe.name = id;
-        iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
-        iframe.style = `border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${top}vh; left: ${left}vw;`;
-        document.getElementById("iframeContainer").appendChild(iframe);
+        var iframeContainer = document.getElementById("iframeContainer");
+        
+        // Check if the channel is not empty and is different from the previous one
+        if (channel !== "" && prevChannels[id] !== channel) {
+            // Create a new iframe
+            var iframe = document.createElement("iframe");
+            iframe.id = id;
+            iframe.name = id;
+            iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
+            iframe.style = `border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${top}vh; left: ${left}vw;`;
+            
+            // Append the new iframe to the container
+            iframeContainer.appendChild(iframe);
+
+            // Update the previous channel name
+            prevChannels[id] = channel;
+        }
     }
 </script>
+
+
 
 </body>
 </html>
