@@ -1,58 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Iframes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Iframe Generator</title>
 </head>
 <body>
 
-<form id="channelForm">
+  <form id="channelForm">
     <label for="channel1">Channel 1:</label>
-    <input type="text" id="channel1" name="channel1" required>
+    <input type="text" id="channel1" name="channel1">
 
     <label for="channel2">Channel 2:</label>
-    <input type="text" id="channel2" name="channel2" required>
+    <input type="text" id="channel2" name="channel2">
 
     <label for="channel3">Channel 3:</label>
-    <input type="text" id="channel3" name="channel3" required>
+    <input type="text" id="channel3" name="channel3">
 
     <label for="channel4">Channel 4:</label>
-    <input type="text" id="channel4" name="channel4" required>
+    <input type="text" id="channel4" name="channel4">
 
-    <button type="button" onclick="generateIframes()">Generate Iframes</button>
-</form>
+    <input type="submit" value="Generate Iframes">
+  </form>
 
-<div id="iframesContainer"></div>
+  <script>
+    document.getElementById('channelForm').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-<script>
-function generateIframes() {
-    const channels = [
-        document.getElementById('channel1').value || 'piratesoftware',
-        document.getElementById('channel2').value || 'piratesoftware',
-        document.getElementById('channel3').value || 'piratesoftware',
-        document.getElementById('channel4').value || 'piratesoftware'
-    ];
+      var channel1 = document.getElementById('channel1').value || 'piratesoftware';
+      var channel2 = document.getElementById('channel2').value || 'ferretsoftware';
+      var channel3 = document.getElementById('channel3').value || null;
+      var channel4 = document.getElementById('channel4').value || null;
 
-    const iframesContainer = document.getElementById('iframesContainer');
-    iframesContainer.innerHTML = '';
+      document.body.innerHTML = ''; // Clear existing content
 
-    for (let i = 0; i < channels.length; i++) {
-        const channel = channels[i];
+      // Create first two iframes
+      createIframe('frame1', 'frame1', channel1, 0, 0);
+      createIframe('frame2', 'frame2', channel2, '50vw', 0);
 
-        if (channel !== 'piratesoftware' && channel !== 'ferretsoftware') {
-            continue;
-        }
+      // Create third iframe if channel3 is provided
+      if (channel3 !== null) {
+        createIframe('frame3', 'frame3', channel3, 0, '50vh');
+      }
 
-        const iframe = document.createElement('iframe');
-        iframe.id = 'frame' + (i + 1);
-        iframe.name = 'frame' + (i + 1);
-        iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
-        iframe.style = 'border: 0px; width: 50vw; height: 50vh; position: absolute; top: ' + (i >= 2 ? '50vh;' : '0px;') + ' left: ' + (i % 2 === 1 ? '50vw;' : '0px;');
-        iframesContainer.appendChild(iframe);
+      // Create fourth iframe if channel4 is provided
+      if (channel4 !== null) {
+        createIframe('frame4', 'frame4', channel4, '50vw', '50vh');
+      }
+    });
+
+    function createIframe(id, name, channel, left, top) {
+      var iframe = document.createElement('iframe');
+      iframe.id = id;
+      iframe.name = name;
+      iframe.src = 'https://player.twitch.tv/?channel=' + channel + '&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1';
+      iframe.style.border = '0px';
+      iframe.style.width = '50vw';
+      iframe.style.height = '50vh';
+      iframe.style.position = 'absolute';
+      iframe.style.left = left;
+      iframe.style.top = top;
+      document.body.appendChild(iframe);
     }
-}
-</script>
+  </script>
 
 </body>
 </html>
