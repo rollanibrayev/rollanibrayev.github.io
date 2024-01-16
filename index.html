@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twitch Channel Viewer</title>
+    <title>Twitch Stream Viewer</title>
 </head>
 <body>
 
@@ -44,6 +44,9 @@
         createIframe("frame2", channel2, 0, 50);
         createIframe("frame3", channel3, 50, 0);
         createIframe("frame4", channel4, 50, 50);
+
+        // Hide the form after creating iframes
+        document.getElementById("channelForm").style.display = "none";
     }
 
     function createIframe(id, channel, top, left) {
@@ -66,8 +69,6 @@
         }
     }
 </script>
-
-
 
 </body>
 </html>
