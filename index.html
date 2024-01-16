@@ -10,19 +10,19 @@
 
 <!-- Form to get channel names -->
 <form id="channelForm">
-    <label for="channel1">Channel's Name 1:</label>
+    <label for="channel1">Channel Name 1:</label>
     <input type="text" id="channel1" name="channel1" required><br>
 
-    <label for="channel2">Channel's Name 2:</label>
+    <label for="channel2">Channel Name 2:</label>
     <input type="text" id="channel2" name="channel2" required><br>
 
-    <label for="channel3">Channel's Name 3:</label>
+    <label for="channel3">Channel Name 3:</label>
     <input type="text" id="channel3" name="channel3" required><br>
 
-    <label for="channel4">Channel's Name 4:</label>
+    <label for="channel4">Channel Name 4:</label>
     <input type="text" id="channel4" name="channel4" required><br>
 
-    <input type="button" value="Show Streams" onclick="generateIframes()">
+    <input type="button" value="Show Stream(s)" onclick="generateIframes()">
 </form>
 
 <!-- Container to hold iframes -->
@@ -39,19 +39,24 @@
         var channel3 = document.getElementById("channel3").value.trim();
         var channel4 = document.getElementById("channel4").value.trim();
 
-        // Create iframes only for non-empty channel names
-        createIframe("frame1", channel1, 0, 0);
-        createIframe("frame2", channel2, 0, 50);
-        createIframe("frame3", channel3, 50, 0);
-        createIframe("frame4", channel4, 50, 50);
+        // Check if any input has something written
+        if (channel1 || channel2 || channel3 || channel4) {
+            // Create iframes only for non-empty channel names
+            createIframe("frame1", channel1, 0, 0);
+            createIframe("frame2", channel2, 0, 50);
+            createIframe("frame3", channel3, 50, 0);
+            createIframe("frame4", channel4, 50, 50);
 
-        // Hide the form after creating iframes
-        document.getElementById("channelForm").style.display = "none";
+            // Hide the form after creating iframes
+            document.getElementById("channelForm").style.display = "none";
+        } else {
+            alert("Please enter at least one channel name.");
+        }
     }
 
     function createIframe(id, channel, top, left) {
         var iframeContainer = document.getElementById("iframeContainer");
-        
+
         // Check if the channel is not empty and is different from the previous one
         if (channel !== "" && prevChannels[id] !== channel) {
             // Create a new iframe
@@ -60,7 +65,7 @@
             iframe.name = id;
             iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
             iframe.style = `border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${top}vh; left: ${left}vw;`;
-            
+
             // Append the new iframe to the container
             iframeContainer.appendChild(iframe);
 
