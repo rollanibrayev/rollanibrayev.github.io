@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Iframes</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 50%;
+            height: 50%;
+            border: none;
+        }
+        #channelForm {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Form for entering channel values -->
+<div id="channelForm">
+    <form id="twitchForm">
+        <label for="channel1">Channel 1:</label>
+        <input type="text" id="channel1" required><br>
+        
+        <label for="channel2">Channel 2:</label>
+        <input type="text" id="channel2" required><br>
+        
+        <label for="channel3">Channel 3:</label>
+        <input type="text" id="channel3" required><br>
+        
+        <label for="channel4">Channel 4:</label>
+        <input type="text" id="channel4" required><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<!-- Iframes with default empty src -->
+<iframe id="iframe1" src="https://player.twitch.tv/?channel=&parent=rollanibrayev.github.io"></iframe>
+<iframe id="iframe2" src="https://player.twitch.tv/?channel=&parent=rollanibrayev.github.io"></iframe>
+<iframe id="iframe3" src="https://player.twitch.tv/?channel=&parent=rollanibrayev.github.io"></iframe>
+<iframe id="iframe4" src="https://player.twitch.tv/?channel=&parent=rollanibrayev.github.io"></iframe>
+
+<script>
+    document.getElementById('twitchForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Update iframe sources with entered channel values
+        document.getElementById('iframe1').src = 'https://player.twitch.tv/?channel=' + document.getElementById('channel1').value + '&parent=rollanibrayev.github.io';
+        document.getElementById('iframe2').src = 'https://player.twitch.tv/?channel=' + document.getElementById('channel2').value + '&parent=rollanibrayev.github.io';
+        document.getElementById('iframe3').src = 'https://player.twitch.tv/?channel=' + document.getElementById('channel3').value + '&parent=rollanibrayev.github.io';
+        document.getElementById('iframe4').src = 'https://player.twitch.tv/?channel=' + document.getElementById('channel4').value + '&parent=rollanibrayev.github.io';
+
+        // Hide the form
+        document.getElementById('channelForm').style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
