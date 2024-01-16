@@ -1,50 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Twitch Iframe Generator</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Iframe Generator</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
+    <form id="twitchForm">
+        <label for="channel1">Channel 1:</label>
+        <input type="text" id="channel1" name="channel1" required><br>
 
-  <form id="channelForm">
-    <label for="channel1">Channel 1:</label>
-    <input type="text" id="channel1" name="channel1" placeholder="Default: piratesoftware" required>
+        <label for="channel2">Channel 2:</label>
+        <input type="text" id="channel2" name="channel2" required><br>
 
-    <label for="channel2">Channel 2:</label>
-    <input type="text" id="channel2" name="channel2" placeholder="Default: ferretsoftware" required>
+        <label for="channel3">Channel 3:</label>
+        <input type="text" id="channel3" name="channel3" required><br>
 
-    <label for="channel3">Channel 3:</label>
-    <input type="text" id="channel3" name="channel3" placeholder="Default: piratesoftware" required>
+        <label for="channel4">Channel 4:</label>
+        <input type="text" id="channel4" name="channel4" required><br>
 
-    <label for="channel4">Channel 4:</label>
-    <input type="text" id="channel4" name="channel4" placeholder="Default: ferretsoftware" required>
+        <button type="button" onclick="generateIframes()">Generate Iframes</button>
+    </form>
 
-    <button type="button" onclick="generateIframes()">Done</button>
-  </form>
+    <script>
+        function generateIframes() {
+            var channels = [];
 
-  <div id="iframesContainer"></div>
+            for (var i = 1; i <= 4; i++) {
+                var channelInput = document.getElementById('channel' + i).value.trim();
+                channels.push(channelInput === '' ? (i <= 2 ? 'piratesoftware' : 'ferretsoftware') : channelInput);
+            }
 
-  <script>
-    function generateIframes() {
-      // Get values from the input fields or use defaults
-      const channel1 = document.getElementById('channel1').value || 'piratesoftware';
-      const channel2 = document.getElementById('channel2').value || 'ferretsoftware';
-      const channel3 = document.getElementById('channel3').value || 'piratesoftware';
-      const channel4 = document.getElementById('channel4').value || 'ferretsoftware';
+            document.body.innerHTML = ''; // Clear the body
 
-      // Generate iframe code
-      const iframeCode = `
-        <iframe id="frame1" name="frame1" src="https://player.twitch.tv/?channel=${channel1}&amp;enableExtensions=true&amp;muted=false&amp;parent=rollanibrayev.github.io&amp;player=popout&amp;quality=chunked&amp;volume=1" style="border: 0px; width: 50vw; height: 50vh; position: absolute; top: 0px; left: 0px;"></iframe>
-        <iframe id="frame2" name="frame2" src="https://player.twitch.tv/?channel=${channel2}&amp;enableExtensions=true&amp;muted=false&amp;parent=rollanibrayev.github.io&amp;player=popout&amp;quality=chunked&amp;volume=1" style="border: 0px; width: 50vw; height: 50vh; position: absolute; top: 0px; left: 50vw;"></iframe>
-        <iframe id="frame3" name="frame3" src="https://player.twitch.tv/?channel=${channel3}&amp;enableExtensions=true&amp;muted=false&amp;parent=rollanibrayev.github.io&amp;player=popout&amp;quality=chunked&amp;volume=1" style="border: 0px; width: 50vw; height: 50vh; position: absolute; top: 50vh; left: 0px;"></iframe>
-        <iframe id="frame4" name="frame4" src="https://player.twitch.tv/?channel=${channel4}&amp;enableExtensions=true&amp;muted=false&amp;parent=rollanibrayev.github.io&amp;player=popout&amp;quality=chunked&amp;volume=1" style="border: 0px; width: 50vw; height: 50vh; position: absolute; top: 50vh; left: 50vw;"></iframe>
-      `;
-
-      // Display the iframes
-      document.getElementById('iframesContainer').innerHTML = iframeCode;
-    }
-  </script>
-
+            for (var i = 0; i < channels.length; i += 2) {
+                if (i + 1 < channels.length) {
+                    document.body.innerHTML += `
+                        <iframe id="frame${i + 1}" name="frame${i + 1}" 
+                                src="https://player.twitch.tv/?channel=${channels[i]}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1" 
+                                style="border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${i < 2 ? 0 : '50vh'}; left: ${i % 2 === 0 ? 0 : '50vw'};"></iframe>
+                    `;
+                    document.body.innerHTML += `
+                        <iframe id="frame${i + 2}" name="frame${i + 2}" 
+                                src="https://player.twitch.tv/?channel=${channels[i + 1]}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1" 
+                                style="border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${i < 2 ? 0 : '50vh'}; left: ${i % 2 === 0 ? '50vw' : 0};"></iframe>
+                    `;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
