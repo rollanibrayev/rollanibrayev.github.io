@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitch Stream Viewer</title>
-<style>
+    <style>
         #channelForm {
             text-align: center;
         }
@@ -15,7 +15,7 @@
 
 <!-- Form to get channel names and stream quality -->
 <form id="channelForm">
-<div>Enter Channel Names:</div>
+    <div>Channel Link or Names:</div>
     <label for="channel1"></label>
     <input type="text" id="channel1" name="channel1" required><br>
 
@@ -31,11 +31,11 @@
     <label>Video Quality:</label>
     <input type="radio" id="720p60" name="quality" value="720p60" checked>
     <label for="720p60">720p60</label>
-    
+
     <input type="radio" id="source" name="quality" value="chunked">
     <label for="source">Source</label><br>
-    
-    <input type="button" value="Start Watching" onclick="generateIframes()">
+
+    <input type="button" value="Play" onclick="generateIframes()">
 </form>
 
 <!-- Container to hold iframes -->
@@ -47,10 +47,10 @@
     var prevQuality = "chunked";
 
     function generateIframes() {
-        var channel1 = document.getElementById("channel1").value.trim();
-        var channel2 = document.getElementById("channel2").value.trim();
-        var channel3 = document.getElementById("channel3").value.trim();
-        var channel4 = document.getElementById("channel4").value.trim();
+        var channel1 = extractChannelName(document.getElementById("channel1").value.trim());
+        var channel2 = extractChannelName(document.getElementById("channel2").value.trim());
+        var channel3 = extractChannelName(document.getElementById("channel3").value.trim());
+        var channel4 = extractChannelName(document.getElementById("channel4").value.trim());
 
         if (channel1 || channel2 || channel3 || channel4) {
             createIframe("frame1", channel1, 0, 0);
@@ -62,6 +62,12 @@
         } else {
             alert("Please enter at least one channel name.");
         }
+    }
+
+    function extractChannelName(fullText) {
+        // If the text contains '/', extract the text after the last '/'
+        var lastSlashIndex = fullText.lastIndexOf('/');
+        return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
     }
 
     function createIframe(id, channel, top, left) {
