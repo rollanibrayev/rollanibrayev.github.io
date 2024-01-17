@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beta Twitch Stream Viewer</title>
+    <title>Twitch Stream Viewer</title>
     <style>
         #channelForm {
             text-align: center;
@@ -13,9 +13,9 @@
 </head>
 <body>
 
-<!-- Form to get channel names or links and stream quality -->
+<!-- Form to get channel names and stream quality -->
 <form id="channelForm">
-    <div>Enter Channel Names or Links:</div>
+    <div>Enter Channel Names:</div>
     <label for="channel1"></label>
     <input type="text" id="channel1" name="channel1" required><br>
 
@@ -28,12 +28,12 @@
     <label for="channel4"></label>
     <input type="text" id="channel4" name="channel4" required><br>
 
-    <label>Stream Quality:</label>
-    <input type="radio" id="source" name="quality" value="chunked" checked>
-    <label for="source">Source</label>
+    <label>Video Quality:</label>
+    <input type="radio" id="720p60" name="quality" value="720p60" checked>
+    <label for="720p60">720p60</label>
 
-    <input type="radio" id="720p60" name="quality" value="720p60">
-    <label for="720p60">720p60</label><br>
+    <input type="radio" id="source" name="quality" value="chunked">
+    <label for="source">Source</label><br>
 
     <input type="button" value="Start Watching" onclick="generateIframes()">
 </form>
@@ -47,10 +47,10 @@
     var prevQuality = "chunked";
 
     function generateIframes() {
-        var channel1 = parseChannel(document.getElementById("channel1").value.trim());
-        var channel2 = parseChannel(document.getElementById("channel2").value.trim());
-        var channel3 = parseChannel(document.getElementById("channel3").value.trim());
-        var channel4 = parseChannel(document.getElementById("channel4").value.trim());
+        var channel1 = extractChannelName(document.getElementById("channel1").value.trim());
+        var channel2 = extractChannelName(document.getElementById("channel2").value.trim());
+        var channel3 = extractChannelName(document.getElementById("channel3").value.trim());
+        var channel4 = extractChannelName(document.getElementById("channel4").value.trim());
 
         if (channel1 || channel2 || channel3 || channel4) {
             createIframe("frame1", channel1, 0, 0);
@@ -60,14 +60,14 @@
 
             document.getElementById("channelForm").style.display = "none";
         } else {
-            alert("Please enter at least one channel name or link.");
+            alert("Please enter at least one channel name.");
         }
     }
 
-    function parseChannel(input) {
-        // Extract channel name from the input if it contains '/'
-        var match = input.match(/(?:\.tv\/|\/)([^\/?]+)/);
-        return match ? match[1] : input;
+    function extractChannelName(fullText) {
+        // If the text contains '/', extract the text after the last '/'
+        var lastSlashIndex = fullText.lastIndexOf('/');
+        return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
     }
 
     function createIframe(id, channel, top, left) {
