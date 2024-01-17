@@ -5,21 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitch Stream Viewer</title>
+<style>
+        #channelForm {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
 <!-- Form to get channel names and stream quality -->
 <form id="channelForm">
-    <label for="channel1">Channel Name ◰:</label>
+<div>Enter Channel Names:</div>
+    <label for="channel1"></label>
     <input type="text" id="channel1" name="channel1" required><br>
 
-    <label for="channel2">Channel Name ◳:</label>
+    <label for="channel2"></label>
     <input type="text" id="channel2" name="channel2" required><br>
 
-    <label for="channel3">Channel Name ◱:</label>
+    <label for="channel3"></label>
     <input type="text" id="channel3" name="channel3" required><br>
 
-    <label for="channel4">Channel Name ◲:</label>
+    <label for="channel4"></label>
     <input type="text" id="channel4" name="channel4" required><br>
 
     <label>Stream Quality:</label>
