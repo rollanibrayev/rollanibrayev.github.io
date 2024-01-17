@@ -74,11 +74,14 @@
         }
     }
 
-    // Add event listeners for arrow keys
+    // Add event listeners for arrow keys and Enter key
     document.addEventListener("keydown", function (event) {
         if (event.key === "ArrowDown" || event.key === "ArrowUp") {
             event.preventDefault();
             focusNextInput(event.key === "ArrowDown");
+        } else if (event.key === "Enter") {
+            event.preventDefault();
+            generateIframes();
         }
     });
 
