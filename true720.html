@@ -78,11 +78,15 @@ function createIframe(id, channel) {
     iframe.frameborder=0;
     iframe.allowfullscreen=true;
     //iframe.scrolling=no;
-    iframe.height=1080;
-    iframe.width=1920;
+    if (quality == "720p60") {
+      iframe.height=720;
+      iframe.width=1280;
+    } else {
+      iframe.height=1080;
+      iframe.width=1920;
+    }
     iframe.style = `border: 0`;
 
-   
     if (position == "center") {
        document.body.style = "display: flex; justify-content: center; align-items: center";
     } else {
