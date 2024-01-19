@@ -1,4 +1,28 @@
 <title>True 720p</title>
+
+<form id="channelForm">
+  <div>Channel Link or Name:</div>
+  <label for="channel1"></label>
+  <input type="text" id="channel1" name="channel1" required><br>
+  <label>Player Position:</label>
+  <div style='/*float: right*/'>
+    <input type="radio" id="top_left" name="position" value="top: 0; left: 0">
+    <label for="top_left">Top Left</label>
+    <input type="radio" id="top_right" name="position" value="top: 0; right: 0">
+    <label for="top_right">Top Right</label><br>
+    <input type="radio" id="bottom_left" name="position" value="bottom: 0; left: 0">
+    <label for="bottom_left">Bottom Left</label>
+    <input type="radio" id="bottom_right" name="position" value="bottom: 0; right: 0" checked>
+    <label for="bottom_right">Bottom Right</label><br>
+  </div>
+  <input type="button" value="Start Watching" onclick="generateIframes()">
+</form>
+<div id="iframeContainer"></div>
+<!--
+<link rel="stylesheet" href="styles720.css">
+<script src="script720.js" defer></script>
+-->
+
 <style>
 body {
   margin: 0;
@@ -11,6 +35,7 @@ body {
   position: fixed
 }
 </style>
+
 <script defer>
 // Variable to store previous channel names and quality
 let prevChannels = {};
@@ -55,25 +80,3 @@ function createIframe(id, channel) {
   }
 }
 </script>
-<form id="channelForm">
-  <div>Channel Link or Name:</div>
-  <label for="channel1"></label>
-  <input type="text" id="channel1" name="channel1" required><br>
-  <label>Player Position:</label>
-  <div style='/*float: right*/'>
-    <input type="radio" id="top_left" name="position" value="top: 0; left: 0">
-    <label for="top_left">Top Left</label>
-    <input type="radio" id="top_right" name="position" value="top: 0; right: 0">
-    <label for="top_right">Top Right</label><br>
-    <input type="radio" id="bottom_left" name="position" value="bottom: 0; left: 0">
-    <label for="bottom_left">Bottom Left</label>
-    <input type="radio" id="bottom_right" name="position" value="bottom: 0; right: 0" checked>
-    <label for="bottom_right">Bottom Right</label><br>
-  </div>
-  <input type="button" value="Start Watching" onclick="generateIframes()">
-</form>
-<div id="iframeContainer"></div>
-<!--
-<link rel="stylesheet" href="styles720.css">
-<script src="script720.js" defer></script>
--->
