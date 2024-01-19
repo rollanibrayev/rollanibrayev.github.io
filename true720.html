@@ -8,7 +8,7 @@
   #channelForm {
         text-align: center;
     }
-  iframeContaine {
+  #iframeContaine {
     position: fixed
   }
 </style>
@@ -74,7 +74,7 @@ function createIframe(id, channel) {
       iframe.width=1280;
       iframe.style = `border: 0`;
 
-      iframeContainer.style = `${position};`
+      iframeContainer.style = position;
 
       iframeContainer.appendChild(iframe);
 
