@@ -8,6 +8,9 @@
   #channelForm {
         text-align: center;
     }
+  iframeContaine {
+    position: fixed
+  }
 </style>
 </head><body>
 <form id="channelForm">
@@ -16,11 +19,19 @@
     <input type="text" id="channel1" name="channel1" required><br>
 
   <label>Player Position:</label>
-    <input type="radio" id="left" name="position" value="left">
-    <label for="left">Left</label>
+    <div style='float: right'>
+      <input type="radio" id="top_left" name="position" value="top: 0; left: 0">
+      <label for="top_left">Top Left</label>
 
-    <input type="radio" id="right" name="position" value="right" checked>
-    <label for="right">Right</label><br>
+      <input type="radio" id="top_right" name="position" value="top: 0; right: 0" checked>
+      <label for="top_right">Top Right</label><br>
+
+      <input type="radio" id="bottom_left" name="position" value="bottom: 0; left: 0">
+      <label for="bottom_left">Bottom Left</label>
+
+      <input type="radio" id="bottom_right" name="position" value="bottom: 0; right: 0}" checked>
+      <label for="bottom_right">Bottom Right</label><br>
+    </div>
 
     <input type="button" value="Start Watching" onclick="generateIframes()">
 </form>
@@ -63,7 +74,7 @@ function createIframe(id, channel) {
       iframe.width=1280;
       iframe.style = `border: 0`;
 
-      iframeContainer.style = `float: ${position}`;
+      iframeContainer.style = position;
 
       iframeContainer.appendChild(iframe);
 
