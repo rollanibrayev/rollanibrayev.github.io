@@ -77,9 +77,9 @@ function createIframe(id, channel) {
 
    
     if (position == "center") {
-       iframeContainer.style = position;
+       document.body.style = "display: flex; justify-content: center; align-items: center";
     } else {
-      document.body.style = "display: flex; justify-content: center; align-items: center";
+      iframeContainer.style = position;
     }
     iframeContainer.appendChild(iframe);
 
