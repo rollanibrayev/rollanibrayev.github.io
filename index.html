@@ -74,7 +74,7 @@ function createIframe(id, channel) {
     var quality = document.querySelector('input[name="quality"]:checked').value;
     iframe.id = id;
     iframe.name = id;
-    iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.1`;
+    iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1`;
     iframe.frameborder=0;
     iframe.allowfullscreen=true;
     //iframe.scrolling=no;
