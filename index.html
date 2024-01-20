@@ -4,7 +4,7 @@
   <div>Channel Link or Name:</div>
   <label for="channel1"></label>
   <input type="text" id="channel1" name="channel1" required><br>
-  <label>Player Position:</label>
+  <!--<label>Player Position:</label>
   <div style='/*float: right*/'>
     <input type="radio" id="top_left" name="position" value="top: 0; left: 0">
     <label for="top_left">Top Left</label>
@@ -16,12 +16,12 @@
     <label for="bottom_right">Bottom Right</label><br>
     <input type="radio" id="center" name="position" value="center" checked>
     <label for="center">Center</label>
-  </div>
+  </div>-->
   <label>Video Quality:</label>
-    <input type="radio" id="720p60" name="quality" value="720p60">
+    <input type="radio" id="720p60" name="quality" value="720p60" checked>
     <label for="720p60">720p60</label>
 
-    <input type="radio" id="source" name="quality" value="chunked" checked>
+    <input type="radio" id="source" name="quality" value="chunked">
     <label for="source">Source</label><br>
   <input type="button" value="Start Watching" onclick="generateIframes()">
 </form>
@@ -67,7 +67,7 @@ function extractChannelName(fullText) {
 
 function createIframe(id, channel) {
   let iframeContainer = document.getElementById("iframeContainer");
-  let position = document.querySelector('input[name="position"]:checked').value;
+  //let position = document.querySelector('input[name="position"]:checked').value;
 
   if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
     let iframe = document.createElement("iframe");
@@ -87,11 +87,11 @@ function createIframe(id, channel) {
     }
     iframe.style = `border: 0`;
 
-    if (position == "center") {
+    //if (position == "center") {
        document.body.style = "display: flex; justify-content: center; align-items: center";
-    } else {
+    /*} else {
       iframeContainer.style = position;
-    }
+    }*/
     iframeContainer.appendChild(iframe);
 
     prevChannels[id] = channel;
