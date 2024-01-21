@@ -1,4 +1,16 @@
-<!DOCTYPE html><html><head><title>Twitch Player</title></head><body>
+<!DOCTYPE html><html><head><title>Twitch Player</title>
+<style>
+body {
+  margin: 0;
+  overflow: hidden
+}
+#channelForm {
+  text-align: center
+}
+#iframeContainer {
+  position: fixed
+}
+</style></head><body>
 <form id="channelForm">
   <div>Channel Link or Name:</div>
   <label for="channel1"></label>
@@ -29,19 +41,6 @@
 <link rel="stylesheet" href="styles.css">
 <script src="script.js" defer></script>
 -->
-
-<style>
-body {
-  margin: 0;
-  overflow: hidden
-}
-#channelForm {
-  text-align: center
-}
-#iframeContainer {
-  position: fixed
-}
-</style>
 
 <script defer>
 // Variable to store previous channel names and quality
