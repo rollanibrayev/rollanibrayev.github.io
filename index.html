@@ -1,107 +1,70 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Twitch Player</title>
-    <style>
-      body {
-      margin: 0;
-      overflow: hidden
-      }
-      #channelForm {
-        text-align: center
-      }
-      /*#iframeContainer {
-        position: fixed
-      }*/
-    </style>
-  </head>
-  <body>
-    <form id="channelForm">
-      <div>Channel Link or Name:</div>
-      <label for="channel1"></label>
-      <input type="text" id="channel1" name="channel1" required><br>
-      <!--
-      <label>Player Position:</label>
-      <div style='/*float: right*/'>
-        <input type="radio" id="top_left" name="position" value="top: 0; left: 0">
-        <label for="top_left">Top Left</label>
-        <input type="radio" id="top_right" name="position" value="top: 0; right: 0">
-        <label for="top_right">Top Right</label><br>
-        <input type="radio" id="bottom_left" name="position" value="bottom: 0; left: 0">
-        <label for="bottom_left">Bottom Left</label>
-        <input type="radio" id="bottom_right" name="position" value="bottom: 0; right: 0">
-        <label for="bottom_right">Bottom Right</label><br>
-        <input type="radio" id="center" name="position" value="center" checked>
-        <label for="center">Center</label>
-      </div>
-      -->
-      <label>Video Quality:</label>
-      <input type="radio" id="720p60" name="quality" value="720p60" checked>
-      <label for="720p60">720p60</label>
+<title>Twitch Player</title>
+<body>
+  <form id="channelForm">
+    <div>Channel Link or Name:</div>
+    <label for="channel1"></label>
+    <input type="text" id="channel1" name="channel1" required><br>
+    <label>Video Quality:</label>
+    <input type="radio" id="720p60" name="quality" value="720p60" checked>
+    <label for="720p60">720p60</label>
 
-      <input type="radio" id="source" name="quality" value="chunked">
-      <label for="source">Source</label><br>
-      <input type="button" value="Start Watching" onclick="generateIframes()">
-    </form>
-    <div id="iframeContainer"></div>
-    <!--
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-    -->
+    <input type="radio" id="source" name="quality" value="chunked">
+    <label for="source">Source</label><br>
+    <input type="button" value="Start Watching" onclick="generateIframes()">
+  </form>
+  <div id="iframeContainer"></div>
+</body>
+<style>
+  body {
+  margin: 0;
+  overflow: hidden
+  }
+  #channelForm {
+    text-align: center
+  }
+</style>
+<script defer>
+let prevChannels = {};
 
-    <script defer>
-      // Variable to store previous channel names and quality
-      let prevChannels = {};
+function generateIframes() {
+  let channel1 = extractChannelName(document.getElementById("channel1").value.trim());
+  if (channel1) {
+    createIframe("frame1", channel1);
 
-      function generateIframes() {
-        let channel1 = extractChannelName(document.getElementById("channel1").value.trim());
-        if (channel1) {
-          createIframe("frame1", channel1);
+    document.getElementById("channelForm").style.display = "none";
+  } else {
+    alert("Please enter at least one channel name.");
+  }
+}
 
-          document.getElementById("channelForm").style.display = "none";
-        } else {
-          alert("Please enter at least one channel name.");
-        }
-      }
+function extractChannelName(fullText) {
+  let lastSlashIndex = fullText.lastIndexOf('/');
+  return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
+}
 
-      function extractChannelName(fullText) {
-        // If the text contains '/', extract the text after the last '/'
-        let lastSlashIndex = fullText.lastIndexOf('/');
-        return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
-      }
+function createIframe(id, channel) {
+  let iframeContainer = document.getElementById("iframeContainer");
+  //let position = document.querySelector('input[name="position"]:checked').value;
 
-      function createIframe(id, channel) {
-        let iframeContainer = document.getElementById("iframeContainer");
-        //let position = document.querySelector('input[name="position"]:checked').value;
-
-        if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
-          let iframe = document.createElement("iframe");
-          var quality = document.querySelector('input[name="quality"]:checked').value;
-          iframe.id = id;
-          iframe.name = id;
-          iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.5`;
-          iframe.frameborder=0;
-          iframe.allowfullscreen=true;
-          //iframe.scrolling=no;
-          if (quality == "720p60") {
-            iframe.height=720;
-            iframe.width=1280;
-          } else {
-            iframe.height=1080;
-            iframe.width=1920;
-          }
-          iframe.style = `border: 0`;
-
-          //if (position == "center") {
-            document.body.style = "display: flex; justify-content: center; align-items: center";
-          /*} else {
-            iframeContainer.style = position;
-          }*/
-          iframeContainer.appendChild(iframe);
-
-          prevChannels[id] = channel;
-        }
-      }
-    </script>
-  </body>
-</html>
+  if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
+    let iframe = document.createElement("iframe");
+    let quality = document.querySelector('input[name="quality"]:checked').value;
+    iframe.id = id;
+    iframe.name = id;
+    iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.5`;
+    iframe.frameborder=0;
+    iframe.allowfullscreen=true;
+    if (quality == "720p60") {
+      iframe.height=720;
+      iframe.width=1280;
+    } else {
+      iframe.height=1080;
+      iframe.width=1920;
+    }
+    iframe.style = `border: 0`;
+    document.body.style = "display: flex; justify-content: center; align-items: center";
+    iframeContainer.appendChild(iframe);
+    prevChannels[id] = channel;
+  }
+}
+</script>
