@@ -1,4 +1,4 @@
-<title>Twitch Player</title>
+<!DOCTYPE html><html><head><title>Twitch Player</title>
 <style>
 body {
   margin: 0;
@@ -52,7 +52,7 @@ function createIframe(id, channel) {
     prevChannels[id] = channel;
   }
 }
-</script>
+</script></head><body>
 <form id="channelForm">
   <div>Channel Link or Name:</div>
   <label for="channel"></label>
@@ -65,4 +65,4 @@ function createIframe(id, channel) {
   <label for="source">Source</label><br>
   <input type="button" value="Start Watching" onclick="generateIframes()">
 </form>
-<div id="iframeContainer"></div>
+<div id="iframeContainer"></div></body></html>
