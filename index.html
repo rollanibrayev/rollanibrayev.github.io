@@ -1,17 +1,4 @@
 <title>Twitch Player</title>
-<form id="channelForm">
-  <div>Channel Link or Name:</div>
-  <label for="channel"></label>
-  <input type="text" id="channel" name="channel" required><br>
-  <label>Video Quality:</label>
-  <input type="radio" id="720p60" name="quality" value="720p60" checked>
-  <label for="720p60">720p60</label>
-
-  <input type="radio" id="source" name="quality" value="chunked">
-  <label for="source">Source</label><br>
-  <input type="button" value="Start Watching" onclick="generateIframes()">
-</form>
-<div id="iframeContainer"></div>
 <style>
 body {
   margin: 0;
@@ -66,3 +53,16 @@ function createIframe(id, channel) {
   }
 }
 </script>
+<form id="channelForm">
+  <div>Channel Link or Name:</div>
+  <label for="channel"></label>
+  <input type="text" id="channel" name="channel" required><br>
+  <label>Video Quality:</label>
+  <input type="radio" id="720p60" name="quality" value="720p60" checked>
+  <label for="720p60">720p60</label>
+
+  <input type="radio" id="source" name="quality" value="chunked">
+  <label for="source">Source</label><br>
+  <input type="button" value="Start Watching" onclick="generateIframes()">
+</form>
+<div id="iframeContainer"></div>
