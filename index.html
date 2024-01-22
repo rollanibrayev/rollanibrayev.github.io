@@ -13,8 +13,6 @@ body {
 }
 </style>
 <script defer>
-let prevChannels = {};
-
 function generateIframes() {
   let channel = extractChannelName(document.getElementById("channel").value.trim());
   if (channel) {
@@ -33,40 +31,25 @@ function extractChannelName(fullText) {
 
 function createIframe(id, channel) {
   let iframeContainer = document.getElementById("iframeContainer");
-  //let position = document.querySelector('input[name="position"]:checked').value;
 
-  if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
-    let iframe = document.createElement("iframe");
-    let quality = document.querySelector('input[name="quality"]:checked').value;
-    iframe.id = id;
-    iframe.name = id;
-    iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1`;
-    iframe.frameborder=0;
-    iframe.allowfullscreen=true;
-    if (quality == "720p60") {
-      iframe.height=720;
-      iframe.width=1280;
-    } else {
-      iframe.height=1080;
-      iframe.width=1920;
-    }
-    iframe.style = `border: 0`;
-    document.body.style = "display: flex; justify-content: center; align-items: center";
-    iframeContainer.appendChild(iframe);
-    prevChannels[id] = channel;
-  }
+  let iframe = document.createElement("iframe");
+  iframe.id = id;
+  iframe.name = id;
+  iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`;
+  iframe.frameborder=0;
+  iframe.allowfullscreen=true;
+  iframe.height=720;
+  iframe.width=1280;
+  iframe.style = `border: 0`;
+  document.body.style = "display: flex; justify-content: center; align-items: center";
+  iframeContainer.appendChild(iframe);
 }
 </script>
 <form id="channelForm">
   <div>Channel Link or Name:</div>
   <label for="channel"></label>
   <input type="text" id="channel" name="channel" required><br>
-  <label>Video Quality:</label>
-  <input type="radio" id="720p60" name="quality" value="720p60" checked>
-  <label for="720p60">720p60</label>
 
-  <input type="radio" id="source" name="quality" value="chunked">
-  <label for="source">Source</label><br>
   <input type="button" value="Start Watching" onclick="generateIframes()">
 </form>
 <div id="iframeContainer"></div>
