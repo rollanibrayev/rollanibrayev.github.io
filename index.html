@@ -1,5 +1,6 @@
-<title>Twitch Player</title>
-<style>
+<head>
+  <title>Twitch Player</title>
+  <style>
 html {
   background-color: black;
   color: white
@@ -11,8 +12,8 @@ body {
 #channelForm {
   text-align: center
 }
-</style>
-<script defer>
+  </style>
+  <script defer>
 function generateIframes() {
   let channel = extractChannelName(document.getElementById("channel").value.trim());
   if (channel) {
@@ -44,12 +45,15 @@ function createIframe(id, channel) {
   document.body.style = "display: flex; justify-content: center; align-items: center";
   iframeContainer.appendChild(iframe);
 }
-</script>
-<form id="channelForm">
-  <div>Channel Link or Name:</div>
-  <label for="channel"></label>
-  <input type="text" id="channel" name="channel" required><br>
+  </script>
+</head>
+<body>
+  <form id="channelForm">
+    <div>Channel Link or Name:</div>
+    <label for="channel"></label>
+    <input type="text" id="channel" name="channel" required><br>
 
-  <input type="button" value="Start Watching" onclick="generateIframes()">
-</form>
-<div id="iframeContainer"></div>
+    <input type="button" value="Start Watching" onclick="generateIframes()">
+  </form>
+  <div id="iframeContainer"></div>
+</body>
