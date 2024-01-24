@@ -1,36 +1,43 @@
-<head>
-  <title>Twitch Player</title>
-  <style>
-html {
+<title>Twitch Player</title>
+<style>
+html
+{
   background-color: black;
   color: white
 }
-body {
+body
+{
   margin: 0;
   overflow: hidden
 }
-#channelForm {
+#channelForm
+{
   text-align: center
 }
-  </style>
-  <script defer>
-function generateIframes() {
+</style>
+<script defer>
+function generateIframes()
+{
   let channel = extractChannelName(document.getElementById("channel").value.trim());
-  if (channel) {
+  if (channel)
+  {
     createIframe("frame1", channel);
 
     document.getElementById("channelForm").style.display = "none";
-  } else {
+  } else
+  {
     alert("Please enter at least one channel name.");
   }
 }
 
-function extractChannelName(fullText) {
+function extractChannelName(fullText)
+{
   let lastSlashIndex = fullText.lastIndexOf('/');
   return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
 }
 
-function createIframe(id, channel) {
+function createIframe(id, channel)
+{
   let iframeContainer = document.getElementById("iframeContainer");
 
   let iframe = document.createElement("iframe");
@@ -45,15 +52,13 @@ function createIframe(id, channel) {
   document.body.style = "display: flex; justify-content: center; align-items: center";
   iframeContainer.appendChild(iframe);
 }
-  </script>
-</head>
-<body>
-  <form id="channelForm">
-    <div>Channel Link or Name:</div>
-    <label for="channel"></label>
-    <input type="text" id="channel" name="channel" required><br>
+</script>
 
-    <input type="button" value="Start Watching" onclick="generateIframes()">
-  </form>
-  <div id="iframeContainer"></div>
-</body>
+<form id="channelForm">
+  <div>Channel Link or Name:</div>
+  <label for="channel"></label>
+  <input type="text" id="channel" name="channel" required><br>
+
+  <input type="button" value="Start Watching" onclick="generateIframes()">
+</form>
+<div id="iframeContainer"></div>
