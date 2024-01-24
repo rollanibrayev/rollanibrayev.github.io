@@ -14,12 +14,15 @@ body {
 #channelForm {
   text-align: center
 }
+iframe {
+  border: 0
+}
 </style>
 <script defer>
 function generateIframes() {
   let channel = extractChannelName(document.getElementById("channel").value.trim());
   if (channel) {
-    createIframe("frame1", channel);
+    giveIframeCHannel(channel);
     document.getElementById("channelForm").style.display = "none";
   } else {
     alert("Please enter at least one channel name.");
@@ -31,19 +34,8 @@ function extractChannelName(fullText) {
   return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
 }
 
-function createIframe(id, channel) {
-  let iframeContainer = document.getElementById("iframeContainer");
-
-  let iframe = document.createElement("iframe");
-  iframe.id = id;
-  iframe.name = id;
-  iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`;
-  iframe.frameborder=0;
-  iframe.allowfullscreen=true;
-  iframe.height=720;
-  iframe.width=1280;
-  iframe.style = `border: 0`;
-  iframeContainer.appendChild(iframe);
+function giveIframeCHannel(channel) {
+  document.getElementById("iframe").src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`;
 }
 </script>
 
@@ -54,4 +46,4 @@ function createIframe(id, channel) {
 
   <input type="button" value="Start Watching" onclick="generateIframes()">
 </form>
-<div id="iframeContainer"></div>
+<iframe id="iframe" frameborder=0 allowfullscreen=true height=720 width=1280></iframe>
