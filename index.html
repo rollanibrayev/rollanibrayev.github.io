@@ -1,43 +1,34 @@
 <title>Twitch Player</title>
 <style>
-html
-{
+html {
   background-color: black;
   color: white
 }
-body
-{
+body {
   margin: 0;
   overflow: hidden
 }
-#channelForm
-{
+#channelForm {
   text-align: center
 }
 </style>
 <script defer>
-function generateIframes()
-{
+function generateIframes() {
   let channel = extractChannelName(document.getElementById("channel").value.trim());
-  if (channel)
-  {
+  if (channel) {
     createIframe("frame1", channel);
     document.getElementById("channelForm").style.display = "none";
-  }
-  else
-  {
+  } else {
     alert("Please enter at least one channel name.");
   }
 }
 
-function extractChannelName(fullText)
-{
+function extractChannelName(fullText) {
   let lastSlashIndex = fullText.lastIndexOf('/');
   return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
 }
 
-function createIframe(id, channel)
-{
+function createIframe(id, channel) {
   let iframeContainer = document.getElementById("iframeContainer");
 
   let iframe = document.createElement("iframe");
