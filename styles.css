@@ -1,17 +1,17 @@
-  html {
-    background-color: black;
-    color: white
-  }
-  body {
-    margin: 0;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center
-  }
-  #channelForm {
-    text-align: center
-  }
-  iframe {
-    border: 0
-  }
+html {
+  background-color: black;
+  color: white
+}
+body {
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+#channelForm {
+  text-align: center
+}
+iframe {
+  border: 0
+}
