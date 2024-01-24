@@ -13,6 +13,6 @@ body {
   text-align: center
 }
 iframe {
-  border: 0
+  border: 0;
   display: none
 }
