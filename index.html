@@ -1,10 +1,13 @@
-<title>Twitch Player</title>
-<link rel="stylesheet" href="styles.css">
-<script src="script.js" defer></script>
-
-<form id="channelForm">
-  <label for="channel">Channel Link or Name:</label>
-  <input type="text" id="channel" name="channel" required><br>
-  <input type="button" value="Start Watching" onclick="generateIframes()">
-</form>
-<iframe id="iframe" frameborder=0 allowfullscreen=true height=720 width=1280></iframe>
+<head>
+  <title>Twitch Player</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <form id="channelForm">
+    <label for="channel">Channel Link or Name:</label>
+    <input type="text" id="channel" name="channel" required><br>
+    <input type="button" value="Start Watching" onclick="generateIframes()">
+  </form>
+  <iframe id="iframe" frameborder=0 allowfullscreen=true height=720 width=1280></iframe>
+</body>
