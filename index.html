@@ -6,7 +6,10 @@ html {
 }
 body {
   margin: 0;
-  overflow: hidden
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
 #channelForm {
   text-align: center
@@ -40,7 +43,6 @@ function createIframe(id, channel) {
   iframe.height=720;
   iframe.width=1280;
   iframe.style = `border: 0`;
-  document.body.style = "display: flex; justify-content: center; align-items: center";
   iframeContainer.appendChild(iframe);
 }
 </script>
