@@ -23,6 +23,13 @@ iframe {
 </style>
 <script defer>
 var textInput = document.getElementById('channel');
+textInput.focus();
+document.addEventListener('keypress', (event) => {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    generateIframes();
+  }
+});
 function generateIframes() {
   var fullText = textInput.value.trim(),
       lastSlashIndex = fullText.lastIndexOf('/'),
@@ -36,11 +43,4 @@ function generateIframes() {
     alert('Please enter a channel name');
   }
 }
-textInput.focus();
-document.addEventListener('keypress', (event) => {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    document.getElementById('myButton').click();
-  }
-});
 </script>
