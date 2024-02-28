@@ -7,9 +7,11 @@ html {
 body {
   margin: 0;
   overflow: hidden;
+  /*
   display: flex;
   justify-content: center;
   align-items: center
+  */
 }
 #channelForm {
   text-align: center
@@ -21,8 +23,7 @@ iframe {
 </style>
 <script defer>
 function generateIframes() {
-  let fullText = document.getElementById('channel').value.trim()
-  let lastSlashIndex = fullText.lastIndexOf('/');
+  let lastSlashIndex = document.getElementById('channel').value.trim().lastIndexOf('/');
   let channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
   if (channel) {
     const iframe = document.getElementById('iframe');
