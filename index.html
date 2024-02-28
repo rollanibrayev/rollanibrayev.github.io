@@ -38,7 +38,7 @@ function generateIframes() {
     const iframe = document.getElementById('iframe');
     iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
     iframe.style = 'display: block';
-    document.getElementById('channelForm').style.display = 'none';
+    document.getElementById('formContainer').style.display = 'none';
   } else {
     alert('Please enter a channel name');
   }
