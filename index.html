@@ -33,11 +33,27 @@ function generateIframes() {
     alert('Please enter a channel name.');
   }
 }
+document.addEventListener("DOMContentLoaded", function() {
+    var button = document.getElementById("myButton");
+
+    // Function to simulate click on the button
+    function simulateClick() {
+        button.click();
+    }
+
+    // Listen for key press events
+    document.addEventListener("keypress", function(event) {
+        // Check if the pressed key is Enter (keyCode 13)
+        if (event.keyCode === 13) {
+            simulateClick(); // Call function to simulate click
+        }
+    });
+});
 </script>
 
 <form id="channelForm">
   <div>Channel Link or Name:</div>
   <input type="text" id="channel" name="channel" required><br>
-  <input type="button" value="Start Watching" onclick="generateIframes()">
+  <input type="button" id="myButton" value="Start Watching" onclick="generateIframes()">
 </form>
 <iframe id="iframe" frameborder=0 allowfullscreen=true height=1080 width=1920></iframe>
