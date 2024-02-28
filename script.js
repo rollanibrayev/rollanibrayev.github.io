@@ -4,7 +4,7 @@ function extractChannelName(fullText) {
 }
 function giveIframeChannel(channel) {
   const iframe = document.getElementById('iframe');
-  iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`;
+  iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=source&volume=1`;
   iframe.style = 'display: block';
 }
 function generateIframes() {
