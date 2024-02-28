@@ -33,22 +33,11 @@ function generateIframes() {
     alert('Please enter a channel name.');
   }
 }
-document.addEventListener("DOMContentLoaded", function() {
-  let button = document.getElementById("myButton");
-
-  // Function to simulate click on the button
-  function simulateClick() {
-    button.click();
+document.addEventListener("keypress", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("myButton").click();
   }
-
-  // Listen for key press events
-  document.addEventListener("keypress", function(event) {
-    // Check if the pressed key is Enter (keyCode 13)
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      simulateClick(); // Call function to simulate click
-    }
-  });
 });
 </script>
 
