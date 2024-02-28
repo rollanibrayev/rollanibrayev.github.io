@@ -21,7 +21,8 @@ iframe {
 </style>
 <script defer>
 function generateIframes() {
-  let fullText = document.getElementById('channel').value.trim(),
+  let textInput = document.getElementById('channel'),
+      fullText = textInput.value.trim(),
       lastSlashIndex = fullText.lastIndexOf('/'),
       channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
   if (channel) {
@@ -33,6 +34,7 @@ function generateIframes() {
     alert('Please enter a channel name.');
   }
 }
+textInput.focus();
 document.addEventListener('keypress', function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
