@@ -21,9 +21,9 @@ iframe {
 </style>
 <script defer>
 function generateIframes() {
-  let fullText = document.getElementById('channel').value.trim();
-  let lastSlashIndex = fullText.lastIndexOf('/');
-  let channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
+  let fullText = document.getElementById('channel').value.trim(),
+      lastSlashIndex = fullText.lastIndexOf('/'),
+      channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
   if (channel) {
     const iframe = document.getElementById('iframe');
     iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
