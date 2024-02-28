@@ -21,28 +21,28 @@ iframe {
 </style>
 <script defer>
 function generateIframes() {
-  let fullText = document.getElementById(`channel`).value.trim(),
-      lastSlashIndex = fullText.lastIndexOf(`/`),
+  let fullText = document.getElementById('channel').value.trim(),
+      lastSlashIndex = fullText.lastIndexOf('/'),
       channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
   if (channel) {
-    const iframe = document.getElementById(`iframe`);
+    const iframe = document.getElementById('iframe');
     iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
-    iframe.style = `display: block`;
-    document.getElementById(`channelForm`).style.display = `none`;
+    iframe.style = 'display: block';
+    document.getElementById('channelForm').style.display = 'none';
   } else {
-    alert(`Please enter a channel name.`);
+    alert('Please enter a channel name.');
   }
 }
-document.addEventListener(`keypress`, function(event) {
+document.addEventListener('keypress', function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
-    document.getElementById(`myButton`).click();
+    document.getElementById('myButton').click();
   }
 });
 </script>
-<form id=`channelForm`>
+<form id="channelForm">
   <div>Channel Link or Name:</div>
-  <input type=`text` id=`channel` name=`channel` required><br>
-  <input type=`button` id=`myButton` value=`Start Watching` onclick=`generateIframes()`>
+  <input type="text" id="channel" name="channel" required><br>
+  <input type="button" id=`myButton" value="Start Watching" onclick="generateIframes()">
 </form>
-<iframe id=`iframe` frameborder=0 allowfullscreen=true height=1080 width=1920></iframe>
+<iframe id="iframe" frameborder=0 allowfullscreen=true height=1080 width=1920></iframe>
