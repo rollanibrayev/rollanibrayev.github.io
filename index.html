@@ -22,7 +22,7 @@ iframe {
 }
 </style>
 <script defer>
-var textInput = document.getElementById('textInput');
+const textInput = document.getElementById('textInput');
 textInput.focus();
 document.addEventListener('keypress', (event) => {
   if (event.keyCode == 13) {
@@ -31,11 +31,11 @@ document.addEventListener('keypress', (event) => {
   }
 });
 function generateIframes() {
-  var fullText = textInput.value.trim(),
+  let fullText = textInput.value.trim(),
       lastSlashIndex = fullText.lastIndexOf('/'),
       channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
   if (channel) {
-    var iframe = document.getElementById('iframe');
+    const iframe = document.getElementById('iframe');
     iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
     iframe.style = 'display: block';
     document.getElementById('channelForm').style.display = 'none';
