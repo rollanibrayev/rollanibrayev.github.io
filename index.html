@@ -23,7 +23,7 @@ iframe {
 </style>
 <script defer>
 textInput = document.getElementById('channel')
-function generateIframes() {
+generateIframes = () => {
   fullText = textInput.value.trim()
   lastSlashIndex = fullText.lastIndexOf('/')
   channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText
