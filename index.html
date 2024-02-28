@@ -34,20 +34,21 @@ function generateIframes() {
   }
 }
 document.addEventListener("DOMContentLoaded", function() {
-    var button = document.getElementById("myButton");
+  let button = document.getElementById("myButton");
 
-    // Function to simulate click on the button
-    function simulateClick() {
-        button.click();
+  // Function to simulate click on the button
+  function simulateClick() {
+    button.click();
+  }
+
+  // Listen for key press events
+  document.addEventListener("keypress", function(event) {
+    // Check if the pressed key is Enter (keyCode 13)
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      simulateClick(); // Call function to simulate click
     }
-
-    // Listen for key press events
-    document.addEventListener("keypress", function(event) {
-        // Check if the pressed key is Enter (keyCode 13)
-        if (event.keyCode === 13) {
-            simulateClick(); // Call function to simulate click
-        }
-    });
+  });
 });
 </script>
 
