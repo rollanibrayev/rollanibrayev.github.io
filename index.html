@@ -1,25 +1,25 @@
 <title>Twitch Player</title>
-<div id="formContainer">
-  <form id="channelForm">
+<div>
+  <form>
     <div>Channel Link or Name:</div>
-    <input type="text" id="textInput"><br>
+    <input type="text"><br>
     <input type="button" value="Start Watching" onclick="generateIframes()">
   </form>
 </div>
-<iframe id="iframe" frameborder=0 allowfullscreen=true height=1080 width=1920></iframe>
+<iframe frameborder=0 allowfullscreen=true height=1080 width=1920></iframe>
 <style>
 body {
   margin: 0;
   overflow: hidden;
 }
-#formContainer {
+div {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#channelForm {
+form {
   text-align: center;
 }
 iframe {
@@ -28,17 +28,17 @@ iframe {
 }
 </style>
 <script defer>
-const textInput = document.getElementById('textInput');
+const textInput = document.querySelector("input[type='text']");
 textInput.focus();
 function generateIframes() {
   let fullText = textInput.value.trim(),
       lastSlashIndex = fullText.lastIndexOf('/'),
       channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
   if (channel) {
-    const iframe = document.getElementById('iframe');
+    const iframe = document.getElementsByTagName('iframe')[0];
     iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
     iframe.style = 'display: block';
-    document.getElementById('formContainer').style.display = 'none';
+    document.getElementsByTagName('div')[0].style.display = 'none';
   } else {
     alert('Please enter a channel name');
   }
