@@ -1,8 +1,8 @@
 <title>Twitch Player</title>
 <form id="channelForm">
   <div>Channel Link or Name:</div>
-  <input type="text" id="channel" name="channel" required><br>
-  <input type="button" id="myButton" value="Start Watching" onclick="generateIframes()">
+  <input type="text" id="textInput" name="channel" required><br>
+  <input type="button" value="Start Watching" onclick="generateIframes()">
 </form>
 <iframe id="iframe" frameborder=0 allowfullscreen=true height=1080 width=1920></iframe>
 <style>
@@ -22,7 +22,7 @@ iframe {
 }
 </style>
 <script defer>
-var textInput = document.getElementById('channel');
+var textInput = document.getElementById('textInput');
 textInput.focus();
 document.addEventListener('keypress', (event) => {
   if (event.keyCode === 13) {
