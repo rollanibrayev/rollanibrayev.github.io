@@ -20,19 +20,14 @@ iframe {
 }
 </style>
 <script defer>
-function extractChannelName(fullText) {
-  let lastSlashIndex = fullText.lastIndexOf('/');
-  return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
-}
-function giveIframeChannel(channel) {
-  const iframe = document.getElementById('iframe');
-  iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
-  iframe.style = 'display: block';
-}
 function generateIframes() {
-  let channel = extractChannelName(document.getElementById('channel').value.trim());
+  let fullText = document.getElementById('channel').value.trim()
+  let lastSlashIndex = fullText.lastIndexOf('/');
+  let channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
   if (channel) {
-    giveIframeChannel(channel);
+    const iframe = document.getElementById('iframe');
+    iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
+    iframe.style = 'display: block';
     document.getElementById('channelForm').style.display = 'none';
   } else {
     alert('Please enter a channel name.');
