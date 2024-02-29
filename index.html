@@ -34,17 +34,17 @@ generateIframes = () => {
   fullText = textInput.value.trim()
   lastSlashIndex = fullText.lastIndexOf('/')
   channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText
-  channel ? {
+  if (channel) {
     iframe = document.querySelector('iframe')
     iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
     iframe.style = 'display: block'
     document.querySelector('div').style.display = 'none'
-  } : {
+  } else {
     alert('Please enter a channel name')
   }
 }
 document.addEventListener('keypress', (event) => {
-  (event.keyCode == 13) ? {
+  if (event.keyCode == 13) {
     event.preventDefault()
     generateIframes()
   }
