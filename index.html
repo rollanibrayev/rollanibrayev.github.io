@@ -14,7 +14,7 @@
   <label for="720p60">720p60</label>
   <input type="radio" id="source" name="quality" value="chunked">
   <label for="source">Source</label><br>
-  <input type="button" value="Start Watching" onclick="generateIframes()">
+  <input type="button" value="Start Watching">
 </form>
 <div id="iframeContainer"></div>
 <style>
@@ -58,6 +58,7 @@ function generateIframes() {
     alert("Please enter at least one channel name.");
   }
 }
+document.querySelector('input[type="button"]').addEventListener('click', generateIframes);
 </script>
 <!--
 <title>Twitch Player</title>
