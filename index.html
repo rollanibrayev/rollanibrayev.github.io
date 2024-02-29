@@ -29,6 +29,7 @@ function finalizeIframe() {
     iframe.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`;
     iframe.style = 'display: block';
     document.querySelector('form').style.display = 'none';
+    document.body.style.justifyContent = 'left';
   } else {
     alert('Please enter a channel name');
   }
