@@ -1,66 +1,3 @@
-<title>Multiple Streams Viewer</title>
-<form id="channelForm">
-  <div>Channel Links or Names:</div>
-  <label for="channel1"></label>
-  <input type="text" id="channel1" name="channel1" required><br>
-  <label for="channel2"></label>
-  <input type="text" id="channel2" name="channel2" required><br>
-  <label for="channel3"></label>
-  <input type="text" id="channel3" name="channel3" required><br>
-  <label for="channel4"></label>
-  <input type="text" id="channel4" name="channel4" required><br>
-  <label>Video Quality:</label>
-  <input type="radio" id="720p60" name="quality" value="720p60" checked>
-  <label for="720p60">720p60</label>
-  <input type="radio" id="source" name="quality" value="chunked">
-  <label for="source">Source</label><br>
-  <input type="button" value="Start Watching">
-</form>
-<div id="iframeContainer"></div>
-<style>
-#channelForm {
-  text-align: center;
-}
-</style>
-<script>
-let prevChannels = {},
-    prevQuality = "chunked";
-function extractChannelName(fullText) {
-  let lastSlashIndex = fullText.lastIndexOf('/');
-  return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
-}
-function createIframe(id, channel, top, left) {
-  const iframeContainer = document.getElementById("iframeContainer"),
-      quality = document.querySelector('input[name="quality"]:checked').value;
-  if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
-    const iframe = document.createElement("iframe");
-    iframe.id = id;
-    iframe.name = id;
-    iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.5`;
-    iframe.style = `border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${top}vh; left: ${left}vw;`;
-    iframeContainer.appendChild(iframe);
-    prevChannels[id] = channel;
-    prevQuality = quality;
-  }
-}
-function generateIframes() {
-  let channel1 = extractChannelName(document.getElementById("channel1").value.trim()),
-      channel2 = extractChannelName(document.getElementById("channel2").value.trim()),
-      channel3 = extractChannelName(document.getElementById("channel3").value.trim()),
-      channel4 = extractChannelName(document.getElementById("channel4").value.trim());
-  if (channel1 || channel2 || channel3 || channel4) {
-    createIframe("frame1", channel1, 0, 0);
-    createIframe("frame2", channel2, 0, 50);
-    createIframe("frame3", channel3, 50, 0);
-    createIframe("frame4", channel4, 50, 50);
-    document.getElementById("channelForm").style.display = "none";
-  } else {
-    alert("Please enter at least one channel name.");
-  }
-}
-document.querySelector('input[type="button"]').addEventListener('click', generateIframes);
-</script>
-<!--
 <title>Twitch Player</title>
 <div>
   <form>
@@ -110,4 +47,3 @@ document.addEventListener('keypress', (event) => {
   }
 });
 document.querySelector('input[type="button"]').addEventListener('click', showIframe);</script>
--->
