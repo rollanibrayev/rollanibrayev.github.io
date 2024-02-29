@@ -43,11 +43,11 @@ function showIframe() {
   }
 }
 textInput.focus();
-document.querySelector('input[type="button"]').addEventListener('click', showIframe);
 document.addEventListener('keypress', (event) => {
   if (event.keyCode == 13) {
     event.preventDefault();
     showIframe();
   }
 });
+document.querySelector('input[type="button"]').addEventListener('click', showIframe);
 </script>
