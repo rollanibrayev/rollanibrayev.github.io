@@ -1,20 +1,14 @@
 <title>Twitch Player</title>
-<div>
-  <form>
-    <div>Channel Link or Name:</div>
-    <input type="text"><br>
-    <input type="button" value="Start Watching">
-  </form>
-</div>
+<form>
+  <div>Channel Link or Name:</div>
+  <input type="text"><br>
+  <input type="button" value="Start Watching">
+</form>
 <iframe frameborder=0 allowfullscreen=true height=720 width=1280></iframe>
 <style>
 body {
   margin: 0;
   overflow: hidden;
-}
-body > div {
-  height: 100%;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +31,7 @@ function showIframe() {
     const iframe = document.querySelector('iframe');
     iframe.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`;
     iframe.style = 'display: block';
-    document.querySelector('div').style.display = 'none';
+    document.querySelector('form').style.display = 'none';
   } else {
     alert('Please enter a channel name');
   }
