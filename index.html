@@ -3,7 +3,7 @@
   <form>
     <div>Channel Link or Name:</div>
     <input type="text"><br>
-    <input type="button" value="Start Watching" onclick="showIframe()">
+    <input type="button" value="Start Watching">
   </form>
 </div>
 <iframe frameborder=0 allowfullscreen=true height=1080 width=1920></iframe>
@@ -43,6 +43,7 @@ function showIframe() {
   }
 }
 textInput.focus();
+document.querySelector('input[type="button"]').addEventListener('click', showIframe);
 document.addEventListener('keypress', (event) => {
   if (event.keyCode == 13) {
     event.preventDefault();
