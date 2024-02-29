@@ -20,7 +20,7 @@ iframe {
   display: none;
 }</style><script>
 const textInput = document.querySelector('input[type="text"]');
-function showIframe() {
+function finalizeIframe() {
   let fullText = textInput.value.trim(),
       lastSlashIndex = fullText.lastIndexOf('/'),
       channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
@@ -37,7 +37,7 @@ textInput.focus();
 document.addEventListener('keypress', (event) => {
   if (event.keyCode == 13) {
     event.preventDefault();
-    showIframe();
+    finalizeIframe();
   }
 });
-document.querySelector('input[type="button"]').addEventListener('click', showIframe);</script>
+document.querySelector('input[type="button"]').addEventListener('click', finalizeIframe);</script>
