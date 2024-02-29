@@ -3,7 +3,7 @@
   <form>
     <div>Channel Link or Name:</div>
     <input type="text"><br>
-    <input type="button" value="Start Watching" onclick="generateIframes()">
+    <input type="button" value="Start Watching" onclick="showIframe()">
   </form>
 </div>
 <iframe frameborder=0 allowfullscreen=true height=1080 width=1920></iframe>
@@ -30,7 +30,7 @@ iframe {
 <script defer>
 const textInput = document.querySelector('input[type="text"]');
 textInput.focus();
-function generateIframes() {
+function showIframe() {
   let fullText = textInput.value.trim(),
       lastSlashIndex = fullText.lastIndexOf('/'),
       channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
@@ -46,7 +46,7 @@ function generateIframes() {
 document.addEventListener('keypress', (event) => {
   if (event.keyCode == 13) {
     event.preventDefault();
-    generateIframes();
+    showIframe();
   }
 });
 </script>
