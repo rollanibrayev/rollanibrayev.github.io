@@ -23,17 +23,17 @@
 }
 </style>
 <script>
-var prevChannels = {};
-var prevQuality = "chunked";
+let prevChannels = {},
+    prevQuality = "chunked";
 function extractChannelName(fullText) {
-  var lastSlashIndex = fullText.lastIndexOf('/');
+  let lastSlashIndex = fullText.lastIndexOf('/');
   return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
 }
 function createIframe(id, channel, top, left) {
-  var iframeContainer = document.getElementById("iframeContainer");
-  var quality = document.querySelector('input[name="quality"]:checked').value;
+  const iframeContainer = document.getElementById("iframeContainer"),
+      quality = document.querySelector('input[name="quality"]:checked').value;
   if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
-    var iframe = document.createElement("iframe");
+    const iframe = document.createElement("iframe");
     iframe.id = id;
     iframe.name = id;
     iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.5`;
@@ -44,10 +44,10 @@ function createIframe(id, channel, top, left) {
   }
 }
 function generateIframes() {
-  var channel1 = extractChannelName(document.getElementById("channel1").value.trim());
-  var channel2 = extractChannelName(document.getElementById("channel2").value.trim());
-  var channel3 = extractChannelName(document.getElementById("channel3").value.trim());
-  var channel4 = extractChannelName(document.getElementById("channel4").value.trim());
+  let channel1 = extractChannelName(document.getElementById("channel1").value.trim()),
+      channel2 = extractChannelName(document.getElementById("channel2").value.trim()),
+      channel3 = extractChannelName(document.getElementById("channel3").value.trim()),
+      channel4 = extractChannelName(document.getElementById("channel4").value.trim());
   if (channel1 || channel2 || channel3 || channel4) {
     createIframe("frame1", channel1, 0, 0);
     createIframe("frame2", channel2, 0, 50);
