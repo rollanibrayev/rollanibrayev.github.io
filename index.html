@@ -29,7 +29,6 @@ iframe {
 </style>
 <script defer>
 const textInput = document.querySelector('input[type="text"]');
-textInput.focus();
 function showIframe() {
   let fullText = textInput.value.trim(),
       lastSlashIndex = fullText.lastIndexOf('/'),
@@ -43,6 +42,7 @@ function showIframe() {
     alert('Please enter a channel name');
   }
 }
+textInput.focus();
 document.addEventListener('keypress', (event) => {
   if (event.keyCode == 13) {
     event.preventDefault();
