@@ -1,26 +1,26 @@
 <title>Twitch Stream Viewer</title>
 <form id="channelForm">
-    <div>Channel Links or Names:</div>
-    <label for="channel1"></label>
-    <input type="text" id="channel1" name="channel1" required><br>
+  <div>Channel Links or Names:</div>
+  <label for="channel1"></label>
+  <input type="text" id="channel1" name="channel1" required><br>
 
-    <label for="channel2"></label>
-    <input type="text" id="channel2" name="channel2" required><br>
+  <label for="channel2"></label>
+  <input type="text" id="channel2" name="channel2" required><br>
 
-    <label for="channel3"></label>
-    <input type="text" id="channel3" name="channel3" required><br>
+  <label for="channel3"></label>
+  <input type="text" id="channel3" name="channel3" required><br>
 
-    <label for="channel4"></label>
-    <input type="text" id="channel4" name="channel4" required><br>
+  <label for="channel4"></label>
+  <input type="text" id="channel4" name="channel4" required><br>
 
-    <label>Video Quality:</label>
-    <input type="radio" id="720p60" name="quality" value="720p60" checked>
-    <label for="720p60">720p60</label>
+  <label>Video Quality:</label>
+  <input type="radio" id="720p60" name="quality" value="720p60" checked>
+  <label for="720p60">720p60</label>
 
-    <input type="radio" id="source" name="quality" value="chunked">
-    <label for="source">Source</label><br>
+  <input type="radio" id="source" name="quality" value="chunked">
+  <label for="source">Source</label><br>
 
-    <input type="button" value="Start Watching" onclick="generateIframes()">
+  <input type="button" value="Start Watching" onclick="generateIframes()">
 </form>
 <div id="iframeContainer"></div>
 <style>
