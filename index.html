@@ -79,3 +79,54 @@
         }
     }
 </script>
+<!--
+<title>Twitch Player</title>
+<div>
+  <form>
+    <div>Channel Link or Name:</div>
+    <input type="text"><br>
+    <input type="button" value="Start Watching">
+  </form>
+</div>
+<iframe frameborder=0 allowfullscreen=true height=1080 width=1920></iframe><style>
+body {
+  margin: 0;
+  overflow: hidden;
+}
+body > div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  text-align: center;
+}
+iframe {
+  border: 0;
+  display: none;
+}</style><script>
+const textInput = document.querySelector('input[type="text"]');
+function showIframe() {
+  let fullText = textInput.value.trim(),
+      lastSlashIndex = fullText.lastIndexOf('/'),
+      channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
+  if (channel) {
+    const iframe = document.querySelector('iframe');
+    iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
+    iframe.style = 'display: block';
+    document.querySelector('div').style.display = 'none';
+  } else {
+    alert('Please enter a channel name');
+  }
+}
+textInput.focus();
+document.addEventListener('keypress', (event) => {
+  if (event.keyCode == 13) {
+    event.preventDefault();
+    showIframe();
+  }
+});
+document.querySelector('input[type="button"]').addEventListener('click', showIframe);</script>
+-->
