@@ -20,7 +20,7 @@ document.addEventListener('keypress', (event) => {
     event.preventDefault();
     finalizeIframe();
   }
-  if (event.ctrlKey && event.key == 'v') {
+  if (event.key == 'v') {
     finalizeIframe();
   }
 });
