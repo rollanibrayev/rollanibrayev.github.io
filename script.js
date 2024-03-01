@@ -9,11 +9,11 @@ function finalizeIframe() {
     iframe.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
     iframe.style = 'display: block';
     d.querySelector('form').style.display = 'none';
-    d.b = d.body;
-    d.b.s = d.b.style;
-    d.b.s.justifyContent = 'left';
-    d.b.s.alignItems = 'start';
-    d.b.requestFullscreen();
+    db = d.body;
+    dbs = db.style;
+    dbs.justifyContent = 'left';
+    dbs.alignItems = 'start';
+    db.requestFullscreen();
   } else {
     alert('Please enter a channel name');
   }
