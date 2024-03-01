@@ -1,5 +1,5 @@
 textInput = document.querySelector('input[type="text"]');
-finalizeIframe = () => {
+function finalizeIframe() {
   fullText = textInput.value.trim()
   lastSlashIndex = fullText.lastIndexOf('/')
   channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText
