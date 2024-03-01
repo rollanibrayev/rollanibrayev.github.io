@@ -8,8 +8,8 @@ function finalizeIframe() {
           d = document;
     iframe.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
     iframe.style = 'display: block';
-    d.b = d.body;
     d.querySelector('form').style.display = 'none';
+    d.b = d.body;
     d.b.s = d.b.style;
     d.b.s.justifyContent = 'left';
     d.b.s.alignItems = 'start';
