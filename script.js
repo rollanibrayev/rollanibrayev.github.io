@@ -10,6 +10,9 @@ function finalizeIframe() {
     document.querySelector('form').style.display = 'none';
     document.body.style.justifyContent = 'left';
     document.body.style.alignItems = 'start';
+    document.dispatchEvent(new KeyboardEvent('keydown', {
+      key: 'F11'
+    }));
   } else {
     alert('Please enter a channel name');
   }
