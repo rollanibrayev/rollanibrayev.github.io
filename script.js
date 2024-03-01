@@ -4,13 +4,16 @@ function finalizeIframe() {
       lastSlashIndex = fullText.lastIndexOf('/'),
       channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText;
   if (channel) {
-    const iframe = document.querySelector('iframe');
+    const iframe = document.querySelector('iframe'),
+          d = document;
     iframe.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`;
     iframe.style = 'display: block';
-    document.querySelector('form').style.display = 'none';
-    document.body.style.justifyContent = 'left';
-    document.body.style.alignItems = 'start';
-    document.body.requestFullscreen();
+    d.b = d.body;
+    d.querySelector('form').style.display = 'none';
+    d.b.s = d.b.style;
+    d.b.s.justifyContent = 'left';
+    d.b.s.alignItems = 'start';
+    d.b.requestFullscreen();
   } else {
     alert('Please enter a channel name');
   }
