@@ -1,14 +1,16 @@
-textInput = document.querySelector('input[type="text"]');
+d =
+document
+textInput =        d.querySelector('input[type="text"]');
 function finalizeIframe() {
   fullText = textInput.value.trim()
   lastSlashIndex = fullText.lastIndexOf('/')
   channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText
   if (channel) {
-    iframe = document.querySelector('iframe')
-    iframe.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
-    iframe.style = 'display: block'
-    d =
-    document
+    iframe =        d.querySelector('iframe')
+    i =
+    iframe
+         i.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
+         i.style = 'display: block'
            d.querySelector('form').style.display = 'none'
     b =    d.body
     s =         b.style
@@ -20,7 +22,7 @@ function finalizeIframe() {
   alert('Please enter a channel name')
 }
 textInput.focus()
-document.addEventListener('keydown', (event) => {
+       d.addEventListener('keydown', (event) => {
   if (event.ctrlKey && event.key == 'v') {
     setTimeout(finalizeIframe, 1)
     return
@@ -30,4 +32,4 @@ document.addEventListener('keydown', (event) => {
     finalizeIframe()
   }
 })
-document.querySelector('input[type="button"]').addEventListener('click', finalizeIframe)
+       d.querySelector('input[type="button"]').addEventListener('click', finalizeIframe)
