@@ -1,35 +1,29 @@
-d =
-document
-textInput =        d.querySelector('input[type="text"]');
-function finalizeIframe() {
-  fullText = textInput.value.trim()
-  lastSlashIndex = fullText.lastIndexOf('/')
-  channel = (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText
-  if (channel) {
-    iframe =        d.querySelector('iframe')
-    i =
-    iframe
-         i.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
-         i.style = 'display: block'
-           d.querySelector('form').style.display = 'none'
-    b =    d.body
-    s =         b.style
-                      s.justifyContent = 'left'
-                      s.alignItems = 'start'
-                b.requestFullscreen()
+t = document.querySelector(`input[type='text']`);
+i = () => {
+  f = t.value.trim()
+  l = f.lastIndexOf(`/`)
+  c = (l !== -1) ? f.substring(l + 1) : f
+  if (c) {
+    r = document.querySelector(`iframe`)
+    r.src = `https://player.twitch.tv/?channel=${c}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
+    r.style = `display: block`
+    document.querySelector(`form`).style.display = `none`
+    document.body.style.justifyContent = `left`
+    document.body.style.alignItems = `start`
+    document.body.requestFullscreen()
     return
   }
-  alert('Please enter a channel name')
+  alert(`Please enter a channel name`)
 }
-textInput.focus()
-       d.addEventListener('keydown', (event) => {
-  if (event.ctrlKey && event.key == 'v') {
-    setTimeout(finalizeIframe, 1)
+t.focus()
+document.addEventListener(`keydown`, (e) => {
+  if (e.ctrlKey && e.key == `v`) {
+    setTimeout(i, 1)
     return
   }
-  if (event.key == 'Enter') {
-    event.preventDefault()
-    finalizeIframe()
+  if (e.key == `Enter`) {
+    e.preventDefault()
+    i()
   }
 })
-       d.querySelector('input[type="button"]').addEventListener('click', finalizeIframe)
+document.querySelector(`input[type='button']`).addEventListener(`click`, i)
