@@ -7,10 +7,14 @@ function finalizeIframe() {
     iframe = document.querySelector('iframe')
     iframe.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
     iframe.style = 'display: block'
-    document.querySelector('form').style.display = 'none'
-    document.body.style.justifyContent = 'left'
-    document.body.style.alignItems = 'start'
-    document.body.requestFullscreen()
+    d =
+    document
+           d.querySelector('form').style.display = 'none'
+    b =    d.body
+    s =         b.style
+                      s.justifyContent = 'left'
+                      s.alignItems = 'start'
+                b.requestFullscreen()
     return
   }
   alert('Please enter a channel name')
