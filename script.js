@@ -15,16 +15,16 @@ function finalizeIframe() {
   }
 }
 textInput.focus();
-document.addEventListener('keydown', (event) => {
-  if (event.ctrlKey && event.key === 'v') {
-    event.preventDefault();
-    finalizeIframe();
-  }
-});
 document.addEventListener('keypress', (event) => {
-  if (event.keyCode == 13) {
+  if (event.ctrlKey && event.keyCode == 13) {
     event.preventDefault();
     finalizeIframe();
   }
 });
+//document.addEventListener('keypress', (event) => {
+//  if (event.keyCode == 13) {
+//    event.preventDefault();
+//    finalizeIframe();
+//  }
+//});
 document.querySelector('input[type="button"]').addEventListener('click', finalizeIframe);
