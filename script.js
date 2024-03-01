@@ -15,12 +15,9 @@ function finalizeIframe() {
   }
 }
 textInput.focus();
-document.addEventListener('keypress', (event) => {
-  if (event.key == 'Enter') {
+document.addEventListener('keydown', (event) => {
+  if (event.key == 'Enter' || (event.key === 'v' && event.ctrlKey)) {
     event.preventDefault();
-    finalizeIframe();
-  }
-  if (event.key == 'v') {
     finalizeIframe();
   }
 });
