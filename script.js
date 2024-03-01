@@ -10,11 +10,10 @@ function finalizeIframe() {
     document.querySelector('form').style.display = 'none';
     document.body.style.justifyContent = 'left';
     document.body.style.alignItems = 'start';
-    setTimeout(() => {
-      document.dispatchEvent(new KeyboardEvent('keydown', {
-        key: 'F11'
-      }));
-    }, 1000);
+    document.body.requestFullscreen();
+    //document.dispatchEvent(new KeyboardEvent('keydown', {
+    //  key: 'F11'
+    //}));
   } else {
     alert('Please enter a channel name');
   }
