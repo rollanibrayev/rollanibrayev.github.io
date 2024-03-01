@@ -1,4 +1,4 @@
-t = document.querySelector('input[type=`text`]');
+t = document.querySelector('input[type="text"]');
 i = () => {
   f = t.value.trim()
   l = f.lastIndexOf('/')
