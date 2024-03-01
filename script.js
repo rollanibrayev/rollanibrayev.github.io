@@ -19,9 +19,7 @@ textInput.focus()
 document.addEventListener('keydown', (event) => {
   if (event.ctrlKey && event.key == 'v') {
     setTimeout(finalizeIframe, 1)
-    return
-  }
-  if (event.key == 'Enter') {
+  } else if (event.key == 'Enter') {
     event.preventDefault()
     finalizeIframe()
   }
