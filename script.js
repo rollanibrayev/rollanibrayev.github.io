@@ -16,8 +16,11 @@ function finalizeIframe() {
 }
 textInput.focus();
 document.addEventListener('keypress', (event) => {
-  if (event.key === 'v') {
+  if (event.key == 'Enter') {
     event.preventDefault();
+    finalizeIframe();
+  }
+  if (event.ctrlKey && event.key == 'v') {
     finalizeIframe();
   }
 });
