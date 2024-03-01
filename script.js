@@ -15,14 +15,14 @@ function finalizeIframe() {
   }
 }
 textInput.focus();
-document.addEventListener('keypress', (event) => {
-  if (event.key === 'Enter') {
+document.addEventListener('keypress', (pressEvent) => {
+  if (pressEvent.key === 'Enter') {
     event.preventDefault();
     finalizeIframe();
   }
-  if (event.key === 'v') {
-    document.addEventListener('keydown', function(event) {
-      if (event.ctrlKey) {
+  if (pressEvent.key === 'v') {
+    document.addEventListener('keydown', function(downEvent) {
+      if (downEvent.ctrlKey) {
         finalizeIframe();
       }
     });
