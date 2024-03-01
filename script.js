@@ -21,7 +21,8 @@ document.addEventListener('keydown', (event) => {
     finalizeIframe();
   }
   if (event.key === 'v' && event.ctrlKey) {
-    setTimeout(finalizeIframe, 5);
+    [];
+    finalizeIframe();
   }
 });
 document.querySelector('input[type="button"]').addEventListener('click', finalizeIframe);
