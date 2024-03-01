@@ -20,9 +20,9 @@ document.addEventListener('keydown', (e) => {
     setTimeout(i, 1)
     return
   }
-  if (e.key == 'Enter') {
-    e.preventDefault()
-    i()
-  }
+    if (e.key == 'Enter') {
+      e.preventDefault()
+      i()
+    }
 })
 document.querySelector('input[type=`button`]').addEventListener('click', i)
