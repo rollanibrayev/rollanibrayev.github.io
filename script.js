@@ -11,21 +11,19 @@ function finalizeIframe() {
     document.body.style.justifyContent = 'left';
     document.body.style.alignItems = 'start';
     document.body.requestFullscreen();
-    //document.dispatchEvent(new KeyboardEvent('keydown', {
-    //  key: 'F11'
-    //}));
   } else {
     alert('Please enter a channel name');
   }
 }
 textInput.focus();
 document.addEventListener('keydown', (event) => {
+  if (event.ctrlKey && event.key == 'v') {
+    setTimeout(finalizeIframe, 1);
+    return;
+  }
   if (event.key == 'Enter') {
     event.preventDefault();
     finalizeIframe();
-  }
-  if (event.ctrlKey && event.key === 'v') {
-    setTimeout(finalizeIframe, 1);
   }
 });
 document.querySelector('input[type="button"]').addEventListener('click', finalizeIframe);
