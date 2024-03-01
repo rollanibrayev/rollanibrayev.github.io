@@ -1,6 +1,6 @@
-textInput = document.querySelector(`input[type='text']`)
+textInput = document.querySelector('input[type="text"]')
 finalizeIframe = () => {
-  trimmedText = t.value.trim()
+  trimmedText = textInput.value.trim()
   lastIndexOf = trimmedText.lastIndexOf('/')
   channel = (lastIndexOf !== -1) ? trimmedText.substring(lastIndexOf + 1) : trimmedText
   if (channel) {
