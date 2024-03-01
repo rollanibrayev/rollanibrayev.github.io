@@ -16,7 +16,7 @@ function finalizeIframe() {
 }
 textInput.focus();
 document.addEventListener('keypress', (event) => {
-  if (event.ctrlKey && event.keyCode == 13) {
+  if (event.key === "Enter" /*&& event.key === "Control"*/) {
     event.preventDefault();
     finalizeIframe();
   }
