@@ -20,7 +20,7 @@ document.addEventListener('keydown', (event) => {
     event.preventDefault();
     finalizeIframe();
   }
-  if (event.key === 'v' && event.ctrlKey) {
+  if (event.ctrlKey && event.key === 'v') {
     setTimeout(finalizeIframe, 1);
   }
 });
