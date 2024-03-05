@@ -4,11 +4,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+  background-color: black
 }
 form {
-  text-align: center;
+  text-align: center
 }
 iframe {
   border: 0;
-  display: none;
+  display: none
 }
