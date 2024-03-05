@@ -1,7 +1,9 @@
-textInput = document.querySelector('input[type="text"]')
-finalizeIframe = () => {
-  trimmedText = textInput.value.trim()
-  lastIndexOf = trimmedText.lastIndexOf('/')
+let textInput = document.querySelector('input[type="text"]')
+textInput.focus()
+let finalizeIframe = () => {
+  let
+  trimmedText = textInput.value.trim(),
+  lastIndexOf = trimmedText.lastIndexOf('/'),
   channel = (lastIndexOf !== -1) ? trimmedText.substring(lastIndexOf + 1) : trimmedText
   if (channel) {
     iframe = document.querySelector('iframe')
@@ -15,13 +17,13 @@ finalizeIframe = () => {
   }
   alert('Please enter a channel name')
 }
-textInput.focus()
-document.addEventListener('keydown', (event) => {
-  if (event.ctrlKey && event.key == 'v') {
+document.addEventListener('keydown', event => {
+  if (event.ctrlKey && event.key == 'v')
     setTimeout(finalizeIframe, 1)
-  } else if (event.key == 'Enter') {
-    event.preventDefault()
-    finalizeIframe()
-  }
+  else
+    if (event.key == 'Enter') {
+      event.preventDefault()
+      finalizeIframe()
+    }
 })
 document.querySelector('input[type=`button`]').addEventListener('click', finalizeIframe)
