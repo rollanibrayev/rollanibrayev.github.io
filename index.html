@@ -5,7 +5,24 @@
   <input type='button' value='Start Watching'>
 </form>
 <iframe frameborder=0 allowfullscreen=true height=720 width=1280></iframe>
-<link rel='stylesheet' href='styles.css'>
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black
+}
+form {
+  text-align: center
+}
+iframe {
+  border: 0;
+  display: none
+}
+</style>
 <script>
 let textInput = document.querySelector('input[type="text"]')
 textInput.focus()
@@ -36,5 +53,4 @@ document.addEventListener('keydown', event => {
     }
 })
 document.querySelector('input[type="button"]').addEventListener('click', finalizeIframe)
-
 </script>
