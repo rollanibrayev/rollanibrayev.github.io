@@ -26,4 +26,4 @@ document.addEventListener('keydown', event => {
       finalizeIframe()
     }
 })
-document.querySelector('input[type=`button`]').addEventListener('click', finalizeIframe)
+document.querySelector('input[type="button"]').addEventListener('click', finalizeIframe)
