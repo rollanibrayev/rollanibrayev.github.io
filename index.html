@@ -24,10 +24,10 @@
   }
 </style>
 <script>
-  let textInput = document.querySelector('input[type="text"]')
+  const textInput = document.querySelector('input[type="text"]')
   textInput.focus()
-  let finalizeIframe = () => {
-    let
+  const finalizeIframe = () => {
+    const
     trimmedText = textInput.value.trim(),
     lastIndexOf = trimmedText.lastIndexOf('/'),
     channel = (lastIndexOf !== -1) ? trimmedText.substring(lastIndexOf + 1) : trimmedText
