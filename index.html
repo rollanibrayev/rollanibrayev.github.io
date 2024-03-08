@@ -42,7 +42,8 @@
     }
     else alert('Please enter a channel name')
   }
-  textInput.addEventListener('mouseup', event => { setTimeout(finalizeIframe, 100) })
+  const button = document.querySelector('input[type="button"]')
+  textInput.addEventListener('mouseup', event => { button.click() })
   document.addEventListener('keydown', event => {
     if (event.ctrlKey && event.key == 'v') setTimeout(finalizeIframe, 1)
     else
@@ -50,5 +51,5 @@
         event.preventDefault(),
         finalizeIframe()
   })
-  document.querySelector('input[type="button"]').addEventListener('click', finalizeIframe)
+  button.addEventListener('click', finalizeIframe)
 </script>
