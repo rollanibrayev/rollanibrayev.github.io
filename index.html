@@ -42,6 +42,11 @@
     }
     else alert( 'Please enter a channel name' )
   }
+  const button = document.querySelector( 'input[type="button"]' )
+  button.addEventListener( 'input', event => {
+    //event.target.value
+    finalizeIframe()
+  } )
   document.addEventListener( 'keydown', event => {
     if ( event.ctrlKey && event.key == 'v' ) setTimeout( finalizeIframe, 1 )
     else
@@ -49,5 +54,5 @@
         event.preventDefault(),
         finalizeIframe()
   } )
-  document.querySelector( 'input[type="button"]' ).addEventListener( 'click', finalizeIframe )
+  button.addEventListener( 'click', finalizeIframe )
 </script>
