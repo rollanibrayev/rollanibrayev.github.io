@@ -24,7 +24,7 @@
   const input = document.querySelector('input')
   input.addEventListener('input', event => {
     const
-    trimmedText = event.target.value.trim(),
+    trimmedText = input.value.trim(),
     lastIndexOf = trimmedText.lastIndexOf('/'),
     channel = (lastIndexOf !== -1) ? trimmedText.substring(lastIndexOf + 1) : trimmedText,
     iframe = document.querySelector('iframe')
