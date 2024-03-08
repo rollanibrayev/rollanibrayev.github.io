@@ -21,7 +21,8 @@
     }
 </style>
 <script>
-  document.querySelector('input').addEventListener('input', event => {
+  const input = document.querySelector('input')
+  input.addEventListener('input', event => {
     const
     trimmedText = event.target.value.trim(),
     lastIndexOf = trimmedText.lastIndexOf('/'),
@@ -30,7 +31,7 @@
       const iframe = document.querySelector('iframe')
       iframe.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
       iframe.style = 'display: block'
-      document.querySelector('form').style.display = 'none'
+      input.style.display = 'none'
       document.body.style.justifyContent = 'left'
       document.body.style.alignItems = 'start'
       document.body.requestFullscreen()
