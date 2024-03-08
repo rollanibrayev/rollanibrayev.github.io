@@ -1,8 +1,7 @@
 <title>Twitch Player</title>
 <form>
-  <div>Channel Link or Name:</div>
-  <input type='text'><br>
-  <input type='button' value='Start Watching'>
+  <div>Paste Channel Link:</div>
+  <input>
 </form>
 <iframe frameborder=0 allowfullscreen=true height=720 width=1280></iframe>
 <style>
@@ -24,11 +23,9 @@
   }
 </style>
 <script>
-  const textInput = document.querySelector('input[type="text"]')
-  textInput.focus()
-  const finalizeIframe = () => {
+  document.querySelector('input').addEventListener('input', event => {
     const
-    trimmedText = textInput.value.trim(),
+    trimmedText = event.target.value.trim(),
     lastIndexOf = trimmedText.lastIndexOf('/'),
     channel = (lastIndexOf !== -1) ? trimmedText.substring(lastIndexOf + 1) : trimmedText
     if (channel) {
@@ -41,9 +38,5 @@
       document.body.requestFullscreen()
     }
     else alert('Please enter a channel name')
-  }
-  textInput.addEventListener('input', event => {
-    finalizeIframe()
   })
-  document.querySelector('input[type="button"]').addEventListener('click', finalizeIframe)
 </script>
