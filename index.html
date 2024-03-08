@@ -26,9 +26,8 @@
     const
     trimmedText = input.value.trim(),
     lastIndexOf = trimmedText.lastIndexOf('/'),
-    channel = (lastIndexOf !== -1) ? trimmedText.substring(lastIndexOf + 1) : trimmedText,
     iframe = document.querySelector('iframe')
-    iframe.src = `https://player.twitch.tv/?channel=${channel}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
+    iframe.src = `https://player.twitch.tv/?channel=${(lastIndexOf !== -1) ? trimmedText.substring(lastIndexOf + 1) : trimmedText}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
     iframe.style = 'display: block'
     input.style.display = 'none'
     document.body.requestFullscreen()
