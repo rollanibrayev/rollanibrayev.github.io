@@ -27,7 +27,7 @@
     url = input.value,
     afterLastSlash = url.substring(url.lastIndexOf('/') + 1)
     iframe = document.querySelector('iframe')
-    iframe.src = `https://player.twitch.tv/?channel=${afterLastSlash}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
+    iframe.src = `https://player.twitch.tv/?channel=${url.substring(url.lastIndexOf('/') + 1)}&muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1`
     iframe.style = 'display: block'
     input.style.display = 'none'
     document.body.requestFullscreen()
