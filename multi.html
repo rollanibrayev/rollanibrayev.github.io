@@ -37,7 +37,6 @@
 <script>
   const
   input = document.querySelector('input'),
-  iframes = document.querySelectorAll('iframe'),
   channels = []
   let
   numberOfDroppedLinks = 0,
@@ -45,10 +44,10 @@
   input.addEventListener('input', e => {
     if (++numberOfDroppedLinks == 4) {
       for (; i < 4; i++) {
-        iframes[i - 1].src =
+        document.querySelectorAll('iframe')[i - 1].src =
           `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[i - 1]}`
       }
-      iframes.forEach(iframe => {
+      document.querySelectorAll('iframe').forEach(iframe => {
         iframe.style.display = 'block'
       })
       input.value = ''
