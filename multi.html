@@ -30,10 +30,10 @@
 </style>
 <script>
   document.querySelector('input').addEventListener('input', event => {
-    document.querySelectorAll('iframe')[1].src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
-    document.querySelectorAll('iframe')[2].src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
-    document.querySelectorAll('iframe')[3].src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
-    document.querySelectorAll('iframe')[4].src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
+    document.querySelectorAll('iframe')[1].src = `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channel}`
+    document.querySelectorAll('iframe')[2].src = `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channel}`
+    document.querySelectorAll('iframe')[3].src = `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channel}`
+    document.querySelectorAll('iframe')[4].src = `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channel}`
     document.querySelector('input').style.display = 'none'
   })
 </script>
