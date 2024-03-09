@@ -37,19 +37,18 @@
 <script>
   const
   input = document.querySelector('input'),
+  iframes = document.querySelectorAll('iframe'),
   channels = []
-  let numberOfDroppedLinks = 0
+  let
+  numberOfDroppedLinks = 0,
+  i = 0
   input.addEventListener('input', e => {
     if (++numberOfDroppedLinks == 4) {
-      document.querySelectorAll('iframe')[1 - 1].src =
-        `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[1 - 1]}`
-      document.querySelectorAll('iframe')[2 - 1].src =
-        `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[2 - 1]}`
-      document.querySelectorAll('iframe')[3 - 1].src =
-        `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[3 - 1]}`
-      document.querySelectorAll('iframe')[4 - 1].src =
-        `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[4 - 1]}`
-      document.querySelectorAll('iframe').forEach(iframe => {
+      for (; i < 4; i++) {
+        iframes[i - 1].src =
+          `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[i - 1]}`
+      }
+      iframes.forEach(iframe => {
         iframe.style.display = 'block'
       })
       input.value = ''
