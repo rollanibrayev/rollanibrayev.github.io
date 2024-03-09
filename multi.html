@@ -38,8 +38,7 @@
     channel4 = extractChannelName(document.getElementById("channel4").value.trim())
     if (channel1 || channel2 || channel3 || channel4) {
       const createIframe = (id, channel, top, left) => {
-        const
-        prevChannels = {}
+        const prevChannels = {}
         if (channel !== "" && prevChannels[id] !== channel) {
           const iframe = document.querySelector('iframe')
           iframe.id = id
