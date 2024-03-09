@@ -23,34 +23,35 @@
   }
 </style>
 <script>
-  const extractChannelName = fullText => {
-    const lastSlashIndex = fullText.lastIndexOf('/')
-    return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText
-  },
-  createIframe = (id, channel, top, left) => {
-    const
-    iframeContainer = document.getElementById("iframeContainer"),
-    prevChannels = {},
-    prevQuality = "chunked"
-    quality = document.querySelector('input[name="quality"]:checked').value
-    if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
-      const iframe = document.createElement("iframe");
-      iframe.id = id;
-      iframe.name = id;
-      iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.5`;
-      iframe.style = `border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${top}vh; left: ${left}vw;`;
-      iframeContainer.appendChild(iframe);
-      prevChannels[id] = channel;
-      prevQuality = quality;
-    }
-  },
+  const
   generateIframes => () {
     const
+    extractChannelName = fullText => {
+      const lastSlashIndex = fullText.lastIndexOf('/')
+      return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText
+    },
     channel1 = extractChannelName(document.getElementById("channel1").value.trim()),
     channel2 = extractChannelName(document.getElementById("channel2").value.trim()),
     channel3 = extractChannelName(document.getElementById("channel3").value.trim()),
     channel4 = extractChannelName(document.getElementById("channel4").value.trim())
     if (channel1 || channel2 || channel3 || channel4) {
+      const createIframe = (id, channel, top, left) => {
+        const
+        iframeContainer = document.getElementById("iframeContainer"),
+        prevChannels = {},
+        prevQuality = "chunked"
+        quality = document.querySelector('input[name="quality"]:checked').value
+        if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
+          const iframe = document.createElement("iframe");
+          iframe.id = id;
+          iframe.name = id;
+          iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.5`;
+          iframe.style = `border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${top}vh; left: ${left}vw;`;
+          iframeContainer.appendChild(iframe);
+          prevChannels[id] = channel;
+          prevQuality = quality;
+        }
+      }
       createIframe("frame1", channel1, 0, 0)
       createIframe("frame2", channel2, 0, 50)
       createIframe("frame3", channel3, 50, 0)
