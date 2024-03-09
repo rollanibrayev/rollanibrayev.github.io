@@ -1,9 +1,5 @@
 <title>Multiple Twitch Streams Viewer</title>
 <input id='channels' placeholder='Drag thumbnails anywhere'>
-<iframe></iframe>
-<iframe></iframe>
-<iframe></iframe>
-<iframe></iframe>
 <div id='quality'>
   <input type='checkbox' id='qualityCheckbox'>Best Quality
 </div>
@@ -25,13 +21,6 @@
   }
   ::placeholder {
     color: #808080
-  }
-  iframe {
-    border: 0;
-    width: 50vw;
-    height: 50vh;
-    position: absolute;
-    display: none
   }
   #quality {
     position: fixed;
@@ -58,12 +47,20 @@
     channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
     event.target.value = ''
     if (channels.length == 4) {
-      const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       for (let i = 0; i < 4; i++) {
         const iframe = document.createElement('iframe')
         iframe.src =
-          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
-        iframe.style = `display: block; top: ${positions[i][0]}vh; left: ${positions[i][1]}vw`
+          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${(document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'}&volume=1&channel=${channels[i]}`
+        iframe.style = `
+          display: block;
+          top: ${positions[i][0]}vh;
+          left: ${positions[i][1]}vw;
+          border: 0;
+          width: 50vw;
+          height: 50vh;
+          position: absolute;
+          display: none
+        `
         iframe.allowfullscreen = false
       }
       input.style.display = 'none'
