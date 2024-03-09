@@ -36,7 +36,7 @@
   iframe:nth-of-type(4) { top: 50vh; left: 50vw }
 </style>
 <script>
-  const channels
+  const channels = []
   document.querySelector('input').addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
