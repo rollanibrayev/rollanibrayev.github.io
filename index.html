@@ -58,7 +58,7 @@
     channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
     event.target.value = ''
     if (channels.length == 4) {
-      const quality = (document.querySelector('input[checkbox]').checked) ? 'chunked' : '720p60'
+      const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       document.querySelectorAll('iframe').forEach((iframe, index) => {
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[index]}`
