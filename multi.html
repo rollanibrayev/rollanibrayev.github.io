@@ -38,7 +38,7 @@
   const
   input = document.querySelector('input'),
   channels = []
-  input.addEventListener('input', e => {
+  input.addEventListener('input', () => {
     const channel = input.value.substring(input.value.lastIndexOf('/') + 1)
     channels.push(channel)
     input.value = ''
