@@ -38,7 +38,6 @@
   const
   input = document.querySelector('input'),
   channels = []
-  let numberOfDroppedLinks = 0
   input.addEventListener('input', e => {
     const channel = input.value.substring(input.value.lastIndexOf('/') + 1)
     channels.push(channel)
