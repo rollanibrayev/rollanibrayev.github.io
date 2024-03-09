@@ -4,7 +4,7 @@
 <iframe></iframe>
 <iframe></iframe>
 <iframe></iframe>
-<div class="block">
+<div id="quality">
   <input type="checkbox" id="qualityCheckbox">
   <label for="qualityCheckbox" class="text">Best Quality</label>
 </div>
@@ -54,14 +54,13 @@
     [0,  50],
     [50,  0],
     [50, 50]
-  ],
-  checkbox = document.querySelector('input[checkbox]')
+  ]
   document.querySelector('input').addEventListener('input', event => {
     const input = event.target
     channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
     event.target.value = ''
     if (channels.length == 4) {
-      const quality = (checkbox.checked) ? 'chunked' : '720p60'
+      const quality = (document.querySelector('input[checkbox]').checked) ? 'chunked' : '720p60'
       document.querySelectorAll('iframe').forEach((iframe, index) => {
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[index]}`
@@ -69,7 +68,7 @@
         iframe.allowfullscreen = false
       })
       input.style.display = 'none'
-      checkbox.style.display = 'none'
+      document.getElementById('quality').style.display = 'none'
       document.body.requestFullscreen() 
     }
   })
