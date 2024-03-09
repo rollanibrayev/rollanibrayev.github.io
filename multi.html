@@ -38,8 +38,7 @@
   const
   input = document.querySelector('input'),
   channels = []
-  let
-  numberOfDroppedLinks = 0
+  let numberOfDroppedLinks = 0
   input.addEventListener('input', e => {
     if (++numberOfDroppedLinks == 4) {
       document.querySelectorAll('iframe')[1 - 1].src =
