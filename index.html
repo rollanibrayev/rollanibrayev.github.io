@@ -59,11 +59,13 @@
     event.target.value = ''
     if (channels.length == 4) {
       const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
-      document.querySelectorAll('iframe').forEach((iframe, index) => {
+      for (let i = 0; i < 4; i++) {
+        const iframe = document.createElement('iframe')
         iframe.src =
-          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[index]}`
-        iframe.style = `display: block; top: ${positions[index][0]}vh; left: ${positions[index][1]}vw`
+          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
+        iframe.style = `display: block; top: ${positions[i][0]}vh; left: ${positions[i][1]}vw`
         iframe.allowfullscreen = false
+      }
       })
       input.style.display = 'none'
       document.getElementById('quality').style.display = 'none'
