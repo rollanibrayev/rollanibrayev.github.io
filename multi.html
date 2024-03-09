@@ -1,22 +1,16 @@
 <title>Multiple Streams Viewer</title>
-<form id="channelForm">
-  <div>Channel Links or Names:</div>
-  <label for="channel1"></label>
-  <input type="text" id="channel1" name="channel1" required><br>
-  <label for="channel2"></label>
-  <input type="text" id="channel2" name="channel2" required><br>
-  <label for="channel3"></label>
-  <input type="text" id="channel3" name="channel3" required><br>
-  <label for="channel4"></label>
-  <input type="text" id="channel4" name="channel4" required><br>
-  <label>Video Quality:</label>
-  <input type="radio" id="720p60" name="quality" value="720p60" checked>
-  <label for="720p60">720p60</label>
-  <input type="radio" id="source" name="quality" value="chunked">
-  <label for="source">Source</label><br>
-  <input type="button" value="Start Watching">
-</form>
+<input placeholder='Drag & Drop Channel Link'>
+<iframe frameborder=0 allowfullscreen=true></iframe>
+<iframe frameborder=0 allowfullscreen=true></iframe>
+<iframe frameborder=0 allowfullscreen=true></iframe>
+<iframe frameborder=0 allowfullscreen=true></iframe>
 <style>
+  form {
+    border: 0px;
+    width: 50vw;
+    height: 50vh;
+    position: absolute
+  }
   #channelForm {
     text-align: center
   }
@@ -37,14 +31,13 @@
       const createIframe = (id, channel, top, left) => {
         const
         prevChannels = {},
-        prevQuality = "chunked",
-        quality = document.querySelector('input[name="quality"]:checked').value
+        prevQuality = "chunked"
         if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
           const iframe = document.createElement("iframe")
           iframe.id = id
           iframe.name = id
-          iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.5`
-          iframe.style = `border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${top}vh; left: ${left}vw;`
+          iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=0.5`
+          iframe.style = `top: ${top}vh; left: ${left}vw;`
           document.body.appendChild(iframe)
           prevChannels[id] = channel
           prevQuality = quality
