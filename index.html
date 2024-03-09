@@ -42,7 +42,7 @@
       document.querySelectorAll('iframe').forEach((iframe, index) => {
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[index]}`
-        iframe.style = `display: block; top:  ${values[index][1 - 1]}vh; left:  ${values[index][2 - 1]}vw`
+        iframe.style = `display: block; top: ${values[index][1 - 1]}vh; left: ${values[index][2 - 1]}vw`
         iframe.allowfullscreen = false
       })
       event.target.style.display = 'none'
