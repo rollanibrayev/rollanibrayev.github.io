@@ -30,7 +30,8 @@
   }
 </style>
 <script>
-  document.querySelector('input').addEventListener('input', event => {
+  const input = document.querySelector('input')
+  input.addEventListener('input', event => {
     const
     url = input.value,
     channel = url.substring(url.lastIndexOf('/') + 1)
@@ -39,6 +40,6 @@
     document.querySelectorAll('iframe')[3].src = `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channel}`
     document.querySelectorAll('iframe')[4].src = `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channel}`
     document.querySelectorAll('iframe').style = 'display: block'
-    document.querySelector('input').style.display = 'none'
+    input.style.display = 'none'
   })
 </script>
