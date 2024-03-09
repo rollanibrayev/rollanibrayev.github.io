@@ -1,0 +1,40 @@
+<title>Twitch Player</title>
+<input placeholder='Drag & Drop Channel Link'>
+<iframe allowfullscreen=true></iframe>
+<style>
+  body {
+    margin: 0;
+    color: white;
+    background-color: black;
+  }
+  iframe {
+    border: 0;
+    display: none;
+    width: 1280px;
+    height: 720px
+  }
+  input {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    font-size: 50;
+    border: 0;
+    font-family: Consolas;
+    text-align: center;
+    outline: none;
+    caret-color: transparent;
+    cursor: default
+  }
+</style>
+<script>
+  const input = document.querySelector('input')
+  input.addEventListener('input', e => {
+    const
+    url = input.value,
+    iframe = document.querySelector('iframe')
+    iframe.src = `https://player.twitch.tv/?muted=false&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${url.substring(url.lastIndexOf('/') + 1)}`
+    iframe.style = 'display: block'
+    input.style.display = 'none'
+    document.body.requestFullscreen()
+  })
+</script>
