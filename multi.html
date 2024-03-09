@@ -32,13 +32,13 @@
 <script>
   const
   input = document.querySelector('input'),
-  numberOfDroppedLinks = 0
+  numberOfDroppedLinks = 0,
+  channels = []
   input.addEventListener('input', event => {
     numberOfDroppedLinks ++
+    const url = input.value
+    channels[numberOfDroppedLinks - 1] = url.substring(url.lastIndexOf('/') + 1)
     if (numberOfDroppedLinks < 5) {
-      const
-      url = input.value,
-      channel = url.substring(url.lastIndexOf('/') + 1)
       document.querySelectorAll('iframe')[numberOfDroppedLinks].src =
         `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channel}`
       url = ''
