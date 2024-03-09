@@ -16,7 +16,6 @@
   <label for="source">Source</label><br>
   <input type="button" value="Start Watching">
 </form>
-<div id="iframeContainer"></div>
 <style>
   #channelForm {
     text-align: center
@@ -37,19 +36,18 @@
     if (channel1 || channel2 || channel3 || channel4) {
       const createIframe = (id, channel, top, left) => {
         const
-        iframeContainer = document.getElementById("iframeContainer"),
         prevChannels = {},
         prevQuality = "chunked"
         quality = document.querySelector('input[name="quality"]:checked').value
         if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
-          const iframe = document.createElement("iframe");
-          iframe.id = id;
-          iframe.name = id;
-          iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.5`;
-          iframe.style = `border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${top}vh; left: ${left}vw;`;
-          iframeContainer.appendChild(iframe);
-          prevChannels[id] = channel;
-          prevQuality = quality;
+          const iframe = document.createElement("iframe")
+          iframe.id = id
+          iframe.name = id
+          iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=0.5`
+          iframe.style = `border: 0px; width: 50vw; height: 50vh; position: absolute; top: ${top}vh; left: ${left}vw;`
+          document.body.appendChild(iframe)
+          prevChannels[id] = channel
+          prevQuality = quality
         }
       }
       createIframe("frame1", channel1, 0, 0)
