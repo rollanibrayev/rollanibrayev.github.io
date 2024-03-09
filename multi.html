@@ -44,7 +44,7 @@
     if (numberOfDroppedLinks < 5) {
       let url = input.value
       channels[numberOfDroppedLinks - 1] = url.substring(url.lastIndexOf('/') + 1)
-      url = ''
+      //url = ''
       return
     }
     document.querySelectorAll('iframe')[1].src =
