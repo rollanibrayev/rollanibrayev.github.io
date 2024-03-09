@@ -26,8 +26,8 @@
   const extractChannelName = fullText => {
     const lastSlashIndex = fullText.lastIndexOf('/')
     return (lastSlashIndex !== -1) ? fullText.substring(lastSlashIndex + 1) : fullText
-  }
-  const createIframe = (id, channel, top, left) => {
+  },
+  createIframe = (id, channel, top, left) => {
     const
     iframeContainer = document.getElementById("iframeContainer"),
     prevChannels = {},
@@ -43,8 +43,8 @@
       prevChannels[id] = channel;
       prevQuality = quality;
     }
-  }
-  const = generateIframes => () {
+  },
+  generateIframes => () {
     const
     channel1 = extractChannelName(document.getElementById("channel1").value.trim()),
     channel2 = extractChannelName(document.getElementById("channel2").value.trim()),
