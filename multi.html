@@ -47,14 +47,14 @@
       url = ''
       return
     }
-    document.querySelectorAll('iframe')[--1].src =
-      `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[--1]}`
-    document.querySelectorAll('iframe')[--2].src =
-      `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[--2]}`
-    document.querySelectorAll('iframe')[--3].src =
-      `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[--3]}`
-    document.querySelectorAll('iframe')[--4].src =
-      `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[--4]}`
+    document.querySelectorAll('iframe')[1 - 1].src =
+      `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[1 - 1]}`
+    document.querySelectorAll('iframe')[2 - 1].src =
+      `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[2 - 1]}`
+    document.querySelectorAll('iframe')[3 - 1].src =
+      `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[3 - 1]}`
+    document.querySelectorAll('iframe')[4 - 1].src =
+      `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[4 - 1]}`
     document.querySelectorAll('iframe').style = 'display: block'
     input.style.display = 'none'
   })
