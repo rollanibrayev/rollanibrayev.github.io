@@ -40,8 +40,7 @@
   channels = []
   let numberOfDroppedLinks = 0
   input.addEventListener('input', e => {
-    numberOfDroppedLinks ++
-    if (numberOfDroppedLinks < 5) {
+    if (++numberOfDroppedLinks < 5) {
       let url = input.value
       channels[numberOfDroppedLinks - 1] = url.substring(url.lastIndexOf('/') + 1)
       url = ''
