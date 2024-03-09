@@ -30,9 +30,8 @@
     if (channel1 || channel2 || channel3 || channel4) {
       const createIframe = (id, channel, top, left) => {
         const
-        prevChannels = {},
-        prevQuality = "chunked"
-        if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
+        prevChannels = {}
+        if (channel !== "" && prevChannels[id] !== channel) {
           const iframe = document.createElement("iframe")
           iframe.id = id
           iframe.name = id
