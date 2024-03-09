@@ -1,18 +1,27 @@
 <title>Multiple Streams Viewer</title>
 <input placeholder='Drag & Drop Channel Link'>
-<iframe frameborder=0 allowfullscreen=true></iframe>
-<iframe frameborder=0 allowfullscreen=true></iframe>
-<iframe frameborder=0 allowfullscreen=true></iframe>
-<iframe frameborder=0 allowfullscreen=true></iframe>
+<iframe allowfullscreen=true></iframe>
+<iframe allowfullscreen=true></iframe>
+<iframe allowfullscreen=true></iframe>
+<iframe allowfullscreen=true></iframe>
 <style>
   form {
-    border: 0px;
+    border: 0;
     width: 50vw;
     height: 50vh;
     position: absolute
   }
-  #channelForm {
-    text-align: center
+  input {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    font-size: 50;
+    border: 0;
+    font-family: Consolas;
+    text-align: center;
+    outline: none;
+    caret-color: transparent;
+    cursor: default
   }
 </style>
 <script>
@@ -51,5 +60,7 @@
     else
       alert("Please enter at least one channel name.")
   }
-  document.querySelector('input[type="button"]').addEventListener('click', generateIframes)
+  document.querySelector('input').addEventListener('input', event => {
+    
+  })
 </script>
