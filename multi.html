@@ -37,7 +37,7 @@
       const createIframe = (id, channel, top, left) => {
         const
         prevChannels = {},
-        prevQuality = "chunked"
+        prevQuality = "chunked",
         quality = document.querySelector('input[name="quality"]:checked').value
         if (channel !== "" && (prevChannels[id] !== channel || prevQuality !== quality)) {
           const iframe = document.createElement("iframe")
