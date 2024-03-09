@@ -46,7 +46,7 @@
     if (channels.length == 4) {
       document.querySelectorAll('iframe').forEach((iframe, index) => {
         iframe.src =
-          `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[index]}`
+          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[index]}`
         iframe.style = `display: block; top: ${positions[index][0]}vh; left: ${positions[index][1]}vw`
         iframe.allowfullscreen = false
       })
