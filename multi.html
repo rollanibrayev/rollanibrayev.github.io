@@ -40,24 +40,16 @@
   channels = []
   let numberOfDroppedLinks = 0
   input.addEventListener('input', e => {
-    if (++numberOfDroppedLinks == 4) {
-      channels[numberOfDroppedLinks - 1] = input.value.substring(input.value.lastIndexOf('/') + 1)
-      document.querySelectorAll('iframe')[1 - 1].src =
-        `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[1 - 1]}`
-      document.querySelectorAll('iframe')[2 - 1].src =
-        `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[2 - 1]}`
-      document.querySelectorAll('iframe')[3 - 1].src =
-        `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[3 - 1]}`
-      document.querySelectorAll('iframe')[4 - 1].src =
-        `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[4 - 1]}`
-      document.querySelectorAll('iframe').forEach(iframe => {
+    const channel = input.value.substring(input.value.lastIndexOf('/') + 1)
+    channels.push(channel)
+    input.value = ''
+    if (channels.length == 4) {
+      document.querySelectorAll('iframe').forEach((iframe, index) => {
+        iframe.src =
+          `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[index]}`
         iframe.style.display = 'block'
       })
-      input.value = ''
       input.style.display = 'none'
-      return
     }
-    channels[numberOfDroppedLinks - 1] = input.value.substring(input.value.lastIndexOf('/') + 1)
-    input.value = ''
   })
 </script>
