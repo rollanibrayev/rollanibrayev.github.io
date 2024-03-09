@@ -39,7 +39,7 @@
   input = document.querySelector('input'),
   channels = []
   let numberOfDroppedLinks = 0
-  input.addEventListener('input', event => {
+  input.addEventListener('input', e => {
     numberOfDroppedLinks ++
     if (numberOfDroppedLinks < 5) {
       let url = input.value
