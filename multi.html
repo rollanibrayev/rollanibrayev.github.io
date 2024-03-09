@@ -40,13 +40,7 @@
   channels = []
   let numberOfDroppedLinks = 0
   input.addEventListener('input', e => {
-    if (++numberOfDroppedLinks < 5) {
-      let url = input.value
-      channels[numberOfDroppedLinks - 1] = url.substring(url.lastIndexOf('/') + 1)
-      url = ''
-      return
-    }
-    if (numberOfDroppedLinks = 4) {
+    if (numberOfDroppedLinks++ = 4) {
       document.querySelectorAll('iframe')[1 - 1].src =
         `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[1 - 1]}`
       document.querySelectorAll('iframe')[2 - 1].src =
@@ -57,6 +51,10 @@
         `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[4 - 1]}`
       document.querySelectorAll('iframe').style = 'display: block'
       input.style.display = 'none'
+      return
     }
+    let url = input.value
+    channels[numberOfDroppedLinks - 1] = url.substring(url.lastIndexOf('/') + 1)
+    url = ''
   })
 </script>
