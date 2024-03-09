@@ -34,7 +34,14 @@
 <script>
   const
   channels = [],
-  values = [[0,  0],[0, 50],[50, 0],[50, 50]]
+  start = 0,
+  middle = 50,
+  values = [
+    [start,  start ],
+    [start,  middle],
+    [middle, start ],
+    [middle, middle]
+  ]
   document.querySelector('input').addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
