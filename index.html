@@ -34,13 +34,11 @@
 <script>
   const
   channels = [],
-  start = 0,
-  middle = 50,
   positionValues = [
-    [start,  start ],
-    [start,  middle],
-    [middle, start ],
-    [middle, middle]
+    [0,   0],
+    [0,  50],
+    [50,  0],
+    [50, 50]
   ]
   document.querySelector('input').addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
@@ -49,7 +47,7 @@
       document.querySelectorAll('iframe').forEach((iframe, index) => {
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[index]}`
-        iframe.style = `display: block; top: ${positionValues[index][1 - 1]}vh; left: ${positionValues[index][2 - 1]}vw`
+        iframe.style = `display: block; top: ${positionValues[index][0]}vh; left: ${positionValues[index][1]}vw`
         iframe.allowfullscreen = false
       })
       event.target.style.display = 'none'
