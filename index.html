@@ -35,10 +35,12 @@
   iframe:nth-of-type(4) { top: 50vh; left: 50vw }
 </style>
 <script>
-  const channels = []
-  document.querySelector('input').addEventListener('input', event => {
+  const
+  input = document.querySelector('input'),
+  channels = []
+  input.addEventListener('input', () => {
     channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
-    event.target.value = ''
+    input.value = ''
     if (channels.length == 4)
       document.querySelectorAll('iframe').forEach((iframe, index) => {
         iframe.src =
@@ -46,7 +48,7 @@
         iframe.style.display = 'block'
         iframe.allowfullscreen = false
       }),
-      event.target.style.display = 'none',
+      input.style.display = 'none',
       document.body.requestFullscreen()
   })
 </script>
