@@ -65,8 +65,11 @@
         iframe.allowfullscreen = false
         document.body.appendChild(iframe)
       }
-      input.style.display = 'none'
-      document.getElementById('quality').style.display = 'none'
+      const hide = element => {
+        element.style.display = 'none'
+      }
+      hide(input)
+      hide(document.getElementById('quality'))
       document.body.requestFullscreen() 
     }
   })
