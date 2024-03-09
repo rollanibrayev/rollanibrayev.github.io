@@ -32,7 +32,10 @@
   const prevChannels = {}
   if (channel !== '' && prevChannels[id] !== channel) {
     const iframe = document.querySelector('iframe')
-    iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
+    document.querySelectorAll('iframe')[1].src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
+    document.querySelectorAll('iframe')[2].src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
+    document.querySelectorAll('iframe')[3].src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
+    document.querySelectorAll('iframe')[4].src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
   }
   document.querySelector('input').style.display = 'none'
   document.querySelector('input').addEventListener('input', event => {
