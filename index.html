@@ -4,6 +4,10 @@
 <iframe></iframe>
 <iframe></iframe>
 <iframe></iframe>
+<div class="block">
+  <input type="checkbox" id="qualityCheckbox">
+  <label for="qualityCheckbox" class="text">Best Quality</label>
+</div>
 <style>
   body {
     margin: 0
@@ -30,6 +34,21 @@
     position: absolute;
     display: none
   }
+  /* Styling for the block */
+  .block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5%;
+    width: 10%;
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+  .text {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+  }
 </style>
 <script>
   const
@@ -39,19 +58,24 @@
     [0,  50],
     [50,  0],
     [50, 50]
-  ]
+  ],
+  quality = '720p60',
+  checkbox = document.querySelector('input[checkbox]')
   document.querySelector('input').addEventListener('input', event => {
     const input = event.target
     channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
     event.target.value = ''
     if (channels.length == 4) {
+      if (checkbox.checked)
+        quality = 'chunked'
       document.querySelectorAll('iframe').forEach((iframe, index) => {
         iframe.src =
-          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[index]}`
+          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[index]}`
         iframe.style = `display: block; top: ${positions[index][0]}vh; left: ${positions[index][1]}vw`
         iframe.allowfullscreen = false
       })
       input.style.display = 'none'
+      checkbox.style.display = 'none'
       document.body.requestFullscreen() 
     }
   })
