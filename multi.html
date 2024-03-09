@@ -55,8 +55,7 @@
       input.style.display = 'none'
       return
     }
-    let url = input.value
-    channels[numberOfDroppedLinks - 1] = url.substring(url.lastIndexOf('/') + 1)
-    url = ''
+    channels[numberOfDroppedLinks - 1] = input.value.substring(input.value.lastIndexOf('/') + 1)
+    input.value = ''
   })
 </script>
