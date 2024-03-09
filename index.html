@@ -41,7 +41,8 @@
     [50, 50]
   ]
   document.querySelector('input').addEventListener('input', event => {
-    channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
+    const input = event.target
+    channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
     event.target.value = ''
     if (channels.length == 4) {
       document.querySelectorAll('iframe').forEach((iframe, index) => {
@@ -50,7 +51,7 @@
         iframe.style = `display: block; top: ${positions[index][0]}vh; left: ${positions[index][1]}vw`
         iframe.allowfullscreen = false
       })
-      event.target.style.display = 'none'
+      input.style.display = 'none'
       document.body.requestFullscreen() 
     }
   })
