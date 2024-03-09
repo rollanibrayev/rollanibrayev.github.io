@@ -40,14 +40,15 @@
   document.querySelector('input').addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
-    if (channels.length == 4)
+    if (channels.length == 4) {
       document.querySelectorAll('iframe').forEach((iframe, index) => {
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[index]}`
         iframe.style.display = 'block'
         iframe.allowfullscreen = false
-      }),
-      event.target.style.display = 'none',
-      document.body.requestFullscreen()
+      })
+      event.target.style.display = 'none'
+      document.body.requestFullscreen() 
+    }
   })
 </script>
