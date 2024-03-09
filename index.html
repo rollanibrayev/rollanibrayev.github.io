@@ -39,7 +39,8 @@
     [0,  50],
     [50,  0],
     [50, 50]
-  ]
+  ],
+  hide = element => element.style.display = 'none'
   document.querySelector('input').addEventListener('input', event => {
     const input = event.target
     channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
@@ -62,9 +63,6 @@
         `
         iframe.allowfullscreen = false
         document.body.appendChild(iframe)
-      }
-      const hide = element => {
-        element.style.display = 'none'
       }
       hide(input)
       hide(document.getElementById('quality'))
