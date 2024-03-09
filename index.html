@@ -50,7 +50,9 @@
       for (let i = 0; i < 4; i++) {
         const iframe = document.createElement('iframe')
         iframe.src =
-          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${(document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'}&volume=1&channel=${channels[i]}`
+          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${
+            (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
+          }&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
           top: ${positions[i][0]}vh;
