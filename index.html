@@ -34,7 +34,7 @@
 <script>
   const
   channels = [],
-  positionValues = [
+  positions = [
     [0,   0],
     [0,  50],
     [50,  0],
@@ -47,7 +47,7 @@
       document.querySelectorAll('iframe').forEach((iframe, index) => {
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[index]}`
-        iframe.style = `display: block; top: ${positionValues[index][0]}vh; left: ${positionValues[index][1]}vw`
+        iframe.style = `display: block; top: ${positions[index][0]}vh; left: ${positions[index][1]}vw`
         iframe.allowfullscreen = false
       })
       event.target.style.display = 'none'
