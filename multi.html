@@ -44,14 +44,12 @@
   const
   generateIframes => () {
     const
-    createIframe = (id, channel, top, left) => {
-      const prevChannels = {}
-      if (channel !== '' && prevChannels[id] !== channel) {
-        const iframe = document.querySelector('iframe')
-        iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
-      }
+    const prevChannels = {}
+    if (channel !== '' && prevChannels[id] !== channel) {
+      const iframe = document.querySelector('iframe')
+      iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
     }
-    document.querySelector('form').style.display = 'none'
+    document.querySelector('input').style.display = 'none'
   }
   document.querySelector('input').addEventListener('input', event => {
     
