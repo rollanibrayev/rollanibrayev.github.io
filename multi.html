@@ -44,11 +44,10 @@
           const iframe = document.createElement("iframe")
           iframe.id = id
           iframe.name = id
-          iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=0.5`
+          iframe.src = `https://player.twitch.tv/?channel=${channel}&enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1`
           iframe.style = `top: ${top}vh; left: ${left}vw;`
           document.body.appendChild(iframe)
           prevChannels[id] = channel
-          prevQuality = quality
         }
       }
       createIframe("frame1", channel1, 0, 0)
