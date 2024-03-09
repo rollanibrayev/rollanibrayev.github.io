@@ -39,8 +39,7 @@
   input = document.querySelector('input'),
   channels = []
   input.addEventListener('input', () => {
-    const channel = input.value.substring(input.value.lastIndexOf('/') + 1)
-    channels.push(channel)
+    channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
     input.value = ''
     if (channels.length == 4) {
       document.querySelectorAll('iframe').forEach((iframe, index) => {
