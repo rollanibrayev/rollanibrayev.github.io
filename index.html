@@ -1,9 +1,9 @@
 <title>Multiple Twitch Streams Viewer</title>
 <input placeholder='Drag & Drop 4 Twitch Channel Links'>
-<iframe allowfullscreen=true></iframe>
-<iframe allowfullscreen=true></iframe>
-<iframe allowfullscreen=true></iframe>
-<iframe allowfullscreen=true></iframe>
+<iframe></iframe>
+<iframe></iframe>
+<iframe></iframe>
+<iframe></iframe>
 <style>
   body {
     margin: 0;
@@ -46,6 +46,7 @@
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=false&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[index]}`
         iframe.style.display = 'block'
+        iframe.allowfullscreen = false
       }),
       input.style.display = 'none',
       document.body.requestFullscreen()
