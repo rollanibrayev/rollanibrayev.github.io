@@ -49,13 +49,13 @@
       const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       document.getElementById('quality').remove()
       document.body.requestFullscreen()
-      const top0 = 0
-      const top1 = 360
-      const top2 = 720
-      const left0 = 0
-      const left1 = 640
-      const left2 = 1280
-      const positions = [
+      const top0 = 0,
+      top1 = 360,
+      top2 = 720,
+      left0 = 0,
+      left1 = 640,
+      left2 = 1280,
+      positions = [
         [top0, left0], [top0, left1], [top0, left2],
         [top1, left0], [top1, left1], [top1, left2],
         [top2, left0], [top2, left1], [top2, left2]
