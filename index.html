@@ -38,8 +38,8 @@
 </style>
 <script>
   const input = document.querySelector('input')
+  const channels = []
   input.addEventListener('input', event => {
-    const channels = []
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
     if (channels.length == 4) {
