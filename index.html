@@ -44,6 +44,9 @@
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
     if (channels.length == 4) {
+      input.remove()
+      document.getElementById('quality').remove()
+      document.body.requestFullscreen()
       const positions = [
         [0,   0],
         [0,  50],
@@ -68,9 +71,6 @@
         iframe.allowfullscreen = false
         document.body.appendChild(iframe)
       }
-      input.remove()
-      document.getElementById('quality').remove()
-      document.body.requestFullscreen() 
     }
   })
 </script>
