@@ -48,11 +48,13 @@
       const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       document.getElementById('quality').remove()
       document.body.requestFullscreen()
+      const top = 360
+      const left = 640
       const positions = [
         [0,   0],
-        [0,  '640px'],
-        ['360px',  0],
-        ['360px', '640px']
+        [0,  left],
+        [top,  0],
+        [top, left]
       ]
       for (let i = 0; i < 4; i++) {
         const iframe = document.createElement('iframe')
@@ -60,8 +62,8 @@
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
-          top: ${positions[i][0]};
-          left: ${positions[i][1]};
+          top: ${positions[i][0]}px;
+          left: ${positions[i][1]}px;
           border: 0;
           width: 640px;
           height: 360px;
