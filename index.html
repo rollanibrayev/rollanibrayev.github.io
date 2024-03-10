@@ -54,44 +54,19 @@
       document.body.requestFullscreen()
       is768 = window.screen.height == 768
       isChunked = quality == 'chunked'
-      let left1
-      let top1
-      let left2
-      let top2
-      let width
-      let height
-      if (is768 == true && isChunked == true) {
-        left1 = '-277px'
-        top1 = '-156px'
-        left2 = '683px'
-        top2 = '384px'
+      let left1, top1, left2, top2, width, height;
+      if (is768) {
+          left1 = isChunked ? '-277px' : 0;
+          top1 = isChunked ? '-156px' : 0;
+          left2 = isChunked ? '683px' : '640px';
+          top2 = isChunked ? '384px' : '360px';
+      } else {
+          left1 = top1 = 0;
+          left2 = isChunked ? '50vw' : '640px';
+          top2 = isChunked ? '50vh' : '360px';
       }
-      if (is768 == true && isChunked == false) {
-        left1 = 0
-        top1 = 0
-        left2 = '640px'
-        top2 = '360px'
-      }
-      if (is768 == false && isChunked == true) {
-        left1 = 0
-        top1 = 0
-        left2 = '50vw'
-        top2 = '50vh'
-      }
-      if (is768 == false && isChunked == false) {
-        left1 = 0
-        top1 = 0
-        left2 = '640px'
-        top2 = '360px'
-      }
-      if (isChunked == true) {
-        width = '960px'
-        height = '540px'
-      }
-      if (isChunked == false) {
-        width = '640px'
-        height = '360px'
-      }
+      width = isChunked ? '960px' : '640px';
+      height = isChunked ? '540px' : '360px';
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
