@@ -55,9 +55,6 @@
   }
 </style>
 <script>
-  let is768
-  let isChunked
-  let isDownscale
   const input = document.querySelector('input')
   const channels = []
   input.addEventListener('input', event => {
@@ -66,60 +63,63 @@
     let numberOfIframes = 4
     if (channels.length == numberOfIframes) {
       input.remove()
-      const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
-      isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked
-      document.getElementById('quality').remove()
-      document.getElementById('downscale').remove()
-      document.body.requestFullscreen()
-      is768 = window.screen.height == 768
-      isChunked = quality == 'chunked'
+      let quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
+      let isChunked = quality == 'chunked'
+      let is768 = window.screen.height == 768
+      let isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked
       let left1, top1, left2, top2, width, height
-      if (is768 && isChunked) {
-        left1 = '-277px'
-        top1 = '-156px'
-        left2 = '683px'
-        top2 = '384px'
-        width = '960px'
-        height = '540px'
-      } else if (is768 && !isChunked) {
-        left1 = top1 = 0
-        left2 = '640px'
-        top2 = '360px'
-        width = '640px'
-        height = '360px'
-      } else if (!is768 && isChunked) {
-        left1 = top1 = 0
-        left2 = '50vw'
-        top2 = '50vh'
-        width = '960px'
-        height = '540px'
-      } else if (!is768 && !isChunked) {
-        left1 = top1 = 0
-        left2 = '640px'
-        top2 = '360px'
-        width = '640px'
-        height = '360px'
-      }
-      if (!isChunked && !isDownscale && !is768) {
-        left1 = '-320px'
-        top1 = '-180px'
-        left2 = '960px'
-        top2 = '540px'
-        width = '1280px'
-        height = '720px'
-      }
-      if (!isChunked && !isDownscale && is768) {
-        left1 = '-597px'
-        top1 = '-336px'
-        left2 = '683px'
-        top2 = '384px'
-        width = '1280px'
-        height = '720px'
+      if (isDownscale) {
+        if (is768 && isChunked) {
+          left1 = '-277px'
+          top1 = '-156px'
+          left2 = '683px'
+          top2 = '384px'
+          width = '960px'
+          height = '540px'
+        } else if (is768 && !isChunked) {
+          left1 = top1 = 0
+          left2 = '640px'
+          top2 = '360px'
+          width = '640px'
+          height = '360px'
+        } else if (!is768 && isChunked) {
+          left1 = top1 = 0
+          left2 = '50vw'
+          top2 = '50vh'
+          width = '960px'
+          height = '540px'
+        } else if (!is768 && !isChunked) {
+          left1 = top1 = 0
+          left2 = '640px'
+          top2 = '360px'
+          width = '640px'
+          height = '360px'
+        }
+      } else {
+        if (!isChunked && !is768) {
+          left1 = '-320px'
+          top1 = '-180px'
+          left2 = '960px'
+          top2 = '540px'
+          width = '1280px'
+          height = '720px'
+        }
+        if (!isChunked && is768) {
+          left1 = '-597px'
+          top1 = '-336px'
+          left2 = '683px'
+          top2 = '384px'
+          width = '1280px'
+          height = '720px'
+        }
       }
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
       ]
+      document.getElementById('quality').remove()
+      document.getElementById('downscale').remove()
+      document.body.requestFullscreen()
       for (let i = 0; i < numberOfIframes; i++) {
         const iframe = document.createElement('iframe')
         iframe.src =
