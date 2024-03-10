@@ -51,14 +51,9 @@
       document.body.requestFullscreen()
       const left1 = 0
       const top1 = 0
-      let left2
-      let top2
-      if (window.screen.height == 768)
-        left2 = '640px',
-        top2 = '360px'
-      else
-        left2 = '50vw',
-        top2 = '50vh'
+      let isScreenHeight768 = window.screen.height === 768
+      let left2 = isScreenHeight768 ? '640px' : '50vw'
+      let top2 = isScreenHeight768 ? '360px' : '50vh'
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
