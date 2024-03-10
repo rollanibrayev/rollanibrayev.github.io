@@ -54,18 +54,34 @@
       let is768 = window.screen.height == 768
       let isChunked = quality == 'chunked'
       let unit = is768 ? 'px' : ''
-      let left1 = isChunked && !is768 ? 0 : -277
-      let top1 = isChunked && !is768 ? 0 : -156
-      left1 = is768 ? -277 : 0
-      top1 = is768 ? -156 : 0
-      left1 = isChunked ? -277 : 0
-      top1 = isChunked ? -156 : 0
-      let left2 = isChunked && !is768 ? '50vw' : 640
-      let top2 = isChunked && !is768 ? '50vh' : 360
-      left2 = is768 ? 683 : '50vw'
-      top2 = is768 ? 384 : '50vh'
-      left2 = isChunked ? 683 : '50vw'
-      top2 = isChunked ? 384 : '50vh'
+      let left1
+      let top1
+      let left2
+      let top2
+      if (is768 && isChunked) {
+        left1 = -277
+        top1 = -156
+        left2 = 683
+        top2 = 384
+      }
+      else if (is768 && !isChunked) {
+        left1 = 0
+        top1 = 0
+        left2 = '50vw'
+        top2 = '50vh'
+      }
+      else if (!is768 && isChunked) {
+        left1 = 0
+        top1 = 0
+        left2 = '50vw'
+        top2 = '50vh'
+      }
+      else {
+        left1 = 0
+        top1 = 0
+        left2 = 640
+        top2 = 360
+      }
       let width = isChunked ? 960 : 640
       let height = isChunked ? 540 : 360
       const positions = [
