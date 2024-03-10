@@ -58,13 +58,14 @@
       left1 = isChunked ? -277 : 0,
       top1 = isChunked ? -156 : 0,
       left2 = is768 ? 640 : '50vw',
-      top2 = is768 ? 360 : '50vh',
-      width = isChunked ? 960 : 640,
-      height = isChunked ? 540 : 360;
+      top2 = is768 ? 360 : '50vh';
       left1 = is768 ? left1 : 0;
       top1 = is768 ? top1 : 0;
       left2 = isChunked ? 683 : left2;
       top2 = isChunked ? 384 : top2;
+      let
+      width = isChunked ? 960 : 640,
+      height = isChunked ? 540 : 360;
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
