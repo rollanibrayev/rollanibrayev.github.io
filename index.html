@@ -52,8 +52,9 @@
       const left1 = 0
       const top1 = 0
       let is768 = window.screen.height == 768
-      let left2 = is768 ? '640px' : '50vw'
-      let top2 = is768 ? '360px' : '50vh'
+      let unit = is768 ? 'px' : ''
+      let left2 = is768 ? '640' : '50vw'
+      let top2 = is768 ? '360' : '50vh'
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
@@ -64,11 +65,11 @@
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
-          left: ${positions[i][0]};
-          top: ${positions[i][1]};
+          left: ${positions[i][0]+unit};
+          top: ${positions[i][1]+unit};
           border: 0;
-          width: ${left2};
-          height: ${top2};
+          width: ${left2+unit};
+          height: ${top2+unit};
           position: absolute
         `
         iframe.allowfullscreen = false
