@@ -63,42 +63,56 @@
     let numberOfIframes = 4
     if (channels.length == numberOfIframes) {
       input.remove()
-      const quality = document.querySelector('input[type="checkbox"]').checked ? 'chunked' : '720p60';
-      const isChunked = quality === 'chunked';
-      const is768 = window.screen.height === 768;
-      const isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked;
-      let left1 = 0;
-      let top1 = 0;
-      let left2, top2, width, height;
+      let quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
+      let isChunked = quality == 'chunked'
+      let is768 = window.screen.height == 768
+      let isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked
+      let left1, top1, left2, top2, width, height
       if (isDownscale) {
-        if (is768) {
-          left2 = 640
-          top2 = 360
-          width = 640
-          height = 360
-        } else {
-          left2 = 960
-          top2 = 540
-          width = 960
-          height = 540
-        }
-        if (isChunked && !is768) {
-          left1 = -277
-          top1 = -156
+        if (is768 && isChunked) {
+          left1 = '-277px'
+          top1 = '-156px'
+          left2 = '683px'
+          top2 = '384px'
+          width = '960px'
+          height = '540px'
+        } else if (is768 && !isChunked) {
+          left1 = top1 = 0
+          left2 = '640px'
+          top2 = '360px'
+          width = '640px'
+          height = '360px'
+        } else if (!is768 && isChunked) {
+          left1 = top1 = 0
+          left2 = '50vw'
+          top2 = '50vh'
+          width = '960px'
+          height = '540px'
+        } else if (!is768 && !isChunked) {
+          left1 = top1 = 0
+          left2 = '640px'
+          top2 = '360px'
+          width = '640px'
+          height = '360px'
         }
       } else {
-        width = 1280
-        height = 720
         if (!isChunked && !is768) {
-          left1 = -320
-          top1 = -180
-        } else if (!isChunked && is768) {
-          left1 = -597
-          top1 = -336
+          left1 = '-320px'
+          top1 = '-180px'
+          left2 = '960px'
+          top2 = '540px'
+          width = '1280px'
+          height = '720px'
+        }
+        if (!isChunked && is768) {
+          left1 = '-597px'
+          top1 = '-336px'
+          left2 = '683px'
+          top2 = '384px'
+          width = '1280px'
+          height = '720px'
         }
       }
-      left2 = left2 || 640
-      top2 = top2 || 360
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
@@ -112,10 +126,10 @@
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
-          left: ${positions[i][0]}px;
-          top: ${positions[i][1]}px;
-          width: ${width}px;
-          height: ${height}px;
+          left: ${positions[i][0]};
+          top: ${positions[i][1]};
+          width: ${width};
+          height: ${height};
           border: 0;
           position: absolute
         `
