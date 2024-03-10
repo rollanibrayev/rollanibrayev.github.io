@@ -45,8 +45,8 @@
     [50,  0],
     [50, 50]
   ],
-  input = document.querySelector('input'),
-  value = input.value
+  input = document.querySelector('input')
+  let value = input.value
   input.addEventListener('input', () => {
     channels.push(value.substring(value.lastIndexOf('/') + 1))
     value = ''
