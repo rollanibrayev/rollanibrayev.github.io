@@ -1,4 +1,4 @@
-<title>Twitch Player</title>
+<title>720p Twitch Player</title>
 <input placeholder='Drag & Drop Channel Link'>
 <iframe allowfullscreen=true></iframe>
 <style>
