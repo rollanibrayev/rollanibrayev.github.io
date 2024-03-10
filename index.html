@@ -44,11 +44,11 @@
     [0,  50],
     [50,  0],
     [50, 50]
-  ]
-  document.querySelector('input').addEventListener('input', event => {
-    const input = event.target
+  ],
+  input = document.querySelector('input')
+  input.addEventListener('input', event => {
     channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
-    event.target.value = ''
+    input.value = ''
     if (channels.length == 4) {
       for (let i = 0; i < 4; i++) {
         const iframe = document.createElement('iframe')
