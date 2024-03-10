@@ -57,29 +57,39 @@
       let top1
       let left2
       let top2
+      let width
+      let height
       if (is768 && isChunked) {
         left1 = '-277px'
         top1 = '-156px'
         left2 = '683px'
         top2 = '384px'
       }
-      else if (is768 && !isChunked) {
+      if (is768 && !isChunked) {
         left1 = 0
         top1 = 0
         left2 = '50vw'
         top2 = '50vh'
       }
-      else if (!is768 && isChunked) {
+      if (!is768 && isChunked) {
         left1 = 0
         top1 = 0
         left2 = '50vw'
         top2 = '50vh'
       }
-      else {
+      if (!is768 && !isChunked) {
         left1 = 0
         top1 = 0
         left2 = '640px'
         top2 = '360px'
+      }
+      if (isChunked) {
+        width = '960px'
+        height = '540px'
+      }
+      if (!isChunked) {
+        width = '640px'
+        height = '360px'
       }
       let width = isChunked ? '960px' : '640px'
       let height = isChunked ? '540px' : '360px'
