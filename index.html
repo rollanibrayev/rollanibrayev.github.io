@@ -68,81 +68,95 @@
       let is768 = window.screen.height == 768
       let isChunked = quality == 'chunked'
       let left1, top1, left2, top2, width, height
-      if (is768) {
-        if (isDownscale) {
-          if (isChunked) {
-            left1 = -277
-            top1 = -156
-            left2 = 683
-            top2 = 384
-            width = 960
-            height = 540
+      switch (is768) {
+        case true:
+          switch (isDownscale) {
+            case true:
+              switch (isChunked) {
+                case true:
+                  left1 = -277;
+                  top1 = -156;
+                  left2 = 683;
+                  top2 = 384;
+                  width = 960;
+                  height = 540;
+                  break;
+                default:
+                  left1 = 0;
+                  top1 = 0;
+                  left2 = 640;
+                  top2 = 360;
+                  width = 640;
+                  height = 360;
+                  break;
+              }
+              break;
+            default:
+              switch (isChunked) {
+                case true:
+                  left1 = -1237;
+                  top1 = -696;
+                  left2 = 683;
+                  top2 = 384;
+                  width = 1920;
+                  height = 1080;
+                  break;
+                default:
+                  left1 = -597;
+                  top1 = -336;
+                  left2 = 683;
+                  top2 = 384;
+                  width = 1280;
+                  height = 720;
+                  break;
+              }
+              break;
           }
-          if (!isChunked) {
-            left1 = 0
-            top1 = 0
-            left2 = 640
-            top2 = 360
-            width = 640
-            height = 360
+          break;
+        case false:
+          switch (isDownscale) {
+            case true:
+              switch (isChunked) {
+                case true:
+                  left1 = 0;
+                  top1 = 0;
+                  left2 = 960;
+                  top2 = 540;
+                  width = 960;
+                  height = 540;
+                  break;
+                default:
+                  left1 = 0;
+                  top1 = 0;
+                  left2 = 640;
+                  top2 = 360;
+                  width = 640;
+                  height = 360;
+                  break;
+              }
+              break;
+            default:
+              switch (isChunked) {
+                case true:
+                  left1 = -960;
+                  top1 = -540;
+                  left2 = 960;
+                  top2 = 540;
+                  width = 1920;
+                  height = 1080;
+                  break;
+                default:
+                  left1 = -320;
+                  top1 = -180;
+                  left2 = 960;
+                  top2 = 540;
+                  width = 1280;
+                  height = 720;
+                  break;
+              }
+              break;
           }
-        }
-        if (!isDownscale) {
-          if (isChunked) {
-            left1 = -1237
-            top1 = -696
-            left2 = 683
-            top2 = 384
-            width = 1920
-            height = 1080
-          }
-          if (!isChunked) {
-            left1 = -597
-            top1 = -336
-            left2 = 683
-            top2 = 384
-            width = 1280
-            height = 720
-          }
-        }
-      }
-      if (!is768) {
-        if (isDownscale) {
-          if (isChunked) {
-            left1 = 0
-            top1 = 0
-            left2 = 960
-            top2 = 540
-            width = 960
-            height = 540
-          }
-          if (!isChunked) {
-            left1 = 0
-            top1 = 0
-            left2 = 640
-            top2 = 360
-            width = 640
-            height = 360
-          }
-        }
-        if (!isDownscale) {
-          if (isChunked) {
-            left1 = -960
-            top1 = -540
-            left2 = 960
-            top2 = 540
-            width = 1920
-            height = 1080
-          }
-          if (!isChunked) {
-            left1 = -320
-            top1 = -180
-            left2 = 960
-            top2 = 540
-            width = 1280
-            height = 720
-          }
-        }
+          break;
       }
       const positions = [
         [left1, top1], [left2, top1],
