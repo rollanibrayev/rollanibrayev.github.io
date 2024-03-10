@@ -54,19 +54,19 @@
       document.body.requestFullscreen()
       is768 = window.screen.height == 768
       isChunked = quality == 'chunked'
-      let left1, top1, left2, top2, width, height;
+      let left1, top1, left2, top2, width, height
       if (is768) {
-        left1 = isChunked ? '-277px' : 0;
-        top1 = isChunked ? '-156px' : 0;
-        left2 = isChunked ? '683px' : '640px';
-        top2 = isChunked ? '384px' : '360px';
+        left1 = isChunked ? '-277px' : 0
+        top1 = isChunked ? '-156px' : 0
+        left2 = isChunked ? '683px' : '640px'
+        top2 = isChunked ? '384px' : '360px'
       } else {
         left1 = top1 = 0;
-        left2 = isChunked ? '50vw' : '640px';
-        top2 = isChunked ? '50vh' : '360px';
+        left2 = isChunked ? '50vw' : '640px'
+        top2 = isChunked ? '50vh' : '360px'
       }
-      width = isChunked ? '960px' : '640px';
-      height = isChunked ? '540px' : '360px';
+      width = isChunked ? '960px' : '640px'
+      height = isChunked ? '540px' : '360px'
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
