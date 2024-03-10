@@ -47,8 +47,9 @@
   ],
   input = document.querySelector('input')
   input.addEventListener('input', event => {
-    channels.push(input.value.substring(input.value.lastIndexOf('/') + 1))
-    input.value = ''
+    const value = input.value
+    channels.push(value.substring(value.lastIndexOf('/') + 1))
+    value = ''
     if (channels.length == 4) {
       for (let i = 0; i < 4; i++) {
         const iframe = document.createElement('iframe')
