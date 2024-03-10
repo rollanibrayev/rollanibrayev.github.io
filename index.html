@@ -39,9 +39,10 @@
   }
 </style>
 <script>
-  const
-  input = document.querySelector('input'),
-  channels = []
+  let is768
+  let isChunked
+  const input = document.querySelector('input')
+  const channels = []
   input.addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
@@ -51,8 +52,8 @@
       const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       document.getElementById('quality').remove()
       document.body.requestFullscreen()
-      let is768 = window.screen.height == 768
-      let isChunked = quality == 'chunked'
+      is768 = window.screen.height == 768
+      isChunked = quality == 'chunked'
       let left1
       let top1
       let left2
