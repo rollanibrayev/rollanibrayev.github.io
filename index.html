@@ -53,16 +53,15 @@
       document.body.requestFullscreen()
       let is768 = window.screen.height == 768
       let isChunked = quality == 'chunked'
-      let unit = is768 ? 'px' : ''
       let left1
       let top1
       let left2
       let top2
       if (is768 && isChunked) {
-        left1 = -277
-        top1 = -156
-        left2 = 683
-        top2 = 384
+        left1 = '-277px'
+        top1 = '-156px'
+        left2 = '683px'
+        top2 = '384px'
       }
       else if (is768 && !isChunked) {
         left1 = 0
@@ -79,11 +78,11 @@
       else {
         left1 = 0
         top1 = 0
-        left2 = 640
-        top2 = 360
+        left2 = '640px'
+        top2 = '360px'
       }
-      let width = isChunked ? 960 : 640
-      let height = isChunked ? 540 : 360
+      let width = isChunked ? '960px' : '640px'
+      let height = isChunked ? '540px' : '360px'
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
@@ -94,10 +93,10 @@
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
-          left: ${positions[i][0]+unit};
-          top: ${positions[i][1]+unit};
-          width: ${width+unit};
-          height: ${height+unit};
+          left: ${positions[i][0]};
+          top: ${positions[i][1]};
+          width: ${width};
+          height: ${height};
           border: 0;
           position: absolute
         `
