@@ -1,0 +1,76 @@
+<title>Multiple Twitch Streams Viewer</title>
+<input id='channels' placeholder='Drag 4 Twitch stream thumbnails to this page'>
+<div id='quality'>
+  <input type='checkbox' id='qualityCheckbox'>Highest Quality
+</div>
+<style>
+  body {
+    margin: 0;
+    background-color: #000
+  }
+  #channels {
+    background-color: #000;
+    width: 100vw;
+    height: 100vh;
+    font-size: 50;
+    font-family: Calibri;
+    border: 0;
+    text-align: center;
+    outline: none;
+    caret-color: transparent;
+    cursor: default
+  }
+  ::placeholder {
+    color: #808080
+  }
+  #quality {
+    position: fixed;
+    background-color: #000;
+    top: 0;
+    left: 0;
+    color: #808080;
+    font-family: Calibri;
+    font-size: 40
+  }
+  #qualityCheckbox {
+    height: 4vh;
+    width: 4vh
+  }
+</style>
+<script>
+  const
+  input = document.querySelector('input'),
+  channels = []
+  input.addEventListener('input', event => {
+    channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
+    event.target.value = ''
+    if (channels.length == 4) {
+      input.remove()
+      const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
+      document.getElementById('quality').remove()
+      document.body.requestFullscreen()
+      const positions = [
+        [0,   0],
+        [0,  50],
+        [50,  0],
+        [50, 50]
+      ]
+      for (let i = 0; i < 4; i++) {
+        const iframe = document.createElement('iframe')
+        iframe.src =
+          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
+        iframe.style = `
+          display: block;
+          top: ${positions[i][0]}vh;
+          left: ${positions[i][1]}vw;
+          border: 0;
+          width: 50vw;
+          height: 50vh;
+          position: absolute
+        `
+        iframe.allowfullscreen = false
+        document.body.appendChild(iframe)
+      }
+    }
+  })
+</script>
