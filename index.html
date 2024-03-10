@@ -55,18 +55,19 @@
       is768 = window.screen.height == 768
       isChunked = quality == 'chunked'
       let left1, top1, left2, top2, width, height
+      let unit = is768 ? 'px' : ''
       if (is768) {
-        left1 = isChunked ? '-277px' : 0
-        top1 = isChunked ? '-156px' : 0
-        left2 = isChunked ? '683px' : '640px'
-        top2 = isChunked ? '384px' : '360px'
+        left1 = isChunked ? -277 : 0
+        top1 = isChunked ? -156 : 0
+        left2 = isChunked ? 683 : 640
+        top2 = isChunked ? 384 : 360
       } else {
         left1 = top1 = 0
-        left2 = isChunked ? '50vw' : '640px'
-        top2 = isChunked ? '50vh' : '360px'
+        left2 = isChunked ? '50vw' : 640
+        top2 = isChunked ? '50vh' : 360
       }
-      width = isChunked ? '960px' : '640px'
-      height = isChunked ? '540px' : '360px'
+      width = isChunked ? 960 : 640
+      height = isChunked ? 540 : 360
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
@@ -77,10 +78,10 @@
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
-          left: ${positions[i][0]};
-          top: ${positions[i][1]};
-          width: ${width};
-          height: ${height};
+          left: ${positions[i][0]+unit};
+          top: ${positions[i][1]+unit};
+          width: ${width+unit};
+          height: ${height+unit};
           border: 0;
           position: absolute
         `
