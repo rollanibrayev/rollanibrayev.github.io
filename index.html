@@ -56,18 +56,34 @@
       isChunked = quality == 'chunked'
       let left1, top1, left2, top2, width, height
       let unit = is768 ? 'px' : ''
-      if (is768) {
-        left1 = isChunked ? -277 : 0
-        top1 = isChunked ? -156 : 0
-        left2 = isChunked ? 683 : 640
-        top2 = isChunked ? 384 : 360
-      } else {
-        left1 = top1 = 0
-        left2 = isChunked ? '50vw' : 640
-        top2 = isChunked ? '50vh' : 360
+      if (is768 == true && isChunked == true) {
+        left1 = -277
+        top1 = -156
+        left2 = 683
+        top2 = 384
+      } else if (is768 == true && isChunked == false) {
+        left1 = 0
+        top1 = 0
+        left2 = 640
+        top2 = 360
+      } else if (is768 == false && isChunked == true) {
+        left1 = 0
+        top1 = 0
+        left2 = '50vw'
+        top2 = '50vh'
+      } else (is768 == false && isChunked == false) {
+        left1 = 0
+        top1 = 0
+        left2 = 640
+        top2 = 360
       }
-      width = isChunked ? 960 : 640
-      height = isChunked ? 540 : 360
+      if (isChunked == true) {
+        width = 960
+        height = 540
+      } else {
+        width = 640
+        height = 360
+      }
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
