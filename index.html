@@ -41,8 +41,9 @@
   input = document.querySelector('input'),
   channels = []
   input.addEventListener('input', event => {
-    channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
-    event.target.value = ''
+    let value = event.target.value
+    channels.push(value.substring(value.lastIndexOf('/') + 1))
+    value = ''
     if (channels.length == 4) {
       const positions = [
         [0,   0],
