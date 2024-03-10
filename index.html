@@ -77,7 +77,8 @@
             top2 = 384
             width = 960
             height = 540
-          } else {
+          }
+          if (!isChunked) {
             left1 = 0
             top1 = 0
             left2 = 640
@@ -85,7 +86,8 @@
             width = 640
             height = 360
           }
-        } else {
+        }
+        if (!isDownscale) {
           if (isChunked) {
             left1 = -1237
             top1 = -696
@@ -93,7 +95,8 @@
             top2 = 384
             width = 1920
             height = 1080
-          } else {
+          }
+          if (!isChunked) {
             left1 = -597
             top1 = -336
             left2 = 683
@@ -102,7 +105,8 @@
             height = 720
           }
         }
-      } else {
+      }
+      if (!is768) {
         if (isDownscale) {
           if (isChunked) {
             left1 = 0
@@ -111,7 +115,8 @@
             top2 = 540
             width = 960
             height = 540
-          } else {
+          }
+          if (!isChunked) {
             left1 = 0
             top1 = 0
             left2 = 640
@@ -119,7 +124,8 @@
             width = 640
             height = 360
           }
-        } else {
+        }
+        if (!isDownscale) {
           if (isChunked) {
             left1 = -960
             top1 = -540
@@ -127,7 +133,8 @@
             top2 = 540
             width = 1920
             height = 1080
-          } else {
+          }
+          if (!isChunked) {
             left1 = -320
             top1 = -180
             left2 = 960
