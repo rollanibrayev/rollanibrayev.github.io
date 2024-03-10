@@ -68,8 +68,8 @@
       let is768 = window.screen.height == 768
       let isChunked = quality == 'chunked'
       let left1, top1, left2, top2, width, height
-      if (isDownscale) {
-        if (is768) {
+      if (is768) {
+        if (isDownscale) {
           if (isChunked) {
             left1 = -277
             top1 = -156
@@ -87,24 +87,6 @@
           }
         } else {
           if (isChunked) {
-            left1 = 0
-            top1 = 0
-            left2 = 960
-            top2 = 540
-            width = 960
-            height = 540
-          } else {
-            left1 = 0
-            top1 = 0
-            left2 = 640
-            top2 = 360
-            width = 640
-            height = 360
-          }
-        }
-      } else { // not downscale
-        if (is768) {
-          if (isChunked) {
             left1 = -1237
             top1 = -696
             left2 = 683
@@ -118,6 +100,24 @@
             top2 = 384
             width = 1280
             height = 720
+          }
+        }
+      } else {
+        if (isDownscale) {
+          if (isChunked) {
+            left1 = 0
+            top1 = 0
+            left2 = 960
+            top2 = 540
+            width = 960
+            height = 540
+          } else {
+            left1 = 0
+            top1 = 0
+            left2 = 640
+            top2 = 360
+            width = 640
+            height = 360
           }
         } else {
           if (isChunked) {
