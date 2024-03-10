@@ -38,9 +38,9 @@
 </style>
 <script>
   const input = document.querySelector('input')
-  input.addEventListener('input', () => {
+  input.addEventListener('input', event => {
     const channels = []
-    let value = input.value
+    let value = event.target.value
     channels.push(value.substring(value.lastIndexOf('/') + 1))
     value = ''
     if (channels.length == 4) {
