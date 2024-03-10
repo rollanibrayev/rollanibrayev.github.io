@@ -44,7 +44,8 @@
   input.addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
-    if (channels.length == 4) {
+    let numberOfIframes = 4
+    if (channels.length == numberOfIframes) {
       input.remove()
       const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       document.getElementById('quality').remove()
@@ -59,7 +60,7 @@
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
       ]
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < numberOfIframes; i++) {
         const iframe = document.createElement('iframe')
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
