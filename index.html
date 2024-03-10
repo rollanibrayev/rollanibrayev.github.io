@@ -57,6 +57,7 @@
 <script>
   let is768
   let isChunked
+  let isDownscale
   const input = document.querySelector('input')
   const channels = []
   input.addEventListener('input', event => {
@@ -66,7 +67,7 @@
     if (channels.length == numberOfIframes) {
       input.remove()
       const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
-      let isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked
+      isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked
       document.getElementById('quality').remove()
       document.body.requestFullscreen()
       is768 = window.screen.height == 768
