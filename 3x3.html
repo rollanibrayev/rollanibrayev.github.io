@@ -44,28 +44,37 @@
   input.addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
-    if (channels.length == 4) {
+    if (channels.length == 9) {
       input.remove()
       const quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       document.getElementById('quality').remove()
       document.body.requestFullscreen()
+      const top0 = 0
+      const top1 = 360
+      const top2 = 720
+      const left0 = 0
+      const left1 = 640
+      const left2 = 1280
       const positions = [
-        [0,   0],
-        [0,  50],
-        [50,  0],
-        [50, 50]
+        [top0, left0], [top0, left1], [top0, left2],
+        [top1, left0], [top1, left1], [top1, left2],
+        [top2, left0], [top2, left1], [top2, left2]
       ]
-      for (let i = 0; i < 4; i++) {
+      const positions = [
+        [0,   0], [0,  50],
+        [50,  0], [50, 50]
+      ]
+      for (let i = 0; i < 9; i++) {
         const iframe = document.createElement('iframe')
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
-          top: ${positions[i][0]}vh;
-          left: ${positions[i][1]}vw;
+          top: ${positions[i][0]}px;
+          left: ${positions[i][1]}px;
           border: 0;
-          width: 50vw;
-          height: 50vh;
+          width: 640px;
+          height: 360px;
           position: absolute
         `
         iframe.allowfullscreen = false
