@@ -52,18 +52,15 @@
   }
 </style>
 <script>
-  document.getElementById('quality').addEventListener('click', () => {
-    if (!event.target.matches('input[type="checkbox"]')) {
-      let checkbox = document.getElementById('qualityCheckbox')
-      checkbox.checked = !checkbox.checked
-    }
-  })
-  document.getElementById('downscale').addEventListener('click', () => {
-    if (!event.target.matches('input[type="checkbox"]')) {
-      let checkbox = document.getElementById('downscaleCheckbox')
-      checkbox.checked = !checkbox.checked
-    }
-  })
+  let click = (wrapper, checkbox) =>
+    document.getElementById(wrapper).addEventListener('click', () => {
+      if (!event.target.matches('input[type="checkbox"]')) {
+        let checkbox = document.getElementById(checkbox)
+        checkbox.checked = !checkbox.checked
+      }
+    })
+  click('quality', 'qualityCheckbox')
+  click('downscale', 'downscaleCheckbox')
   const input = document.querySelector('input')
   const channels = []
   input.addEventListener('input', event => {
