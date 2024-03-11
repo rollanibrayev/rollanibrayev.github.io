@@ -28,6 +28,7 @@
     color: #808080
   }
   #quality {
+    cursor: pointer;
     position: fixed;
     background-color: #000;
     top: 0;
@@ -41,6 +42,7 @@
     width: 4vh
   }
   #downscale {
+    cursor: pointer;
     position: fixed;
     background-color: #000;
     top: 5.5vh;
@@ -56,12 +58,16 @@
 </style>
 <script>
   document.getElementById('quality').addEventListener('click', () => {
-    let checkbox = document.getElementById('qualityCheckbox')
-    checkbox.checked = !checkbox.checked
+    if (!event.target.matches('input[type="checkbox"]')) {
+      let checkbox = document.getElementById('qualityCheckbox')
+      checkbox.checked = !checkbox.checked
+    }
   })
   document.getElementById('downscale').addEventListener('click', () => {
-    let checkbox = document.getElementById('downscaleCheckbox')
-    checkbox.checked = !checkbox.checked
+    if (!event.target.matches('input[type="checkbox"]')) {
+      let checkbox = document.getElementById('downscaleCheckbox')
+      checkbox.checked = !checkbox.checked
+    }
   })
   const input = document.querySelector('input')
   const channels = []
