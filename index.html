@@ -23,21 +23,20 @@
 </style>
 <script>
   const input = document.querySelector('input')
-  const channels = []
   input.addEventListener('input', event => {
+    const channels = []
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
     if (channels.length == 4) {
       input.remove()
+      document.body.requestFullscreen()
       const positions = [
         [0,  0], [50,  0],
         [0, 50], [50, 50]
       ]
-      document.body.requestFullscreen()
       for (let i = 0; i < 4; i++) {
         const iframe = document.createElement('iframe')
-        iframe.src =
-          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${channels[i]}`
+        iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
           left: ${positions[i][0]}vw;
