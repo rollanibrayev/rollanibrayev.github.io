@@ -63,101 +63,25 @@
     let numberOfIframes = 4
     if (channels.length == numberOfIframes) {
       input.remove()
-      let quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
-      let isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked
       let is768 = window.screen.height == 768
+      let isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked
+      let quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       let isChunked = quality == 'chunked'
-      let left1, top1, left2, top2, width, height
-      switch (is768) {
-        case true:
-          switch (isDownscale) {
-            case true:
-              switch (isChunked) {
-                case true:
-                  left1 = -277
-                  top1 = -156
-                  left2 = 683
-                  top2 = 384
-                  width = 960
-                  height = 540
-                  break
-                default:
-                  left1 = 0
-                  top1 = 0
-                  left2 = 640
-                  top2 = 360
-                  width = 640
-                  height = 360
-                  break
-              }
-              break
-            default:
-              switch (isChunked) {
-                case true:
-                  left1 = -1237
-                  top1 = -696
-                  left2 = 683
-                  top2 = 384
-                  width = 1920
-                  height = 1080
-                  break
-                default:
-                  left1 = -597
-                  top1 = -336
-                  left2 = 683
-                  top2 = 384
-                  width = 1280
-                  height = 720
-                  break
-              }
-              break
-          }
-          break
-        default:
-          switch (isDownscale) {
-            case true:
-              switch (isChunked) {
-                case true:
-                  left1 = 0
-                  top1 = 0
-                  left2 = 960
-                  top2 = 540
-                  width = 960
-                  height = 540
-                  break
-                default:
-                  left1 = 0
-                  top1 = 0
-                  left2 = 640
-                  top2 = 360
-                  width = 640
-                  height = 360
-                  break
-              }
-              break
-            default:
-              switch (isChunked) {
-                case true:
-                  left1 = -960
-                  top1 = -540
-                  left2 = 960
-                  top2 = 540
-                  width = 1920
-                  height = 1080
-                  break
-                default:
-                  left1 = -320
-                  top1 = -180
-                  left2 = 960
-                  top2 = 540
-                  width = 1280
-                  height = 720
-                  break
-              }
-              break
-          }
-          break
-      }
+      let [left1, top1, left2, top2, width, height] = (() =>
+        is768 ? (
+          isDownscale ? (
+            isChunked ? [-277, -156, 683, 384, 960, 540] : [0, 0, 640, 360, 640, 360]
+          ) : (
+            isChunked ? [-1237, -696, 683, 384, 1920, 1080] : [-597, -336, 683, 384, 1280, 720]
+          )
+        ) : (
+          isDownscale ? (
+            isChunked ? [0, 0, 960, 540, 960, 540] : [0, 0, 640, 360, 640, 360]
+          ) : (
+            isChunked ? [-960, -540, 960, 540, 1920, 1080] : [-320, -180, 960, 540, 1280, 720]
+          )
+        )
+      )()
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
