@@ -27,31 +27,26 @@
   ::placeholder {
     color: #808080
   }
-  #quality {
-    cursor: pointer;
+  quality, downscale {
+    cursor: default;
     position: fixed;
     background-color: #000;
-    top: 0;
     left: 0;
     color: #808080;
     font-family: Calibri;
-    font-size: 40
+    font-size: 40;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none
   }
-  #qualityCheckbox {
-    height: 4vh;
-    width: 4vh
+  #quality {
+    top: 0;
   }
   #downscale {
-    cursor: pointer;
-    position: fixed;
-    background-color: #000;
     top: 5.5vh;
-    left: 0;
-    color: #808080;
-    font-family: Calibri;
-    font-size: 40
   }
-  #downscaleCheckbox {
+  #qualityCheckbox, #downscaleCheckbox  {
     height: 4vh;
     width: 4vh
   }
