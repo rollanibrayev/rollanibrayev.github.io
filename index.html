@@ -67,7 +67,7 @@
       let isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked
       let quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       let isChunked = quality == 'chunked'
-      let [left1, top1, left2, top2, width, height] = (() =>
+      let [left1, top1, left2, top2, width, height] =
         is768 ? (
           isDownscale ? (
             isChunked ? [-277, -156, 683, 384, 960, 540]
@@ -85,7 +85,6 @@
             : [-320, -180, 960, 540, 1280, 720]
           )
         )
-      )()
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
