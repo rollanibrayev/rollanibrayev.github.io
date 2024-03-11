@@ -69,6 +69,10 @@
     let numberOfIframes = 4
     if (channels.length == numberOfIframes) {
       input.remove()
+      let hdWidth = '1280px'
+      let hdHeight = '720px'
+      let fullHdWidth = '1920px'
+      let fullHdHeight = '1080px'
       let isDownscale = document.querySelectorAll('input[type="checkbox"]')[1].checked
       let quality = (document.querySelector('input[type="checkbox"]').checked) ? 'chunked' : '720p60'
       let isChunked = quality == 'chunked'
@@ -78,16 +82,16 @@
             isChunked ? ['-277px', '-156px', '683px', '384px', '960px', '540px']
             : [0, 0, '640px', '360px', '640px', '360px']
           ) : (
-            isChunked ? ['-1237px', '-696px', '683px', '384px', '1920px', '1080px']
-            : ['-597px', '-336px', '683px', '384px', '1280px', '720px']
+            isChunked ? ['-1237px', '-696px', '683px', '384px', fullHdWidth, fullHdHeight]
+            : ['-597px', '-336px', '683px', '384px', hdWidth, hdHeight]
           )
         ) : (
           isDownscale ? (
             isChunked ? [0, 0, '960px', '540px', '960px', '540px']
             : [0, 0, '640px', '360px', '640px', '360px']
           ) : (
-            isChunked ? ['calc(50vw - 1920px)', 'calc(50vh - 1080px)', '50vw', '50vh', '1920px', '1080px']
-            : ['-320px', '-180px', '960px', '540px', '1280px', '720px']
+            isChunked ? [`calc(50vw - ${fullHdWidth})`, `calc(50vh - ${fullHdHeight})`, '50vw', '50vh', fullHdWidth, fullHdHeight]
+            : ['-320px', '-180px', '960px', '540px', hdWidth, hdHeight]
           )
         )
       const positions = [
