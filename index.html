@@ -75,19 +75,19 @@
       let [left1, top1, left2, top2, width, height] =
         window.screen.height == 768 ? (
           isDownscale ? (
-            isChunked ? [-277, -156, 683, 384, 960, 540]
-            : [0, 0, 640, 360, 640, 360]
+            isChunked ? ['-277px', '-156px', '683px', '384px', '960px', '540px']
+            : [0, 0, '640px', '360px', '640px', '360px']
           ) : (
-            isChunked ? [-1237, -696, 683, 384, 1920, 1080]
-            : [-597, -336, 683, 384, 1280, 720]
+            isChunked ? ['-1237px', '-696px', '683px', '384px', '1920px', '1080px']
+            : ['-597px', '-336px', '683px', '384px', '1280px', '720px']
           )
         ) : (
           isDownscale ? (
-            isChunked ? [0, 0, 960, 540, 960, 540]
-            : [0, 0, 640, 360, 640, 360]
+            isChunked ? [0, 0, '960px', '540px', '960px', '540px']
+            : [0, 0, '640px', '360px', '640px', '360px']
           ) : (
-            isChunked ? [-960, -540, 960, 540, 1920, 1080]
-            : [-320, -180, 960, 540, 1280, 720]
+            isChunked ? ['-960px', '-540px', '50vw', '50vh', '1920px', '1080px']
+            : ['-320px', '-180px', '960px', '540px', '1280px', '720px']
           )
         )
       const positions = [
@@ -103,8 +103,8 @@
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=${quality}&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
-          left: ${positions[i][0]}px;
-          top: ${positions[i][1]}px;
+          left: ${positions[i][0]};
+          top: ${positions[i][1]};
           width: ${width}px;
           height: ${height}px;
           border: 0;
