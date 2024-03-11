@@ -55,8 +55,8 @@
   let click = (wrapper, checkbox) =>
     document.getElementById(wrapper).addEventListener('click', () => {
       if (!event.target.matches('input[type="checkbox"]')) {
-        let checkbox = document.getElementById(checkbox)
-        checkbox.checked = !checkbox.checked
+        let Checkbox = document.getElementById(checkbox)
+        Checkbox.checked = !Checkbox.checked
       }
     })
   click('quality', 'qualityCheckbox')
