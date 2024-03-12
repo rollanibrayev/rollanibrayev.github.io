@@ -4,7 +4,7 @@
 <style>
   body {
     margin: 0;
-    background-color: #000
+    background-color: 000
   }
   div {
     text-align: center;
@@ -12,7 +12,7 @@
     width: 100vw;
     top: 55vh;
     font-size: 5.5vh;
-    color: #808080;
+    color: 808080;
     font-family: Calibri;
   }
   input {
@@ -29,7 +29,7 @@
     cursor: default
   }
   ::placeholder {
-    color: #808080
+    color: 808080
   }
 </style>
 <script>
@@ -63,7 +63,7 @@
       }
       return
     }
-    document.querySelector('div').innerHTML += `<span style='color:${colors[0]}'>${channel + (channels.length < 3 && ' ')}</span>`
+    document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel + (channels.length < 3 && ' ')}</span>`
     colors.shift()
     event.target.value = ''
   })
