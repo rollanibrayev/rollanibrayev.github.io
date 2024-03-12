@@ -34,7 +34,7 @@
 </style>
 <script>
     const channels = []
-    const colors = ['C04040', '40C040', '4040C0']
+    const colors = ['c04040', '40c040', '4040c0']
     document.querySelector('input').addEventListener('input', event => {
         let channel = event.target.value.substring(event.target.value.lastIndexOf('/') + 1)
         channels.push(channel)
@@ -63,12 +63,10 @@
             }
             return
         }
-        event.target.placeholder = event.target.placeholder.slice(0, 5) + (4 - channels.length) + event.target.placeholder.slice(6)
+        const replaceNthSymbol = (string1, index, string2 = '') => string1.slice(0, index) + string2 + string1.slice(index + 1)
+        event.target.placeholder = replaceNthSymbol(event.target.placeholder, 5, (4 - channels.length))
         if (channels.length < 3) channel += ' '
-        else {
-            const indexToDelete = event.target.placeholder.length - 6
-            event.target.placeholder = event.target.placeholder.slice(0, indexToDelete) + event.target.placeholder.slice(indexToDelete + 1)
-        }
+        else event.target.placeholder = replaceNthSymbol(event.target.placeholder, event.target.placeholder.length - 6)
         document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel}</span>`
         colors.shift()
         event.target.value = ''
