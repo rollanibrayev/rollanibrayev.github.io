@@ -63,7 +63,7 @@
             return
         }
         const placeholder = event.target.placeholder
-        event.target.placeholder = placeholder.substring(0, 5) + (4 - channels.length) + placeholder.substring(6)
+        event.target.placeholder = placeholder.slice(0, 5) + (4 - channels.length) + placeholder.slice(6)
         if (channels.length < 3) channel += ' '
         else {
             const deleteNthSymbol = (string, index) =>
