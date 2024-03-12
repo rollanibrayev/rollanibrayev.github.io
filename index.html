@@ -63,7 +63,8 @@
       }
       return
     }
-    document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel + (channels.length < 3 && ' ')}</span>`
+    if (channels.length < 3) channel += ' '
+    document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel}</span>`
     colors.shift()
     event.target.value = ''
   })
