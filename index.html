@@ -36,7 +36,6 @@
   const channels = []
   document.querySelector('input').addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
-    event.target.value = ''
     if (channels.length > 3) {
       event.target.remove()
       document.querySelector('div').remove()
@@ -62,6 +61,7 @@
       }
       return
     }
-    document.querySelector('div').innerHTML += ' ' + channels[channels.length - 1]
+    document.querySelector('div').innerHTML += ' ' + event.target.value
+    event.target.value = ''
   })
 </script>
