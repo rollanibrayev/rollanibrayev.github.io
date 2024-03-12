@@ -37,7 +37,6 @@
   document.querySelector('input').addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
-    document.querySelector('div').innerHTML += ' ' + channels[channels.length - 1]
     if (channels.length == 4) {
       event.target.remove()
       document.querySelector('div').remove()
@@ -60,7 +59,9 @@
         `
         iframe.allowfullscreen = false
         document.body.appendChild(iframe)
+        return
       }
     }
+    document.querySelector('div').innerHTML += ' ' + channels[channels.length - 1]
   })
 </script>
