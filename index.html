@@ -34,7 +34,6 @@
 </style>
 <script>
     const channels = []
-    const colors = ['C04040', '40C040', '4040C0']
     document.querySelector('input').addEventListener('input', event => {
         let channel = event.target.value.substring(event.target.value.lastIndexOf('/') + 1)
         channels.push(channel)
@@ -48,30 +47,32 @@
             ]
             for (let i = 0; i < 4; i++) {
                 const iframe = document.createElement('iframe')
-                iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${channels[i]}`
                 iframe.style = `
-                    display: block;
                     left: ${positions[i][0]}vw;
                     top: ${positions[i][1]}vh;
+                    display: block;
                     width: 50vw;
                     height: 50vh;
                     border: 0;
                     position: absolute
                 `
+                iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${channels[i]}`
                 iframe.allowfullscreen = false
                 document.body.appendChild(iframe)
             }
             return
         }
-        event.target.placeholder = event.target.placeholder.substring(0, 5) + (4 - channels.length) + event.target.placeholder.substring(6)
+        const placeholder = event.target.placeholder
+        event.target.placeholder = placeholder.substring(0, 5) + (4 - channels.length) + placeholder.substring(6)
         if (channels.length < 3) channel += ' '
         else {
             const deleteNthSymbol = (string, index) =>
                 string.slice(0, index) + string.slice(index + 1)
-            const placeholder = event.target.placeholder
+            placeholder = event.target.placeholder
             const indexToDelete = placeholder.length - 6
             event.target.placeholder = deleteNthSymbol(placeholder, indexToDelete)
         }
+        const colors = ['C04040', '40C040', '4040C0']
         document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel}</span>`
         colors.shift()
         event.target.value = ''
