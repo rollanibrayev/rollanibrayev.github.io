@@ -63,7 +63,7 @@
             }
             return
         }
-        const replaceNthSymbol = (string1, index, string2 = '') => string1.slice(0, index) + string2 + string1.slice(index + 1)
+        const replaceNthSymbol = (string1, index, ...string2) => string1.slice(0, index) + string2 + string1.slice(index + 1)
         event.target.placeholder = replaceNthSymbol(event.target.placeholder, 5, (4 - channels.length))
         if (channels.length < 3) channel += ' '
         else event.target.placeholder = replaceNthSymbol(event.target.placeholder, event.target.placeholder.length - 6)
