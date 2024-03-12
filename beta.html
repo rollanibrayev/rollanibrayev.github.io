@@ -71,10 +71,10 @@
         window.screen.height == 768 ? (
           isDownscale ? (
             isChunked ? ['-277px', '-156px', '683px', '384px', '960px', '540px']
-            : [0, 0, '640px', '360px', '640px', '360px']
+            : [0, 0, '640px', '360px', 'calc((46 + 582/683) * 1vw)', 'calc((46 + 7/8) * 1vh)']
           ) : (
             isChunked ? ['-1237px', '-696px', '683px', '384px', fullHdWidth, fullHdHeight]
-            : ['-597px', '-336px', '683px', '384px', hdWidth, hdHeight]
+            : ['-597px', '-336px', '683px', '384px', 'calc((93 + 481/683) * 1vw)', 'calc((93 + 3/4) * 1vh)']
           )
         ) : (
           isDownscale ? (
