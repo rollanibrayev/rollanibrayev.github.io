@@ -64,13 +64,7 @@
         }
         event.target.placeholder = event.target.placeholder.slice(0, 5) + (4 - channels.length) + event.target.placeholder.slice(6)
         if (channels.length < 3) channel += ' '
-        else {
-            const deleteNthSymbol = (string, index) =>
-                string.slice(0, index) + string.slice(index + 1)
-            const placeholder = event.target.placeholder
-            const indexToDelete = placeholder.length - 6
-            event.target.placeholder = deleteNthSymbol(placeholder, indexToDelete)
-        }
+        else event.target.placeholder = devent.target.placeholder.slice(0, placeholder.length - 6) + event.target.placeholder.slice(placeholder.length - 6 + 1)
         const colors = ['C04040', '40C040', '4040C0']
         document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel}</span>`
         colors.shift()
