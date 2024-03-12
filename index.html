@@ -37,7 +37,7 @@
   document.querySelector('input').addEventListener('input', event => {
     channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
     event.target.value = ''
-    if (channels.length == 4) {
+    if (channels.length > 3) {
       event.target.remove()
       document.querySelector('div').remove()
       document.body.requestFullscreen()
