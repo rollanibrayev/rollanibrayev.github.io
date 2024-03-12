@@ -66,7 +66,7 @@
         const replaceNthSymbol = (string1, index, ...string2) => string1.slice(0, index) + string2 + string1.slice(index + 1)
         event.target.placeholder = replaceNthSymbol(event.target.placeholder, 5, (4 - channels.length))
         if (channels.length < 3) channel += ' '
-        else event.target.placeholder = replaceNthSymbol(event.target.placeholder, event.target.placeholder.length - 6)
+        else event.target.placeholder = replaceNthSymbol(event.target.placeholder, -6)
         document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel}</span>`
         colors.shift()
         event.target.value = ''
