@@ -62,13 +62,12 @@
             }
             return
         }
-        let placeholder = event.target.placeholder
-        event.target.placeholder = placeholder.slice(0, 5) + (4 - channels.length) + placeholder.slice(6)
+        event.target.placeholder = event.target.placeholder.slice(0, 5) + (4 - channels.length) + event.target.placeholder.slice(6)
         if (channels.length < 3) channel += ' '
         else {
             const deleteNthSymbol = (string, index) =>
                 string.slice(0, index) + string.slice(index + 1)
-            placeholder = event.target.placeholder
+            const placeholder = event.target.placeholder
             const indexToDelete = placeholder.length - 6
             event.target.placeholder = deleteNthSymbol(placeholder, indexToDelete)
         }
