@@ -2,75 +2,75 @@
 <div></div>
 <input placeholder='drag 4 twitch stream thumbnails here'>
 <style>
-  body {
-    margin: 0;
-    background-color: 000
-  }
-  div {
-    text-align: center;
-    position: absolute;
-    width: 100vw;
-    top: 55vh;
-    font-size: 5.5vh;
-    color: 808080;
-    font-family: Calibri;
-  }
-  input {
-    position: absolute;
-    background-color: transparent;
-    width: 100vw;
-    height: 100vh;
-    font-size: 5.5vh;
-    font-family: Calibri;
-    border: 0;
-    text-align: center;
-    outline: none;
-    caret-color: transparent;
-    cursor: default
-  }
-  ::placeholder {
-    color: 808080
-  }
+    body {
+        margin: 0;
+        background-color: 000
+    }
+    div {
+        text-align: center;
+        position: absolute;
+        width: 100vw;
+        top: 55vh;
+        font-size: 5.5vh;
+        color: 808080;
+        font-family: Calibri
+    }
+    input {
+        position: absolute;
+        background-color: transparent;
+        width: 100vw;
+        height: 100vh;
+        font-size: 5.5vh;
+        font-family: Calibri;
+        border: 0;
+        text-align: center;
+        outline: none;
+        caret-color: transparent;
+        cursor: default
+    }
+    ::placeholder {
+        color: 808080
+    }
 </style>
 <script>
-  const channels = []
-  const colors = ['C04040', '40C040', '4040C0']
-  document.querySelector('input').addEventListener('input', event => {
-    let channel = event.target.value.substring(event.target.value.lastIndexOf('/') + 1)
-    channels.push(channel)
-    if (channels.length > 3) {
-      event.target.remove()
-      document.querySelector('div').remove()
-      document.body.requestFullscreen()
-      const positions = [
-        [0,  0], [50,  0],
-        [0, 50], [50, 50]
-      ]
-      for (let i = 0; i < 4; i++) {
-        const iframe = document.createElement('iframe')
-        iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${channels[i]}`
-        iframe.style = `
-          display: block;
-          left: ${positions[i][0]}vw;
-          top: ${positions[i][1]}vh;
-          width: 50vw;
-          height: 50vh;
-          border: 0;
-          position: absolute
-        `
-        iframe.allowfullscreen = false
-        document.body.appendChild(iframe)
-      }
-      return
-    }
-    event.target.placeholder = event.target.placeholder.substring(0, 5) + (4 - channels.length) + event.target.placeholder.substring(6)
-    if (channels.length < 3) channel += ' '
-    else {
-      const indexToDelete = event.target.placeholder.length - 6
-      event.target.placeholder = event.target.placeholder.slice(0, indexToDelete) + event.target.placeholder.slice(indexToDelete + 1)
-    }
-    document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel}</span>`
-    colors.shift()
-    event.target.value = ''
-  })
+    const channels = []
+    const colors = ['C04040', '40C040', '4040C0']
+    document.querySelector('input').addEventListener('input', event => {
+        let channel = event.target.value.substring(event.target.value.lastIndexOf('/') + 1)
+        channels.push(channel)
+        if (channels.length > 3) {
+            event.target.remove()
+            document.querySelector('div').remove()
+            document.body.requestFullscreen()
+            const positions = [
+                [0,  0], [50,  0],
+                [0, 50], [50, 50]
+            ]
+            for (let i = 0; i < 4; i++) {
+                const iframe = document.createElement('iframe')
+                iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${channels[i]}`
+                iframe.style = `
+                    display: block;
+                    left: ${positions[i][0]}vw;
+                    top: ${positions[i][1]}vh;
+                    width: 50vw;
+                    height: 50vh;
+                    border: 0;
+                    position: absolute
+                `
+                iframe.allowfullscreen = false
+                document.body.appendChild(iframe)
+            }
+            return
+        }
+        event.target.placeholder = event.target.placeholder.substring(0, 5) + (4 - channels.length) + event.target.placeholder.substring(6)
+        if (channels.length < 3) channel += ' '
+        else {
+            const indexToDelete = event.target.placeholder.length - 6
+            event.target.placeholder = event.target.placeholder.slice(0, indexToDelete) + event.target.placeholder.slice(indexToDelete + 1)
+        }
+        document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel}</span>`
+        colors.shift()
+        event.target.value = ''
+    })
 </script>
