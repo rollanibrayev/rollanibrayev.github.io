@@ -89,8 +89,11 @@
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
       ]
-      document.getElementById('quality').remove()
-      document.getElementById('downscale').remove()
+      const remove = (...elements) =>
+        elements.forEach(element =>
+          document.getElementById(element).remove()
+        )
+      remove('quality', 'downscale')
       document.body.requestFullscreen()
       for (let i = 0; i < numberOfIframes; i++) {
         const iframe = document.createElement('iframe')
