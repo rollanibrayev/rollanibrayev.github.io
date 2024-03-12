@@ -66,9 +66,8 @@
     event.target.placeholder = event.target.placeholder.substring(0, 5) + (4 - channels.length) + event.target.placeholder.substring(6)
     if (channels.length < 3) channel += ' '
     else {
-      const placeholder = event.target.placeholder
       const indexToDelete = event.target.placeholder.length - 6
-      event.target.placeholder = placeholder.slice(0, indexToDelete) + placeholder.slice(indexToDelete + 1)
+      event.target.placeholder = event.target.placeholder.slice(0, indexToDelete) + event.target.placeholder.slice(indexToDelete + 1)
     }
     document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel}</span>`
     colors.shift()
