@@ -36,7 +36,7 @@
   const channels = []
   const colors = ['ff8080', '80ff80', '8080ff']
   document.querySelector('input').addEventListener('input', event => {
-    const channel = event.target.value.substring(event.target.value.lastIndexOf('/') + 1)
+    let channel = event.target.value.substring(event.target.value.lastIndexOf('/') + 1)
     channels.push(channel)
     if (channels.length > 3) {
       event.target.remove()
