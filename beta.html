@@ -1,7 +1,7 @@
 <title>4 Twitch Streams Viewer</title>
 <input id='channels' placeholder='Drag 4 Twitch stream thumbnails to this page'>
 <div id='quality'>
-  <input type='checkbox' id='qualityCheckbox' checked>Highest Quality
+  <input type='checkbox' id='qualityCheckbox'>Highest Quality
 </div>
 <div id='downscale'>
   <input type='checkbox' id='downscaleCheckbox'>x2 Scaling
@@ -74,7 +74,7 @@
             : [0, 0, '640px', '360px', 'calc((46 + 582/683) * 1vw)', 'calc((46 + 7/8) * 1vh)']
           ) : (
             isChunked ? ['-1237px', '-696px', '683px', '384px', fullHdWidth, fullHdHeight]
-            : ['-597px', '-336px', '683px', '384px', 'calc((93 + 481/683) * 1vw)', 'calc((93 + 3/4) * 1vh)']
+            : [0, 0, 'calc((93 + 481/683) * 1vw)', 'calc((93 + 3/4) * 1vh)', 'calc((93 + 481/683) * 1vw)', 'calc((93 + 3/4) * 1vh)']
           )
         ) : (
           isDownscale ? (
