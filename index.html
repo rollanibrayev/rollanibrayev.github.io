@@ -34,6 +34,7 @@
 </style>
 <script>
   const channels = []
+  const colors = ['ff8080', '80ff80', '8080ff']
   document.querySelector('input').addEventListener('input', event => {
     const channel = event.target.value.substring(event.target.value.lastIndexOf('/') + 1)
     channels.push(channel)
@@ -62,7 +63,8 @@
       }
       return
     }
-    document.querySelector('div').innerHTML += ' ' + channel
+    document.querySelector('div').innerHTML += `<span style='color:${colors[colors.length - 1]}'>${channel}</span>`
+    colors.pop()
     event.target.value = ''
   })
 </script>
