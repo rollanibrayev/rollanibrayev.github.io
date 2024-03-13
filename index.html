@@ -64,8 +64,7 @@ document.querySelector('input').addEventListener('input', event => {
     const last = array => array[array.length - 1]
     if (generatedIframesCount > 0) last(document.querySelectorAll('div')).remove()
     generatedIframesCount ++
-    const iframe = document.querySelectorAll('iframe')[generatedIframesCount - 1]
-    iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.substring(event.target.value.lastIndexOf('/') + 1)}`
+    document.querySelectorAll('iframe')[generatedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.substring(event.target.value.lastIndexOf('/') + 1)}`
     event.target.value = ''
     if (generatedIframesCount < 4) last(document.querySelectorAll('div')).style = 'display: block'
     if (generatedIframesCount > 3) {
