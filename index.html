@@ -56,14 +56,16 @@ input {
 ::placeholder { color: 808080 }
 </style>
 <script>
-let generatedIframesCount = 0;
+let generatedIframesCount = 0
 document.querySelector('input').addEventListener('input', event => {
-    if (generatedIframesCount < 1) document.querySelector('input').removeAttribute('placeholder');
+    if (generatedIframesCount < 1) document.querySelector('input').removeAttribute('placeholder')
     if (generatedIframesCount == 2) document.body.requestFullscreen();
-    if (generatedIframesCount > 0) document.querySelectorAll('div')[generatedIframesCount - 1].remove();
-    document.querySelectorAll('iframe')[generatedIframesCount].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
-    event.target.value = '';
-    if (generatedIframesCount < 4) document.querySelectorAll('div')[generatedIframesCount].style = 'display: block';
-    if (++generatedIframesCount > 3) document.querySelector('input').remove();
-});
+    const last = array => array[array.length - 1]
+    if (generatedIframesCount > 0) last(document.querySelectorAll('div')).remove()
+    generatedIframesCount ++
+    document.querySelectorAll('iframe')[generatedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`
+    event.target.value = ''
+    if (generatedIframesCount < 4) last(document.querySelectorAll('div')).style = 'display: block'
+    if (generatedIframesCount > 3) event.target.remove()
+})
 </script>
