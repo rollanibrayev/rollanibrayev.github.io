@@ -1,74 +1,76 @@
 <title>Twitch Streams Viewer</title>
-<div></div>
-<input placeholder='drag 4 twitch stream thumbnails here'>
+<iframe allowfullscreen = false></iframe>
+<iframe allowfullscreen = false></iframe>
+<iframe allowfullscreen = false></iframe>
+<iframe allowfullscreen = false></iframe>
+<div>drag 1 twitch stream thumbnail</div>
+<div>drag 2 twitch stream thumbnails</div>
+<div>drag 3 twitch stream thumbnails</div>
+<input placeholder = 'drag 4 twitch stream thumbnails here'>
 <style>
-    body {
-        margin: 0;
-        background-color: 000
-    }
-    div {
-        text-align: center;
-        position: absolute;
-        width: 100vw;
-        top: 55vh;
-        font-size: 5.5vh;
-        color: 808080;
-        font-family: Calibri
-    }
-    input {
-        position: absolute;
-        background-color: transparent;
-        width: 100vw;
-        height: 100vh;
-        font-size: 5.5vh;
-        font-family: Calibri;
-        border: 0;
-        text-align: center;
-        outline: none;
-        caret-color: transparent;
-        cursor: default
-    }
-    ::placeholder {
-        color: 808080
-    }
+body {
+    margin: 0;
+    background-color: 000
+}
+iframe {
+    display: block;
+    width: 50vw;
+    height: 50vh;
+    border: 0;
+    position: absolute
+}
+iframe:nth-of-type(1) { left:  0;   top:  0   }
+iframe:nth-of-type(2) { left: 50vw; top:  0   }
+iframe:nth-of-type(3) { left:  0;   top: 50vh }
+iframe:nth-of-type(4) { left: 50vw; top: 50vh }
+div {
+    display: none;
+    text-align: center;
+    position: absolute;
+    color: 808080;
+    font-family: Calibri;
+    top: 75vh;
+    font-size: 4vh;
+}
+div:nth-of-type(1) {
+    width: 50vw;
+    left: 50vw;
+}
+div:nth-of-type(2), div:nth-of-type(3) {
+    width: 100vw;
+}
+input {
+    position: absolute;
+    background-color: transparent;
+    width: 100vw;
+    height: 100vh;
+    font-size: 5.5vh;
+    font-family: Calibri;
+    border: 0;
+    text-align: center;
+    outline: none;
+    caret-color: transparent;
+    cursor: default;
+    padding: 0
+}
+::placeholder { color: 808080 }
 </style>
 <script>
-    const channels = []
-    const colors = ['c04040', '40c040', '4040c0']
-    document.querySelector('input').addEventListener('input', event => {
-        let channel = event.target.value.substring(event.target.value.lastIndexOf('/') + 1)
-        channels.push(channel)
-        if (channels.length > 3) {
-            event.target.remove()
-            document.querySelector('div').remove()
-            document.body.requestFullscreen()
-            const positions = [
-                [0,  0], [50,  0],
-                [0, 50], [50, 50]
-            ]
-            for (let i = 0; i < 4; i++) {
-                const iframe = document.createElement('iframe')
-                iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${channels[i]}`
-                iframe.style = `
-                    display: block;
-                    left: ${positions[i][0]}vw;
-                    top: ${positions[i][1]}vh;
-                    width: 50vw;
-                    height: 50vh;
-                    border: 0;
-                    position: absolute
-                `
-                iframe.allowfullscreen = false
-                document.body.appendChild(iframe)
-            }
-            return
-        }
-        const replaceNthSymbol = (string1, index, ...string2) => string1.slice(0, index) + string2 + string1.slice(index + 1)
-        event.target.placeholder = replaceNthSymbol(event.target.placeholder, 5, (4 - channels.length))
-        if (channels.length < 3) channel += ' '
-        else event.target.placeholder = replaceNthSymbol(event.target.placeholder, -6)
-        document.querySelector('div').innerHTML += `<span style='color: ${colors[0]}'>${channel}</span>`
-        colors.shift()
-        event.target.value = ''
-    })
+let generatedIframesCount = 0
+document.querySelector('input').addEventListener('input', event => {
+    if (generatedIframesCount < 1)
+        document.querySelector('input').removeAttribute('placeholder'),
+        document.body.requestFullscreen();
+    const last = array => array[array.length - 1]
+    if (generatedIframesCount > 0) last(document.querySelectorAll('div')).remove()
+    generatedIframesCount ++
+    const iframe = document.querySelectorAll('iframe')[generatedIframesCount - 1]
+    iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.substring(event.target.value.lastIndexOf('/') + 1)}`
+    event.target.value = ''
+    if (generatedIframesCount < 4) last(document.querySelectorAll('div')).style = 'display: block'
+    if (generatedIframesCount > 3) {
+        document.querySelector('input').remove()
+        event.target.remove()
+    }
+})
 </script>
