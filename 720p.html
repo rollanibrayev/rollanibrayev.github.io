@@ -26,12 +26,18 @@
   const input = document.querySelector('input')
   const channels = []
   input.addEventListener('input', event => {
-    channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
+    channels.push(event.target.value.split('/').pop())
     event.target.value = ''
     let numberOfIframes = 4
     if (channels.length == numberOfIframes) {
       input.remove()
-      let [left1, top1, left2, top2] = [0, 0, 'calc(64000vw/683)', 'calc(36000vw/683)']
+      let
+      width = 'calc(64000vw/683)',
+      height = 'calc(36000vw/683)',
+      left1 = 0,
+      top1 = 0,
+      left2 = width,
+      top2 = height
       const positions = [
         [left1, top1], [left2, top1],
         [left1, top2], [left2, top2]
@@ -39,14 +45,18 @@
       document.body.requestFullscreen()
       for (let i = 0; i < numberOfIframes; i++) {
         const iframe = document.createElement('iframe')
+        if (i > 2) {
+          width = 'calc(6400vw/683)'
+          height = 'calc(3600vw/683)'
+        }
         iframe.src =
           `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[i]}`
         iframe.style = `
           display: block;
           left: ${positions[i][0]};
           top: ${positions[i][1]};
-          width: calc(64000vw/683);
-          height: calc(36000vw/683);
+          width: ${width};
+          height: ${height};
           border: 0;
           position: absolute
         `
