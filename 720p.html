@@ -39,3 +39,62 @@
     document.body.requestFullscreen()
   })
 </script>
+
+<title>4 Twitch Streams Viewer</title>
+<input id='channels' placeholder='Drag 4 Twitch stream thumbnails to this page'>
+<style>
+  body {
+    margin: 0;
+    background-color: #000;
+    overflow: hidden
+  }
+  #channels {
+    background-color: #000;
+    width: 100vw;
+    height: 100vh;
+    font-size: 5.5vh;
+    font-family: Calibri;
+    border: 0;
+    text-align: center;
+    outline: none;
+    caret-color: transparent;
+    cursor: default
+  }
+  ::placeholder {
+    color: #808080
+  }
+</style>
+<script>
+  const input = document.querySelector('input')
+  const channels = []
+  input.addEventListener('input', event => {
+    channels.push(event.target.value.substring(event.target.value.lastIndexOf('/') + 1))
+    event.target.value = ''
+    let numberOfIframes = 4
+    if (channels.length == numberOfIframes) {
+      input.remove()
+      let [left1, top1, left2, top2] = [0, 0, 'calc(64000vw/683)', 'calc(36000vw/683)']
+      const positions = [
+        [left1, top1], [left2, top1],
+        [left1, top2], [left2, top2]
+      ]
+      document.body.requestFullscreen()
+      for (let i = 0; i < numberOfIframes; i++) {
+        const iframe = document.createElement('iframe')
+        iframe.src =
+          `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${channels[i]}`
+        iframe.style = `
+          display: block;
+          left: ${positions[i][0]};
+          top: ${positions[i][1]};
+          width: calc(64000vw/683);
+          height: calc(36000vw/683);
+          border: 0;
+          position: absolute
+        `
+        iframe.allowfullscreen = false
+        document.body.appendChild(iframe)
+      }
+    }
+  })
+</script>
