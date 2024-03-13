@@ -1,1 +1,59 @@
-<body><script src='script.js'></script></body>
+<title>Twitch Streams Viewer</title>
+<iframe allowfullscreen = false></iframe>
+<iframe allowfullscreen = false></iframe>
+<iframe allowfullscreen = false></iframe>
+<iframe allowfullscreen = false></iframe>
+<div>drag a twitch stream thumbnail</div>
+<div>drag 2 twitch stream thumbnails</div>
+<div>drag 3 twitch stream thumbnails</div>
+<input placeholder = 'drag 4 twitch stream thumbnails here'>
+<style>
+body {
+    margin: 0;
+    background-color: 000;
+    overflow: hidden
+}
+iframe {
+    display: block;
+    width: 50vw;
+    height: 28.125vw;
+    border: 0;
+    position: absolute
+}
+iframe:nth-of-type(1) { left:  0;   top:  0   }
+iframe:nth-of-type(2) { left: 50vw; top:  0   }
+iframe:nth-of-type(3) { left:  0;   top: 50vh }
+iframe:nth-of-type(4) { left: 50vw; top: 50vh }
+div {
+    display: none;
+    text-align: center;
+    position: absolute;
+    color: 808080;
+    font-family: Calibri;
+    top: 75vh;
+    font-size: 4vh
+}
+div:nth-of-type(1) {
+    width: 50vw;
+    left: 50vw;
+}
+div:nth-of-type(2), div:nth-of-type(3) {
+    width: 100vw;
+}
+input {
+    position: absolute;
+    background-color: transparent;
+    width: 100vw;
+    height: 100vh;
+    font-size: 5.5vh;
+    font-family: Calibri;
+    border: 0;
+    text-align: center;
+    outline: none;
+    caret-color: transparent;
+    cursor: default;
+    padding: 0
+}
+::placeholder { color: 808080 }
+</style>
+<script src='script.js'></script>
