@@ -1,3 +1,4 @@
+document.appendChild(document.createElement('body'))
 document.body.innerHTML = `
 <title>Twitch Streams Viewer</title>
 <iframe allowfullscreen = false></iframe>
