@@ -60,7 +60,7 @@ let generatedIframesCount = 0
 document.querySelector('input').addEventListener('input', event => {
     if (generatedIframesCount < 1)
         document.querySelector('input').removeAttribute('placeholder')
-    if (generatedIframesCount == 1) document.body.requestFullscreen();
+    if (generatedIframesCount == 2) document.body.requestFullscreen();
     const last = array => array[array.length - 1]
     if (generatedIframesCount > 0) last(document.querySelectorAll('div')).remove()
     generatedIframesCount ++
