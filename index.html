@@ -48,8 +48,7 @@ document.querySelector('input').addEventListener('input', event => {
         document.body.requestFullscreen()
     ;
     if (appearedIframesCount == 3) document.querySelectorAll('iframe')[2].style = 'left:  0';
-    const iframe = iframes[++appearedIframesCount - 1];
-    iframe.src =
+    iframes[++appearedIframesCount - 1].src =
         `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${
             event.target.value.split('/').pop()
         }`
