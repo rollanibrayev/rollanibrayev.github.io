@@ -1,4 +1,8 @@
 <title>Twitch Streams Viewer</title>
+<iframe></iframe>
+<iframe></iframe>
+<iframe></iframe>
+<iframe></iframe>
 <input placeholder = 'keep dragging twitch stream thumbnails (up to 4) to anywhere on this page'>
 <style>
 body {
@@ -6,6 +10,16 @@ body {
     background-color: 000;
     overflow: hidden
 }
+iframe {
+    width: 50vw;
+    height: 28.125vw;
+    border: 0;
+    position: absolute
+}
+iframe:nth-of-type(1) { left: 25vw; top: 50vh; transform: translateY(-50%) }
+iframe:nth-of-type(2) { left: 50vw; top: 50vh; transform: translateY(-50%) }
+iframe:nth-of-type(3) { left: 25vw; top: 50vh }
+iframe:nth-of-type(4) { left: 50vw; top: 50vh }
 input {
     position: absolute;
     background-color: transparent;
@@ -18,26 +32,14 @@ input {
     outline: none;
     caret-color: transparent;
     cursor: default;
-    padding: 0;
-    z-index: 9999
+    padding: 0
 }
 ::placeholder { color: 808080 }
-iframe {
-    width: 50vw;
-    height: 28.125vw;
-    border: 0;
-    position: absolute
-}
-iframe:nth-of-type(1) { left: 25vw; top: 50vh; transform: translateY(-50%) }
-iframe:nth-of-type(2) { left: 50vw; top: 50vh; transform: translateY(-50%) }
-iframe:nth-of-type(3) { left: 25vw; top: 50vh }
-iframe:nth-of-type(4) { left: 50vw; top: 50vh }
 </style>
 <script>
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
 document.querySelector('input').addEventListener('input', event => {
-    document.body.innerHTML += '<iframe></iframe>';
     if (appearedIframesCount < 1) event.target.removeAttribute('placeholder');
     if (appearedIframesCount == 1) iframes[0].style = 'left:  0';
     if (appearedIframesCount == 2)
