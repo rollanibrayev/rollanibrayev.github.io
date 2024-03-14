@@ -37,23 +37,23 @@ input {
 ::placeholder { color: 808080 }
 </STYLE>
 <SCRIPT>
-let generatedIframesCount = 0;
+let appearedIframesCount = 0;
 document.querySelector('input').addEventListener('input', event => {
-    if (generatedIframesCount < 1) event.target.removeAttribute('placeholder');
-    if (generatedIframesCount == 1) document.querySelectorAll('iframe')[0].style = 'left:  0';
-    if (generatedIframesCount == 2)
+    if (appearedIframesCount < 1) event.target.removeAttribute('placeholder');
+    if (appearedIframesCount == 1) document.querySelectorAll('iframe')[0].style = 'left:  0';
+    if (appearedIframesCount == 2)
         document.querySelectorAll('iframe')[0].style = 'top: 0; left: 0; transform: translateY(0)',
         document.querySelectorAll('iframe')[1].style = 'top: 0; transform: translateY(0)',
         document.body.requestFullscreen()
     ;
-    if (generatedIframesCount == 3) document.querySelectorAll('iframe')[2].style = 'left:  0';
-    const iframe = document.querySelectorAll('iframe')[++generatedIframesCount - 1];
+    if (appearedIframesCount == 3) document.querySelectorAll('iframe')[2].style = 'left:  0';
+    const iframe = document.querySelectorAll('iframe')[++appearedIframesCount - 1];
     iframe.src =
         `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${
             event.target.value.split('/').pop()
         }`
     ;
     event.target.value = '';
-    if (generatedIframesCount > 3) event.target.remove()
+    if (appearedIframesCount > 3) event.target.remove()
 })
 </SCRIPT>
