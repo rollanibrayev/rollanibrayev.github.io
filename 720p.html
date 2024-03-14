@@ -48,6 +48,7 @@
         }
         const iframe = document.querySelectorAll('iframe')[++generatedIframesCount - 1]
         iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${event.target.value.split('/').pop()}`
+        event.target.remove()
         event.target.value = ''
         if (generatedIframesCount > 3) {
             iframe.style = `
