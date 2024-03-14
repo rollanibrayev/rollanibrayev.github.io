@@ -40,10 +40,8 @@ input {
 let generatedIframesCount = 0
 document.querySelector('input').addEventListener('input', event => {
     if (generatedIframesCount < 1) event.target.removeAttribute('placeholder')
-    if (generatedIframesCount == 2) {
-        document.body.requestFullscreen()
-        document.querySelectorAll('iframe')[0].style = 'left:  0'
-    }
+    if (generatedIframesCount == 1) document.querySelectorAll('iframe')[0].style = 'left:  0'
+    if (generatedIframesCount == 2) document.body.requestFullscreen()
     const iframe = document.querySelectorAll('iframe')[++generatedIframesCount - 1]
     iframe.src =
         'https://player.twitch.tv/?enableExtensions=true&muted=true&' +
