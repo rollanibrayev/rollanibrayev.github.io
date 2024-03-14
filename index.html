@@ -38,7 +38,6 @@ input {
 </style>
 <script>
     let generatedIframesCount = 0
-    const last = array => array[array.length - 1]
     document.querySelector('input').addEventListener('input', event => {
         if (generatedIframesCount < 1) event.target.removeAttribute('placeholder')
         if (generatedIframesCount == 2) document.body.requestFullscreen()
