@@ -4,7 +4,7 @@
 <iframe></iframe>
 <iframe></iframe>
 <input placeholder = 'keep dragging twitch stream thumbnails (up to 4) to anywhere on this page'>
-<STYLE>
+<style>
 body {
     margin: 0;
     background-color: 000;
@@ -35,8 +35,8 @@ input {
     padding: 0
 }
 ::placeholder { color: 808080 }
-</STYLE>
-<SCRIPT>
+</style>
+<script>
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
 document.querySelector('input').addEventListener('input', event => {
@@ -52,4 +52,4 @@ document.querySelector('input').addEventListener('input', event => {
     event.target.value = '';
     if (appearedIframesCount > 3) event.target.remove()
 })
-</SCRIPT>
+</script>
