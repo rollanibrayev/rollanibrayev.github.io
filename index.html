@@ -7,7 +7,8 @@
 <style>
 body {
     margin: 0;
-    background-color: 000
+    background-color: 000;
+    overflow: hidden
 }
 iframe {
     width: 50vw;
@@ -48,7 +49,10 @@ document.querySelector('input').addEventListener('input', event => {
     ;
     appearedIframesCount == 3 ? iframes[2].style = 'left:  0' : 0;
     iframes[++appearedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
-    appearedIframesCount == 3 ? document.querySelector('style').innerHTML += 'body::-webkit-scrollbar{width:0;height:0}' : 0;
+    if (appearedIframesCount == 3)
+        document.querySelector('style').innerHTML += 'body::-webkit-scrollbar{width:0;height:0}',
+        document.body.style = 'overflow: visible'
+    ;
     event.target.value = '';
     appearedIframesCount > 3 ? event.target.remove() : 0
 })
