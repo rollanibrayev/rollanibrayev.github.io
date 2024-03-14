@@ -47,13 +47,14 @@
         }
         const iframe = document.querySelectorAll('iframe')[++generatedIframesCount - 1]
         iframe.src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=720p60&volume=1&channel=${event.target.value.split('/').pop()}`
+        event.target.value = ''
         if (generatedIframesCount > 3) {
             iframe.style = `
                 width: calc(6400vw/683);
                 height: calc(3600vw/683)
             `
+            document.body.appendChild(document.querySelectorAll('iframe')[0])
+            event.target.remove()
         }
-        event.target.value = ''
-        if (generatedIframesCount > 3) event.target.remove()
     })
 </script>
