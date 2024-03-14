@@ -42,10 +42,8 @@ document.querySelector('input').addEventListener('input', event => {
     if (generatedIframesCount < 1) event.target.removeAttribute('placeholder')
     if (generatedIframesCount == 1) document.querySelectorAll('iframe')[0].style = 'left:  0'
     if (generatedIframesCount == 2) {
-        document.querySelectorAll('iframe')[0].style.transform = 'translateY(0)'
-        document.querySelectorAll('iframe')[1].style.transform = 'translateY(0)'
-        document.querySelectorAll('iframe')[0].style = 'top: 0; left: 0'
-        document.querySelectorAll('iframe')[1].style = 'top: 0'
+        document.querySelectorAll('iframe')[0].style = 'top: 0; left: 0; transform: translateY(0)'
+        document.querySelectorAll('iframe')[1].style = 'top: 0; transform: translateY(0)'
         document.body.requestFullscreen()
     }
     if (generatedIframesCount == 3) document.querySelectorAll('iframe')[2].style = 'left:  0'
