@@ -42,8 +42,8 @@ document.querySelector('input').addEventListener('input', event => {
     if (generatedIframesCount < 1) event.target.removeAttribute('placeholder')
     if (generatedIframesCount == 1) document.querySelectorAll('iframe')[0].style = 'left:  0'
     if (generatedIframesCount == 2) {
-        document.querySelectorAll('iframe')[0].removeProperty('transform')
-        document.querySelectorAll('iframe')[1].removeProperty('transform')
+        document.querySelectorAll('iframe')[0].style.removeProperty('transform')
+        document.querySelectorAll('iframe')[1].style.removeProperty('transform')
         document.querySelectorAll('iframe')[0].style = 'top:  0'
         document.querySelectorAll('iframe')[1].style = 'top:  0'
         document.body.requestFullscreen()
