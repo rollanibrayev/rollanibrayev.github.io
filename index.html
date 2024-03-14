@@ -5,4 +5,56 @@
 <iframe allowfullscreen = false></iframe>
 <input placeholder = 'drag 4 twitch stream thumbnails here'>
 <link rel="stylesheet" href="styles.css">
-<script src='script.js'></script>
+<style>
+body {
+    margin: 0;
+    background-color: 000;
+    overflow: hidden
+}
+iframe {
+    width: 50vw;
+    height: 28.125vw;
+    border: 0;
+    position: absolute
+}
+iframe:nth-of-type(1) { left:  25vw;   top:  0   }
+iframe:nth-of-type(2) { left: 50vw; top:  0   }
+iframe:nth-of-type(3) { left:  0;   top: 50vh }
+iframe:nth-of-type(4) { left: 50vw; top: 50vh }
+input {
+    position: absolute;
+    background-color: transparent;
+    width: 100vw;
+    height: 100vh;
+    font-size: 5.5vh;
+    font-family: Calibri;
+    border: 0;
+    text-align: center;
+    outline: none;
+    caret-color: transparent;
+    cursor: default;
+    padding: 0
+}
+::placeholder { color: 808080 }
+</style>
+<script src='script.js'>
+let generatedIframesCount = 0
+document.querySelector('input').addEventListener('input', event => {
+    if (generatedIframesCount < 1) event.target.removeAttribute('placeholder')
+    if (generatedIframesCount == 2) {
+        document.body.requestFullscreen()
+        document.querySelectorAll('iframe')[0].style = 'left:  0'
+    }
+    const iframe = document.querySelectorAll('iframe')[++generatedIframesCount - 1]
+    iframe.src =
+        'https://player.twitch.tv/?enableExtensions=true&muted=true&' +
+        'parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=' +
+        event.target.value.split('/').pop()
+    event.target.value = ''
+    if (generatedIframesCount > 3) event.target.remove()
+})
+// iframe:nth-of-type(1) { left:  0;   top:  0   }
+// iframe:nth-of-type(2) { left: 50vw; top:  0   }
+// iframe:nth-of-type(3) { left:  0;   top: 50vh }
+// iframe:nth-of-type(4) { left: 50vw; top: 50vh }
+</script>
