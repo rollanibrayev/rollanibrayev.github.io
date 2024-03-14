@@ -1,4 +1,8 @@
 <title>Twitch Streams Viewer</title>
+<iframe></iframe>
+<iframe></iframe>
+<iframe></iframe>
+<iframe></iframe>
 <input placeholder = 'keep dragging twitch stream thumbnails (up to 4) to anywhere on this page'>
 <STYLE>
 body {
@@ -28,13 +32,13 @@ input {
     outline: none;
     caret-color: transparent;
     cursor: default;
-    padding: 0;
-    z-index: 9999
+    padding: 0
 }
 ::placeholder { color: 808080 }
 </STYLE>
 <SCRIPT>
-for (let i = 0; i < 4; i++) document.body.innerHTML += '<iframe allowfullscreen = false></iframe>'
+//allowfullscreen = false
+//z-index: 9999
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
 document.querySelector('input').addEventListener('input', event => {
