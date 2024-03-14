@@ -1,8 +1,4 @@
 <title>Twitch Streams Viewer</title>
-<iframe allowfullscreen = false></iframe>
-<iframe allowfullscreen = false></iframe>
-<iframe allowfullscreen = false></iframe>
-<iframe allowfullscreen = false></iframe>
 <input placeholder = 'keep dragging twitch stream thumbnails (up to 4) to anywhere on this page'>
 <STYLE>
 body {
@@ -32,11 +28,13 @@ input {
     outline: none;
     caret-color: transparent;
     cursor: default;
-    padding: 0
+    padding: 0;
+    z-index: 9999
 }
 ::placeholder { color: 808080 }
 </STYLE>
 <SCRIPT>
+for (let i = 0; i < 4; i++) document.body.innerHTML += '<iframe allowfullscreen = false></iframe>'
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
 document.querySelector('input').addEventListener('input', event => {
@@ -48,11 +46,7 @@ document.querySelector('input').addEventListener('input', event => {
         document.body.requestFullscreen()
     ;
     if (appearedIframesCount == 3) document.querySelectorAll('iframe')[2].style = 'left:  0';
-    iframes[++appearedIframesCount - 1].src =
-        `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${
-            event.target.value.split('/').pop()
-        }`
-    ;
+    iframes[++appearedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
     event.target.value = '';
     if (appearedIframesCount > 3) event.target.remove()
 })
