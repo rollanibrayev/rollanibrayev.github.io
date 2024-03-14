@@ -16,8 +16,8 @@ iframe {
     border: 0;
     position: absolute
 }
-iframe:nth-of-type(1) { left: 25vw; top:  0  ; transform: translateY(-50%) }
-iframe:nth-of-type(2) { left: 50vw; top:  0  ; transform: translateY(-50%) }
+iframe:nth-of-type(1) { left: 25vw; top: 50vh; transform: translateY(-50%) }
+iframe:nth-of-type(2) { left: 50vw; top: 50vh; transform: translateY(-50%) }
 iframe:nth-of-type(3) { left: 25vw; top: 50vh }
 iframe:nth-of-type(4) { left: 50vw; top: 50vh }
 input {
@@ -44,6 +44,8 @@ document.querySelector('input').addEventListener('input', event => {
     if (generatedIframesCount == 2) {
         document.querySelectorAll('iframe')[0].removeProperty('transform')
         document.querySelectorAll('iframe')[1].removeProperty('transform')
+        document.querySelectorAll('iframe')[0].style = 'top:  0'
+        document.querySelectorAll('iframe')[1].style = 'top:  0'
         document.body.requestFullscreen()
     }
     if (generatedIframesCount == 3) document.querySelectorAll('iframe')[2].style = 'left:  0'
