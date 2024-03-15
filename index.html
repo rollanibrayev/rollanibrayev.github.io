@@ -58,7 +58,11 @@ document.querySelector('input').addEventListener('input', event => {
 })
 
 document.addEventListener('keydown', event => {
-    if (event.key === 'F' || event.key === 'f') document.body.requestFullscreen()
+    if (event.key === 'F' || event.key === 'f') {
+        event.preventDefault()
+        if (!document.fullscreenElement) document.body.requestFullscreen()
+        else document.exitFullscreen()
+    }
 });
 
 </script>
