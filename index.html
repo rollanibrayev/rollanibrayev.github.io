@@ -55,14 +55,17 @@ document.querySelector('input').addEventListener('input', event => {
     ;
     event.target.value = '';
     appearedIframesCount > 3 ? event.target.remove() : 0
-})
-
-document.addEventListener('keydown', event => {
-    if (event.key === 'F' || event.key === 'f') {
-        event.preventDefault()
-        if (!document.fullscreenElement) document.body.requestFullscreen()
-        else document.exitFullscreen()
-    }
 });
+
+document.addEventListener('keydown', event =>
+    event.key === 'F' || event.key === 'f'
+        ? (
+            event.preventDefault(),
+            !document.fullscreenElement
+                ? document.body.requestFullscreen()
+                : document.exitFullscreen()
+        )
+        : 0
+)
 
 </script>
