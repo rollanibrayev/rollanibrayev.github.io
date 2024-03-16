@@ -58,6 +58,7 @@ document.querySelector('input').addEventListener('input', event => {
 });
 
 document.addEventListener('keydown', event => {
+    if (document.activeElement.tagName === 'IFRAME') event.preventDefault();
     if (event.key === 'F' || event.key === 'f')
         event.preventDefault(),
         !document.fullscreenElement
