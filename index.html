@@ -8,12 +8,14 @@ document.addEventListener('keydown', event => {
             : document.exitFullscreen()
 }, true)
 </script>
+<body tabindex='9999'>
 <title>Twitch Streams Viewer</title>
 <iframe tabindex='-1'></iframe>
 <iframe tabindex='-1'></iframe>
 <iframe tabindex='-1'></iframe>
 <iframe tabindex='-1'></iframe>
 <input placeholder = 'keep dragging twitch stream thumbnails (up to 4) to anywhere on this page'>
+</body>
 <style>
 body {
     margin: 0;
