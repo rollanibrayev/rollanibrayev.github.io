@@ -39,6 +39,13 @@ input {
 <script>
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
+const listener = event => {
+    if (event.key === 'F' || event.key === 'f')
+        event.preventDefault(),
+        !document.fullscreenElement
+            ? document.body.requestFullscreen()
+            : document.exitFullscreen()
+}
 document.querySelector('input').addEventListener('input', event => {
     if (appearedIframesCount < 1) event.target.removeAttribute('placeholder');
     if (appearedIframesCount == 1) iframes[0].style = 'left:  0';
@@ -54,15 +61,9 @@ document.querySelector('input').addEventListener('input', event => {
         document.body.style = 'overflow: visible'
     ;
     event.target.value = '';
-    if (appearedIframesCount > 3) event.target.remove()
+    if (appearedIframesCount > 3)
+        iframes.forEach(iframe => iframe.contentDocument.addEventListener('keydown', listener)),
+        event.target.remove()
 });
-
-document.addEventListener('keydown', event => {
-    if (event.key === 'F' || event.key === 'f')
-        event.preventDefault(),
-        !document.fullscreenElement
-            ? document.body.requestFullscreen()
-            : document.exitFullscreen()
-})
-
+document.addEventListener('keydown', listener)
 </script>
