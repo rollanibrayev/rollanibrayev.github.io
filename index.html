@@ -1,3 +1,32 @@
+<script>
+let appearedIframesCount = 0;
+const iframes = document.querySelectorAll('iframe');
+document.querySelector('input').addEventListener('input', event => {
+    if (appearedIframesCount < 1) event.target.removeAttribute('placeholder');
+    if (appearedIframesCount == 1) iframes[0].style = 'left:  0';
+    if (appearedIframesCount == 2)
+        iframes[0].style = 'top: 0; left: 0; transform: translateY(0)',
+        iframes[1].style = 'top: 0; transform: translateY(0)',
+        document.body.requestFullscreen()
+    ;
+    if (appearedIframesCount == 3) iframes[2].style = 'left:  0';
+    iframes[++appearedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
+    if (appearedIframesCount == 3)
+        document.querySelector('style').innerHTML += 'body::-webkit-scrollbar{width:0;height:0}',
+        document.body.style = 'overflow: visible'
+    ;
+    event.target.value = '';
+    if (appearedIframesCount > 3) event.target.remove()
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'F' || event.key === 'f')
+        event.preventDefault(),
+        !document.fullscreenElement
+            ? document.body.requestFullscreen()
+            : document.exitFullscreen()
+})
+</script>
 <title>Twitch Streams Viewer</title>
 <iframe tabindex='-1'></iframe>
 <iframe tabindex='-1'></iframe>
@@ -36,34 +65,3 @@ input {
 }
 ::placeholder { color: 808080 }
 </style>
-<script>
-let appearedIframesCount = 0;
-const iframes = document.querySelectorAll('iframe');
-document.querySelector('input').addEventListener('input', event => {
-    if (appearedIframesCount < 1) event.target.removeAttribute('placeholder');
-    if (appearedIframesCount == 1) iframes[0].style = 'left:  0';
-    if (appearedIframesCount == 2)
-        iframes[0].style = 'top: 0; left: 0; transform: translateY(0)',
-        iframes[1].style = 'top: 0; transform: translateY(0)',
-        document.body.requestFullscreen()
-    ;
-    if (appearedIframesCount == 3) iframes[2].style = 'left:  0';
-    iframes[++appearedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
-    if (appearedIframesCount == 3)
-        document.querySelector('style').innerHTML += 'body::-webkit-scrollbar{width:0;height:0}',
-        document.body.style = 'overflow: visible'
-    ;
-    event.target.value = '';
-    if (appearedIframesCount > 3) event.target.remove()
-});
-
-document.addEventListener('keydown', event => {
-    if (document.activeElement.tagName === 'IFRAME') event.preventDefault();
-    if (event.key === 'F' || event.key === 'f')
-        event.preventDefault(),
-        !document.fullscreenElement
-            ? document.body.requestFullscreen()
-            : document.exitFullscreen()
-}, true)
-
-</script>
