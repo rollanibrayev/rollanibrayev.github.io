@@ -44,13 +44,13 @@ const listener = event => {
 }
 document.querySelector('input').addEventListener('input', event => {
     if (appearedIframesCount < 1) event.target.removeAttribute('placeholder');
-    if (appearedIframesCount == 1) iframes[0].style = 'left:  0';
+    if (appearedIframesCount == 1) document.querySelectorAll('iframe')[0].style = 'left:  0';
     if (appearedIframesCount == 2)
-        iframes[0].style = 'top: 0; left: 0; transform: translateY(0)',
-        iframes[1].style = 'top: 0; transform: translateY(0)',
+    document.querySelectorAll('iframe')[0].style = 'top: 0; left: 0; transform: translateY(0)',
+    document.querySelectorAll('iframe')[1].style = 'top: 0; transform: translateY(0)',
         document.body.requestFullscreen()
     ;
-    if (appearedIframesCount == 3) iframes[2].style = 'left:  0';
+    if (appearedIframesCount == 3) document.querySelectorAll('iframe')[2].style = 'left:  0';
     document.body.appendChild(document.createElement('iframe'))
     document.querySelectorAll('iframe')[++appearedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
     if (appearedIframesCount == 3)
