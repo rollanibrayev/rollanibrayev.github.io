@@ -35,7 +35,6 @@ input {
 </style>
 <script>
 let appearedIframesCount = 0;
-const iframes = document.querySelectorAll('iframe');
 const listener = event => {
     if (event.key === 'F' || event.key === 'f')
         event.preventDefault(),
@@ -53,14 +52,14 @@ document.querySelector('input').addEventListener('input', event => {
     ;
     if (appearedIframesCount == 3) iframes[2].style = 'left:  0';
     document.body.appendChild(document.createElement('iframe'))
-    iframes[++appearedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
+    document.querySelectorAll('iframe')[++appearedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
     if (appearedIframesCount == 3)
         document.querySelector('style').innerHTML += 'body::-webkit-scrollbar{width:0;height:0}',
         document.body.style = 'overflow: visible'
     ;
     event.target.value = '';
     if (appearedIframesCount > 3)
-        iframes.forEach(iframe => iframe.contentDocument.addEventListener('keydown', listener)),
+        document.querySelectorAll('iframe').forEach(iframe => iframe.contentDocument.addEventListener('keydown', listener)),
         event.target.remove()
 });
 document.addEventListener('keydown', listener)
