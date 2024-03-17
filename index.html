@@ -1,8 +1,4 @@
 <title>Twitch Streams Viewer</title>
-<iframe></iframe>
-<iframe></iframe>
-<iframe></iframe>
-<iframe></iframe>
 <input placeholder = 'keep dragging twitch stream thumbnails (up to 4) to anywhere on this page'>
 <style>
 body {
@@ -32,7 +28,8 @@ input {
     outline: none;
     caret-color: transparent;
     cursor: default;
-    padding: 0
+    padding: 0;
+    z-index: 9999
 }
 ::placeholder { color: 808080 }
 </style>
@@ -55,6 +52,7 @@ document.querySelector('input').addEventListener('input', event => {
         document.body.requestFullscreen()
     ;
     if (appearedIframesCount == 3) iframes[2].style = 'left:  0';
+    document.body.appendChild(document.createElement('iframe'))
     iframes[++appearedIframesCount - 1].src = `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
     if (appearedIframesCount == 3)
         document.querySelector('style').innerHTML += 'body::-webkit-scrollbar{width:0;height:0}',
