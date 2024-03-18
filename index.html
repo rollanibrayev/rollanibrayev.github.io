@@ -76,7 +76,7 @@ document.querySelector('input').addEventListener('input', event => {
   ;
   if (appearedIframesCount == 3) iframes[2].style = 'left: 0';
   iframes[++appearedIframesCount - 1].src =
-    'https://player.twitch.tv/?muted=true&volume=1&quality=chunked' +
+    'https://player.twitch.tv/?muted=true&volume=1&quality=chunked&' +
     'parent=rollanibrayev.github.io&channel=' +
     event.target.value.split('/').pop()
   ;
