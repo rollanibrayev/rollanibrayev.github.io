@@ -70,7 +70,8 @@ document.querySelector('input').addEventListener('input', event => {
     iframes.forEach(
       iframe => iframe.contentDocument.addEventListener('keydown', listener)
     ),
-    event.target.remove()
+    event.target.remove(),
+    document.querySelector('input').style = 'z-index: -1'
 });
 document.addEventListener('keydown', listener);
 document.addEventListener('dblclick', fullscreen)
