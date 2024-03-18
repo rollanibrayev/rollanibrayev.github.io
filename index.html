@@ -75,14 +75,13 @@ document.querySelector('input').addEventListener('input', event => {
     iframes[1].style = 'top: 0; transform: translateY(0)'
   ;
   if (appearedIframesCount == 3) iframes[2].style = 'left: 0';
-  const iframe = iframes[++appearedIframesCount - 1];
-  iframe.src =
+  iframes[++appearedIframesCount - 1].src =
     'https://player.twitch.tv/?enableExtensions=true&muted=true&' +
     'parent=rollanibrayev.github.io&player=popout&' +
     'quality=chunked&volume=1&channel=' +
     event.target.value.split('/').pop()
   ;
-  setTimeout(() => iframe.contentDocument.addEventListener('keydown', listener), 5000)
+  null.a
   if (appearedIframesCount == 3)
     document.querySelector('style').innerHTML +=
       'body::-webkit-scrollbar{width:0;height:0}',
