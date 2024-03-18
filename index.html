@@ -54,17 +54,17 @@ const listener = event => {
   if (event.key === 'F' || event.key === 'f') fullscreen(event)
 }
 document.querySelector('input').addEventListener('input', event => {
-  if (appearedIframesCount < 1) event.target.removeAttribute('placeholder');
-  if (appearedIframesCount == 1)
-    iframes[0].style = `
-      width: 50vw;
-      height: 28.125vw;
-      left:  0;
-      top: 50.000vh;
-      transform: translateY(-50%)
-    `,
+  if (appearedIframesCount < 1)
+    event.target.removeAttribute('placeholder'),
     document.body.requestFullscreen()
   ;
+  if (appearedIframesCount == 1) iframes[0].style = `
+    width: 50vw;
+    height: 28.125vw;
+    left:  0;
+    top: 50.000vh;
+    transform: translateY(-50%)
+  `;
   if (appearedIframesCount == 2)
     iframes[0].style = 'top: 0; left: 0; transform: translateY(0)',
     iframes[1].style = 'top: 0; transform: translateY(0)'
