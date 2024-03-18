@@ -92,8 +92,8 @@ document.querySelector('input').addEventListener('input', event => {
   ;
   event.target.value = '';
   if (appearedIframesCount > 3)
-    fullscreen()
-    //event.target.remove()
+    fullscreen(),
+    event.preventDefault()
 });
 document.addEventListener('keydown', listener);
 document.addEventListener('dblclick', toggle)
