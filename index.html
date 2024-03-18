@@ -88,11 +88,9 @@ document.querySelector('input').addEventListener('input', event => {
     iframes.forEach(
       iframe => iframe.contentDocument.addEventListener('keydown', listener)
     ),
-    document.querySelector('style').innerHTML += `
-      input {
-        width: 0;
-        height: 0;
-      }
+    event.target.style = `
+      width: 0;
+      height: 0
     `,
     document.body.focus()
 });
