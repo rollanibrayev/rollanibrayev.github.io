@@ -81,7 +81,7 @@ document.querySelector('input').addEventListener('input', event => {
     'parent=rollanibrayev.github.io&channel=' +
     event.target.value.split('/').pop()
   ;
-  iframe.contentDocument.addEventListener();
+  iframe.contentDocument.addEventListener('keydown', listener);
   if (appearedIframesCount == 3)
     document.querySelector('style').innerHTML +=
       'body::-webkit-scrollbar{width:0;height:0}',
