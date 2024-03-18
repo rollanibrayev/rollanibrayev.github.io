@@ -71,4 +71,28 @@ document.querySelector('input').addEventListener('input', event => {
         event.target.remove()
 });
 document.addEventListener('keydown', listener)
+
+document.querySelector('input').addEventListener('input', event => {
+    if (appearedIframesCount < 1) event.target.removeAttribute('placeholder');
+    if (appearedIframesCount == 1) iframes[0].style = 'left:  0';
+    if (appearedIframesCount == 2)
+        iframes[0].style = 'top: 0; left: 0; transform: translateY(0)',
+        iframes[1].style = 'top: 0; transform: translateY(0)',
+        document.body.requestFullscreen()
+    ;
+    if (appearedIframesCount == 3) iframes[2].style = 'left:  0';
+    iframes[appearedIframesCount].src =
+        `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
+    if (appearedIframesCount == 3)
+        document.querySelector('style').innerHTML +=
+            'body::-webkit-scrollbar{width:0;height:0}',
+        document.body.style = 'overflow: visible'
+    ;
+    event.target.value = '';
+    if (appearedIframesCount > 3)
+        iframes.forEach(
+            iframe => iframe.contentDocument.addEventListener('keydown', listener)
+        ),
+        event.target.remove()
+});
 </script>
