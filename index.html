@@ -1,8 +1,8 @@
 <title>Twitch Streams Viewer</title>
-<iframe allowfullscreen="true"></iframe>
-<iframe allowfullscreen="true"></iframe>
-<iframe allowfullscreen="true"></iframe>
-<iframe allowfullscreen="true"></iframe>
+<iframe></iframe>
+<iframe></iframe>
+<iframe></iframe>
+<iframe></iframe>
 <input placeholder = 'keep dragging twitch stream thumbnails (up to 4) to anywhere on this page'>
 <style>
 body {
@@ -54,8 +54,6 @@ const toggle = event => {
 const listener = event => {
   if (event.key === 'F' || event.key === 'f') toggle(event)
 }
-const removeAllEventListeners = element =>
-  element.parentNode.replaceChild(element.cloneNode(false), element);
 document.querySelector('input').addEventListener('input', event => {
   if (appearedIframesCount < 1)
     event.target.removeAttribute('placeholder'),
@@ -83,7 +81,7 @@ document.querySelector('input').addEventListener('input', event => {
     'parent=rollanibrayev.github.io&channel=' +
     event.target.value.split('/').pop()
   ;
-  removeAllEventListeners(iframe);
+  iframe.contentDocument.addEventListener();
   if (appearedIframesCount == 3)
     document.querySelector('style').innerHTML +=
       'body::-webkit-scrollbar{width:0;height:0}',
