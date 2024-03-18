@@ -47,9 +47,9 @@ const iframes = document.querySelectorAll('iframe');
 const fullscreen = () => document.body.requestFullscreen();
 const toggle = event => {
   event.preventDefault(),
-  !document.fullscreenElement
-    ? fullscreen()
-    : document.exitFullscreen()
+  document.fullscreenElement
+    ? document.exitFullscreen()
+    : fullscreen()
 }
 const listener = event => {
   if (event.key === 'F' || event.key === 'f') toggle(event)
@@ -63,13 +63,13 @@ document.querySelector('input').addEventListener('input', event => {
       height: 56.25vw
     `
   ;
-  if (appearedIframesCount == 1)
+  if (appearedIframesCount == 1) {
     iframes[0].style = `
       top: 50.000vh;
       transform: translateY(-50%)
-    `,
-    fullscreen()
-  ;
+    `
+    if (document.fullscreenElement) document.exitFullscreen()
+  }
   if (appearedIframesCount == 2)
     iframes[0].removeAttribute('style'),
     iframes[1].style = 'top: 0; transform: translateY(0)'
