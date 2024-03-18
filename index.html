@@ -3,7 +3,9 @@
 <iframe></iframe>
 <iframe></iframe>
 <iframe></iframe>
-<input placeholder = 'keep dragging twitch stream thumbnails (up to 4) to anywhere on this page'>
+<input placeholder =
+  'keep dragging twitch stream thumbnails (up to 4) to anywhere on this page'
+>
 <style>
 body {
   margin: 0;
@@ -57,6 +59,10 @@ const listener = event => {
   if (event.key === 'F' || event.key === 'f') toggle(event)
 }
 document.querySelector('input').addEventListener('input', event => {
+  if (appearedIframesCount > 3) {
+    event.preventDefault();
+    return
+  }
   if (appearedIframesCount < 1)
     event.target.removeAttribute('placeholder'),
     fullscreen(),
