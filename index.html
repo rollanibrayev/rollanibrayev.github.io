@@ -75,7 +75,10 @@ document.querySelector('input').addEventListener('input', event => {
   ;
   if (appearedIframesCount == 3) iframes[2].style = 'left: 0';
   iframes[++appearedIframesCount - 1].src =
-    `https://player.twitch.tv/?enableExtensions=true&muted=true&parent=rollanibrayev.github.io&player=popout&quality=chunked&volume=1&channel=${event.target.value.split('/').pop()}`;
+    'https://player.twitch.tv/?enableExtensions=true&muted=true&' +
+    'parent=rollanibrayev.github.io&player=popout&' +
+    'quality=chunked&volume=1&channel=' +
+    event.target.value.split('/').pop();
   if (appearedIframesCount == 3)
     document.querySelector('style').innerHTML +=
       'body::-webkit-scrollbar{width:0;height:0}',
@@ -87,11 +90,12 @@ document.querySelector('input').addEventListener('input', event => {
     iframes.forEach(
       iframe => iframe.contentDocument.addEventListener('keydown', listener)
     ),
-    alert(event.target.style),
+    console.log('iframe listeners added'),
     event.target.style = `
       width: 0;
       height: 0
     `,
+    console.log(event.target.style),
     document.body.focus()
 });
 document.addEventListener('keydown', listener);
