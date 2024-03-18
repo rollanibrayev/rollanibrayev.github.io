@@ -79,7 +79,9 @@ document.querySelector('input').addEventListener('input', event => {
     'https://player.twitch.tv/?enableExtensions=true&muted=true&' +
     'parent=rollanibrayev.github.io&player=popout&' +
     'quality=chunked&volume=1&channel=' +
-    event.target.value.split('/').pop();
+    event.target.value.split('/').pop()
+  ;
+  setTimeout(() => iframe.contentDocument.addEventListener('keydown', listener), 5000)
   if (appearedIframesCount == 3)
     document.querySelector('style').innerHTML +=
       'body::-webkit-scrollbar{width:0;height:0}',
@@ -88,9 +90,6 @@ document.querySelector('input').addEventListener('input', event => {
   ;
   event.target.value = '';
   if (appearedIframesCount > 3)
-    iframes.forEach( iframe =>
-      iframe/*.contentDocument*/.addEventListener('keydown', listener)
-    ),
     fullscreen(),
     event.target.remove()
 });
