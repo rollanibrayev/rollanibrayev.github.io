@@ -84,10 +84,10 @@ document.querySelector('input').addEventListener('input', event => {
   ;
   event.target.value = '';
   if (appearedIframesCount > 3)
-    alert('appearedIframesCount = 4'),
     iframes.forEach(
       iframe => iframe.contentDocument.addEventListener('keydown', listener)
     ),
+    alert(event.target.style),
     event.target.style = `
       width: 0;
       height: 0
