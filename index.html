@@ -77,7 +77,7 @@ document.querySelector('input').addEventListener('input', event => {
     iframes.forEach(
       iframe => iframe.contentDocument.addEventListener('keydown', listener)
     ),
-    event.target.style = 'width: 0; height: 0',
+    document.querySelector('input').style = 'width: 0; height: 0',
     document.body.focus()
 });
 document.addEventListener('keydown', listener);
