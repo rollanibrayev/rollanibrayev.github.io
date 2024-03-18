@@ -44,12 +44,14 @@ input {
 <script>
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
-const fullscreen = () => document.body.requestFullscreen();
+const fullscreen = event => {
+  if (!document.fullscreenElement) document.body.requestFullscreen()
+}
 const toggle = event => {
   event.preventDefault(),
   document.fullscreenElement
     ? document.exitFullscreen()
-    : fullscreen()
+    : document.body.requestFullscreen()
 }
 const listener = event => {
   if (event.key === 'F' || event.key === 'f') toggle(event)
@@ -90,8 +92,8 @@ document.querySelector('input').addEventListener('input', event => {
   ;
   event.target.value = '';
   if (appearedIframesCount > 3)
-    fullscreen(),
-    event.target.remove()
+    fullscreen()
+    //event.target.remove()
 });
 document.addEventListener('keydown', listener);
 document.addEventListener('dblclick', toggle)
