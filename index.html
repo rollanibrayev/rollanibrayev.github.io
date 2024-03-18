@@ -44,19 +44,20 @@ input {
 <script>
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
-const fullscreen = event => {
+const fullscreen = () => document.body.requestFullscreen();
+const toggle = event => {
   event.preventDefault(),
   !document.fullscreenElement
-    ? document.body.requestFullscreen()
+    ? fullscreen()
     : document.exitFullscreen()
 }
 const listener = event => {
-  if (event.key === 'F' || event.key === 'f') fullscreen(event)
+  if (event.key === 'F' || event.key === 'f') toggle(event)
 }
 document.querySelector('input').addEventListener('input', event => {
   if (appearedIframesCount < 1)
     event.target.removeAttribute('placeholder'),
-    document.body.requestFullscreen(),
+    fullscreen(),
     iframes[0].style = `
       width: 100vw;
       height: 56.25vw
@@ -83,15 +84,16 @@ document.querySelector('input').addEventListener('input', event => {
     document.querySelector('style').innerHTML +=
       'body::-webkit-scrollbar{width:0;height:0}',
     document.body.style = 'overflow: visible',
-    document.body.requestFullscreen()
+    fullscreen()
   ;
   event.target.value = '';
   if (appearedIframesCount > 3)
     iframes.forEach( iframe =>
       iframe.contentDocument.addEventListener('keydown', listener(event))
     ),
+    fullscreen(),
     event.target.remove()
 });
 document.addEventListener('keydown', listener(event));
-document.addEventListener('dblclick', fullscreen(event))
+document.addEventListener('dblclick', toggle(event))
 </script>
