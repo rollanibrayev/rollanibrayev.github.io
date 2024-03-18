@@ -88,12 +88,12 @@ document.querySelector('input').addEventListener('input', event => {
   ;
   event.target.value = '';
   if (appearedIframesCount > 3)
-    iframes.forEach( iframe =>
-      iframe.contentDocument.addEventListener('keydown', event => listener(event))
-    ),
     fullscreen(),
     event.target.remove()
 });
 document.addEventListener('keydown', event => listener(event));
 document.addEventListener('dblclick', event => toggle(event))
+// iframes.forEach( iframe =>
+//   iframe.contentDocument.addEventListener('keydown', event => listener(event))
+// ),
 </script>
