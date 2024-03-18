@@ -82,24 +82,16 @@ document.querySelector('input').addEventListener('input', event => {
   if (appearedIframesCount == 3)
     document.querySelector('style').innerHTML +=
       'body::-webkit-scrollbar{width:0;height:0}',
-    document.body.style = 'overflow: visible';
+    document.body.style = 'overflow: visible',
     document.body.requestFullscreen()
   ;
   event.target.value = '';
   if (appearedIframesCount > 3)
-    iframes.forEach(
-      iframe => {
-        iframe.contentDocument.addEventListener('keydown', listener),
-        console.log(iframe)
-      }
+    iframes.forEach( iframe =>
+      iframe.contentDocument.addEventListener('keydown', listener(event))
     ),
-    console.log('iframe listeners added'),
-    event.target.style = `
-      width: 0;
-      height: 0
-    `,
-    document.body.focus()
+    event.target.remove()
 });
-document.addEventListener('keydown', listener);
-document.addEventListener('dblclick', fullscreen)
+document.addEventListener('keydown', listener(event));
+document.addEventListener('dblclick', fullscreen(event))
 </script>
