@@ -47,6 +47,7 @@ input {
 ::placeholder { color: 808080 }
 </style>
 <script>
+document.body.style = 'overflow: hidden';
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
 const fullscreen = event => {
@@ -63,6 +64,7 @@ const listener = event => {
 }
 const inputListener = event => {
   if (appearedIframesCount < 1)
+    document.body.removeAttribute('style'),
     event.target.removeAttribute('placeholder'),
     fullscreen(),
     iframes[0].style = `
