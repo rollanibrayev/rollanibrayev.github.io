@@ -81,7 +81,7 @@ const inputListener = event => {
   if (appearedIframesCount == 2)
     [document.body, iframes[0]].forEach(e => e.removeAttribute('style')),
     iframes[1].style = 'top: 0; transform: translateY(0)',
-    window.scrollTo(0, 0)
+    setTimeout(() => window.scrollTo(0, 0), 2000)
   ;
   if (appearedIframesCount == 3) iframes[2].style = 'left: 0';
   const iframe = iframes[++appearedIframesCount - 1];
