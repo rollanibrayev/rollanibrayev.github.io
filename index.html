@@ -47,7 +47,7 @@ input {
 ::placeholder { color: 808080 }
 </style>
 <script>
-window.onload = () => { window.scrollTo(0, 0) };
+document.addEventListener('load', () => { window.scrollTo(0, 0) })
 document.body.style = 'overflow: hidden';
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
