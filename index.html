@@ -9,8 +9,11 @@
 <style>
 body {
   margin: 0;
-  background-color: 000;
-  overflow: hidden
+  background-color: 000
+}
+body::-webkit-scrollbar{
+  width: 0;
+  height: 0
 }
 iframe {
   width: 50vw;
@@ -68,6 +71,7 @@ const inputListener = event => {
     `
   ;
   if (appearedIframesCount == 1) {
+    document.body.style = 'overflow: hidden'
     iframes[0].style = `
       top: 50.000vh;
       transform: translateY(-50%)
@@ -75,7 +79,7 @@ const inputListener = event => {
     if (document.fullscreenElement) document.exitFullscreen()
   }
   if (appearedIframesCount == 2)
-    iframes[0].removeAttribute('style'),
+    [document.body, iframes[0]].forEach(e => e.removeAttribute('style')),
     iframes[1].style = 'top: 0; transform: translateY(0)'
   ;
   if (appearedIframesCount == 3) iframes[2].style = 'left: 0';
@@ -86,12 +90,7 @@ const inputListener = event => {
     event.target.value.split('/').pop()
   ;
   iframe.contentDocument.addEventListener('keydown', listener);
-  if (appearedIframesCount == 3)
-    document.querySelector('style').innerHTML +=
-      'body::-webkit-scrollbar{width:0;height:0}',
-    document.body.style = 'overflow: visible',
-    fullscreen()
-  ;
+  if (appearedIframesCount == 3) fullscreen();
   event.target.value = '';
   if (appearedIframesCount > 3)
     fullscreen(),
