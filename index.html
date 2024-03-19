@@ -47,7 +47,8 @@ input {
 ::placeholder { color: 808080 }
 </style>
 <script>
-window.onload = () => document.body.style = 'overflow: hidden';
+window.onload = () => window.scrollTo(0, 0);
+document.body.style = 'overflow: hidden';
 let appearedIframesCount = 0;
 const iframes = document.querySelectorAll('iframe');
 const fullscreen = event => {
