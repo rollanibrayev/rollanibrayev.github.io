@@ -79,6 +79,7 @@ const inputListener = event => {
     if (document.fullscreenElement) document.exitFullscreen()
   }
   if (appearedIframesCount == 2)
+    window.scrollTo(0, 0),
     [document.body, iframes[0]].forEach(e => e.removeAttribute('style')),
     iframes[1].style = 'top: 0; transform: translateY(0)'
   ;
