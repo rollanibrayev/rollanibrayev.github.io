@@ -58,11 +58,7 @@ const toggle = event => {
 const listener = event => {
   if (event.key === 'F' || event.key === 'f') toggle(event)
 }
-document.querySelector('input').addEventListener('input', event => {
-  if (appearedIframesCount > 3) {
-    event.preventDefault();
-    return
-  }
+const inputListener = event => {
   if (appearedIframesCount < 1)
     event.target.removeAttribute('placeholder'),
     fullscreen(),
@@ -99,8 +95,9 @@ document.querySelector('input').addEventListener('input', event => {
   event.target.value = '';
   if (appearedIframesCount > 3)
     fullscreen(),
-    event.preventDefault()
-});
+    event.target.removeEventListener('input', inputListener)
+}
+document.querySelector('input').addEventListener('input', inputListener);
 document.addEventListener('keydown', listener);
 document.addEventListener('dblclick', toggle)
 </script>
