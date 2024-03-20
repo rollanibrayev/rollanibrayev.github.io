@@ -59,9 +59,8 @@ toggle = event => {
     : document.body.requestFullscreen()
 },
 listener = event => event.key === 'F' || event.key === 'f' ? toggle(event) : 1,
-i = (a, s, c) => { for (let i = 0; i < a.length; i += s) callback(...a.slice(i, i + s)) },
-r = (...a) => i(a, 2, ([e, t]) => e.removeAttribute(t)),
-a = (...a) => i(a, 3, ([e, t, l]) => e.addEventListener(t, l)),
+r = (...a) => { for (let i = 0; i < a.length; i += 2) a[i].removeAttribute(a[i + 1]) },
+a = (...a) => { for (let i = 0; i < a.length; i += 3) a[i].addEventListener(a[i + 1], a[i + 2]) }
 inputListener = event => {
   if (appearedIframesCount < 1)
     r(document.body, 'style', event.target, 'placeholder'),
