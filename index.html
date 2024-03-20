@@ -59,11 +59,17 @@ toggle = event => {
     : document.body.requestFullscreen()
 },
 listener = event => event.key === 'F' || event.key === 'f' ? toggle(event) : 1,
-r = (...a) => { for (let i = 0; i < a.length; i += 2) a[i].removeAttribute(a[i + 1]) },
-a = (...a) => { for (let i = 0; i < a.length; i += 3) a[i].addEventListener(a[i + 1], a[i + 2]) }
+u = (m, ...a) => {
+  let n = m[0] == 'r' ? 2 : 3
+  for (let i = 0; i < a.length; i += n)
+    a[i][m](n == 2 ? a[i + 1] : a[i + 1], a[i + 2])
+},
 inputListener = event => {
   if (appearedIframesCount < 1)
-    r(document.body, 'style', event.target, 'placeholder'),
+    u( 'removeAttribute',
+      document.body, 'style',
+      event.target, 'placeholder'
+    ),
     fullscreen(),
     iframes[0].style = `
       width: 100vw;
@@ -93,7 +99,7 @@ inputListener = event => {
     event.target.setAttribute('readonly', true),
     event.target.removeEventListener('input', inputListener)
 }
-a(
+u( 'addEventListener',
   document.querySelector('input'), 'input', inputListener,
   document, 'keydown', listener,
   document, 'dblclick', toggle
