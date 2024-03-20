@@ -51,14 +51,14 @@ document.body.style = 'overflow: hidden'
 let appearedIframesCount = 0
 const
 iframes = document.querySelectorAll('iframe'),
-fullscreen = event => !document.fullscreenElement ? document.body.requestFullscreen() : 1,
+fullscreen = event => !document.fullscreenElement ? document.body.requestFullscreen() :1,
 toggle = event => {
   event.preventDefault()
   document.fullscreenElement
     ? document.exitFullscreen()
     : document.body.requestFullscreen()
 },
-listener = event => event.key === 'F' || event.key === 'f' ? toggle(event) : 1,
+listener = event => event.key === 'F' || event.key === 'f' ? toggle(event) :1,
 u = (m, ...a) => {
   let n =
     m[0] == 'r'
@@ -89,7 +89,7 @@ inputListener = event => {
       top: 50.000vh;
       transform: translateY(-50%)
     `
-    document.fullscreenElement ? document.exitFullscreen() : 1
+    document.fullscreenElement ? document.exitFullscreen() :1
   }
   if (appearedIframesCount == 2)
     [document.body, iframes[0]].forEach(e => u('removeAttribute', e, 'style')), 
@@ -99,7 +99,7 @@ inputListener = event => {
     'https://player.twitch.tv/?muted=true&volume=1&quality=chunked&' +
     'parent=rollanibrayev.github.io&channel=' +
     event.target.value.split('/').pop()
-  appearedIframesCount == 3 ? fullscreen() : 1
+  appearedIframesCount == 3 ? fullscreen() :1
   event.target.value = ''
   if (appearedIframesCount > 3)
     fullscreen(),
