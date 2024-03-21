@@ -56,8 +56,7 @@ inputListener = event => {
   event.target.value = ''
   if (appearedIframesCount > 3)
     fullscreen(),
-    event.target.setAttribute('readonly', true),
-    event.target.removeEventListener('input', inputListener)
+    event.target.remove()
 }
 u( 'addEventListener',
   document.querySelector('input'), 'input', inputListener,
