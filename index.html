@@ -12,16 +12,29 @@ toggle = event => {
     : document.body.requestFullscreen()
 },
 listener = event => event.key === 'F' || event.key === 'f' ? toggle(event) :1,
+u = (m, ...a) => {
+  let n =
+    m[0] == 'r'
+    ? 2
+    : 3
+  for (let i = 0; i < a.length; i += n)
+    a[i][m](
+      n == 2
+      ? a[i + 1]
+      : a[i + 1], a[i + 2]
+    )
+},
 inputListener = event => {
-  if (appearedIframesCount < 1) {
-    document.body.removeAttribute('style')
-    event.target.removeAttribute('style')
+  if (appearedIframesCount < 1)
+    u( 'removeAttribute',
+      document.body, 'style',
+      event.target, 'placeholder'
+    ),
     fullscreen(),
     iframes[0].style = `
       width: 100vw;
       height: 56.25vw
     `
-  }
   if (appearedIframesCount == 1) {
     window.scrollTo(0, 0)
     document.body.style = 'overflow: hidden'
@@ -31,11 +44,9 @@ inputListener = event => {
     `
     document.fullscreenElement ? document.exitFullscreen() :1
   }
-  if (appearedIframesCount == 2) {
-    document.body.removeAttribute('style')
-    iframes[0].removeAttribute('style')
+  if (appearedIframesCount == 2)
+    [document.body, iframes[0]].forEach(e => u('removeAttribute', e, 'style')), 
     iframes[1].style = 'top: 0; transform: translateY(0)'
-  }
   if (appearedIframesCount == 3) iframes[2].style = 'left: 0'
   iframes[++appearedIframesCount - 1].src =
     'https://player.twitch.tv/?muted=true&volume=1&quality=chunked&' +
@@ -43,15 +54,16 @@ inputListener = event => {
     event.target.value.split('/').pop()
   appearedIframesCount == 3 ? fullscreen() :1
   event.target.value = ''
-  if (appearedIframesCount > 3) {
-    fullscreen()
-    event.target.setAttribute('readonly', true)
+  if (appearedIframesCount > 3)
+    fullscreen(),
+    event.target.setAttribute('readonly', true),
     event.target.removeEventListener('input', inputListener)
-  }
 }
-document.querySelector('input').addEventListener('input', inputListener)
-document.addEventListener('keydown', listener)
-document.addEventListener('dblclick', toggle)
+u( 'addEventListener',
+  document.querySelector('input'), 'input', inputListener,
+  document, 'keydown', listener,
+  document, 'dblclick', toggle
+)
 })
 </script>
 <title>Twitch Streams Viewer</title>
