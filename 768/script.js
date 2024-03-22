@@ -12,6 +12,18 @@ toggleSound = iframeNumber => {
   ? start + src.slice(37)
   : start + 'muted=true&' + src.slice(25)
 },
+fullsize = iframeNumber => {
+  const iframe = iframes[iframeNumber]
+  iframe.style += `
+    width: calc(64000vw/683);
+    height: calc(36000vw/683)
+  `
+},
+changeChannel = (iframeNumber, channel) => {
+  iframes[iframeNumber] = start + muted + 'volume=0.25&quality=720p60&' +
+  'parent=rollanibrayev.github.io&channel=' + channel.split('/').pop()
+},
+
 channels = [],
 fullscreen = event => !document.fullscreenElement ? document.body.requestFullscreen() :1,
 toggle = event => {
