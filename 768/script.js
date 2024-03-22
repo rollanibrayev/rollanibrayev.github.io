@@ -6,7 +6,7 @@ muted = 'muted=true&',
 toggleSound = iframeNumbers => {
   Array.from(String(iframeNumbers)).forEach(iframeNumber => {
     const
-    iframe = iframes[iframeNumber + 1],
+    iframe = iframes[iframeNumber - 1],
     src = iframe.src
     iframe.src =
     src[26] == 'm'
