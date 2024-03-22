@@ -1,5 +1,5 @@
 document.body.style = 'overflow: hidden'
-let appearedIframesCount = 0
+const channels = []
 const
 iframes = document.querySelectorAll('iframe'),
 fullscreen = event => !document.fullscreenElement ? document.body.requestFullscreen() :1,
@@ -23,7 +23,7 @@ u = (m, ...a) => {
     )
 },
 inputListener = event => {
-  if (appearedIframesCount < 1)
+  if (channels.length < 1)
     u( 'removeAttribute',
       document.body, 'style',
       event.target, 'placeholder'
@@ -33,7 +33,7 @@ inputListener = event => {
       width: calc(64000vw/683);
       height: calc(36000vw/683)
     `
-  if (appearedIframesCount == 1) {
+  if (channels.length == 1) {
     window.scrollTo(0, 0)
     document.body.style = 'overflow: hidden'
     iframes[0].style = `
@@ -42,17 +42,18 @@ inputListener = event => {
     `
     document.fullscreenElement ? document.exitFullscreen() :1
   }
-  if (appearedIframesCount == 2)
+  if (channels.length == 2)
     [document.body, iframes[0]].forEach(e => u('removeAttribute', e, 'style')), 
     iframes[1].style = 'top: 0; transform: translateY(0)'
-  if (appearedIframesCount == 3) iframes[2].style = 'left: 0'
-  iframes[++appearedIframesCount - 1].src =
+  if (channels.length == 3) iframes[2].style = 'left: 0'
+  channels.push(event.target.value.split('/').pop())
+  iframes[channels.length - 1].src =
     'https://player.twitch.tv/?muted=true&volume=0.25&quality=720p60&' +
     'parent=rollanibrayev.github.io&channel=' +
-    event.target.value.split('/').pop()
-  appearedIframesCount == 3 ? fullscreen() :1
+    channels[channels.length - 1]
+  channels.length == 3 ? fullscreen() :1
   event.target.value = ''
-  if (appearedIframesCount > 3)
+  if (channels.length > 3)
     fullscreen(),
     event.target.setAttribute('readonly', true),
     event.target.removeEventListener('input', inputListener)
