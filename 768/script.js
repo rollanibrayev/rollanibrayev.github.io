@@ -61,7 +61,7 @@ inputListener = event => {
   iframes[channels.length - 1].src =
     start + muted + 'volume=0.25&quality=720p60&' +
     'parent=rollanibrayev.github.io&channel=' +
-    channels[channels.length - 1] +
+    channels[channels.length - 1]
   channels.length == 3 ? fullscreen() :1
   event.target.value = ''
   if (channels.length > 3)
