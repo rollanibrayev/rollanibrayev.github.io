@@ -1,13 +1,16 @@
 document.body.style = 'overflow: hidden'
 const
+start = 'https://player.twitch.tv/?'
 iframes = document.querySelectorAll('iframe'),
-muted = 'muted=true',
+muted = 'muted=true&',
 toggleSound = iframeNumber => {
-  const iframe = iframes[iframeNumber]
+  const
+  iframe = iframes[iframeNumber],
+  src = iframe.src
   iframe.src =
-  str[str.length - 5] == '='
-  ? iframe.src.slice(0, -10)
-  : iframe.src + muted
+  src[26] == 'm'
+  ? start + src.slice(37)
+  : start + 'muted=true&' + src.slice(25)
 },
 channels = [],
 fullscreen = event => !document.fullscreenElement ? document.body.requestFullscreen() :1,
@@ -56,10 +59,9 @@ inputListener = event => {
   if (channels.length == 3) iframes[2].style = 'left: 0'
   channels.push(event.target.value.split('/').pop())
   iframes[channels.length - 1].src =
-    'https://player.twitch.tv/?volume=0.25&quality=720p60&' +
+    start + muted + 'volume=0.25&quality=720p60&' +
     'parent=rollanibrayev.github.io&channel=' +
     channels[channels.length - 1] +
-    '&' + muted
   channels.length == 3 ? fullscreen() :1
   event.target.value = ''
   if (channels.length > 3)
