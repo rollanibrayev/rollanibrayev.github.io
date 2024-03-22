@@ -1,7 +1,15 @@
 document.body.style = 'overflow: hidden'
-const channels = []
 const
 iframes = document.querySelectorAll('iframe'),
+muted = 'muted=true',
+toggleSound = iframeNumber => {
+  const iframe = iframes[iframeNumber]
+  iframe.src =
+  str[str.length - 5] == '='
+  ? iframe.src.slice(0, -10)
+  : iframe.src + muted
+},
+channels = [],
 fullscreen = event => !document.fullscreenElement ? document.body.requestFullscreen() :1,
 toggle = event => {
   event.preventDefault()
@@ -51,7 +59,7 @@ inputListener = event => {
     'https://player.twitch.tv/?volume=0.25&quality=720p60&' +
     'parent=rollanibrayev.github.io&channel=' +
     channels[channels.length - 1] +
-    '&muted=true'
+    '&' + muted
   channels.length == 3 ? fullscreen() :1
   event.target.value = ''
   if (channels.length > 3)
