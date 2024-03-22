@@ -9,9 +9,9 @@ toggleSound = iframeNumbers => {
     iframe = iframes[iframeNumber - 1],
     src = iframe.src
     iframe.src =
-    src[26] == 'm'
-    ? start + src.slice(37)
-    : start + 'muted=true&' + src.slice(25)
+      src[26] == 'm'
+      ? start + src.slice(37)
+      : start + 'muted=true&' + src.slice(25)
   })
 },
 fullsize = iframeNumber => {
