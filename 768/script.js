@@ -3,14 +3,16 @@ const
 start = 'https://player.twitch.tv/?',
 iframes = document.querySelectorAll('iframe'),
 muted = 'muted=true&',
-toggleSound = iframeNumber => {
-  const
-  iframe = iframes[iframeNumber],
-  src = iframe.src
-  iframe.src =
-  src[26] == 'm'
-  ? start + src.slice(37)
-  : start + 'muted=true&' + src.slice(25)
+toggleSound = iframeNumbers => {
+  Array.from(String(iframeNumbers)).forEach(iframeNumber => {
+    const
+    iframe = iframes[iframeNumber + 1],
+    src = iframe.src
+    iframe.src =
+    src[26] == 'm'
+    ? start + src.slice(37)
+    : start + 'muted=true&' + src.slice(25)
+  })
 },
 fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
