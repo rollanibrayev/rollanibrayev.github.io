@@ -1,6 +1,6 @@
 document.body.style = 'overflow: hidden'
 const
-start = 'https://player.twitch.tv/?'
+start = 'https://player.twitch.tv/?',
 iframes = document.querySelectorAll('iframe'),
 muted = 'muted=true&',
 toggleSound = iframeNumber => {
