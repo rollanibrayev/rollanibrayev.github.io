@@ -111,13 +111,19 @@ const reload = event => {
 addEventListeners(
   elements('input', 5 - 1), 'input', inputListener,
   document, 'keydown', listener,
-  document, 'dblclick', toggle,
-  elements('input', 1 - 1), 'input', event => smallInput(event, 1),
-  elements('input', 2 - 1), 'input', event => smallInput(event, 2),
-  elements('input', 3 - 1), 'input', event => smallInput(event, 3),
-  elements('input', 4 - 1), 'input', event => smallInput(event, 4),
-  elements('input', 1 - 1), 'input', reload,
-  elements('input', 2 - 1), 'input', reload,
-  elements('input', 3 - 1), 'input', reload,
-  elements('input', 4 - 1), 'input', reload
+  document, 'dblclick', toggle
+)
+const addInputListeners = (...a) => {
+  for (let i = 0; i < a.length; i += 2)
+    elements('input', a[i]).addEventListener('input', a[i + 1])
+}
+addInputListeners(
+  1 - 1, event => smallInput(event, 1),
+  2 - 1, event => smallInput(event, 2),
+  3 - 1, event => smallInput(event, 3),
+  4 - 1, event => smallInput(event, 4),
+  1 - 1, reload,
+  2 - 1, reload,
+  3 - 1, reload,
+  4 - 1, reload
 )
