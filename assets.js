@@ -10,3 +10,9 @@ const u = (m, ...a) => {
       : a[i + 1], a[i + 2]
     )
 }
+const element = (name, number) => {
+  const elements = document.querySelectorAll(name)
+  number == undefined
+  ? elements
+  : elements[number];
+}
