@@ -10,9 +10,19 @@ const u = (m, ...a) => {
       : a[i + 1], a[i + 2]
     )
 }
-const element = (name, number) => {
+const elements = (name, number) => {
   const elements = document.querySelectorAll(name)
-  number == undefined
+  return number == undefined
   ? elements
-  : elements[number];
+  : elements[number]
+}
+const addInputListeners = (...a) => {
+  for (let i = 0; i < a.length; i += 2)
+    elements('input', a[i]).addEventListener('input', a[i + 1])
+}
+const addEventListeners = (...a) => {
+  for (let i = 0; i < a.length; i += 3)
+    a[i].addEventListener(
+      a[i + 1], a[i + 2]
+    )
 }

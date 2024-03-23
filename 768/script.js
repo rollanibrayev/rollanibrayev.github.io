@@ -1,13 +1,7 @@
 document.body.style = 'overflow: hidden'
-const elements = (name, number) => {
-  const elements = document.querySelectorAll(name)
-  return number == undefined
-  ? elements
-  : elements[number]
-}
 const
 start = 'https://player.twitch.tv/?',
-iframes = elements('iframe'),
+iframes = document.querySelectorAll('iframe'),
 muted = 'muted=true&',
 toggleSound = iframeNumbers => {
   Array.from(String(iframeNumbers)).forEach(iframeNumber => {
@@ -93,37 +87,23 @@ const smallInput = (event, iframeNumber) => {
   : changeChannel(iframeNumber, event.target.value)
   event.target.value = ''
 }
-const addEventListeners = (...a) => {
-  for (let i = 0; i < a.length; i += 3)
-    a[i].addEventListener(
-      a[i + 1], a[i + 2]
-    )
-}
 const reload = event => {
   if (event.target.value == 'r' || event.target.value == 'R') {
-    elements('iframe', 0).src = elements('iframe', 0).src
-    elements('iframe', 1).src = elements('iframe', 1).src
-    elements('iframe', 2).src = elements('iframe', 2).src
-    elements('iframe', 3).src = elements('iframe', 3).src
+    document.querySelectorAll('iframe')[0].src = document.querySelectorAll('iframe')[0].src
+    document.querySelectorAll('iframe')[1].src = document.querySelectorAll('iframe')[1].src
+    document.querySelectorAll('iframe')[2].src = document.querySelectorAll('iframe')[2].src
+    document.querySelectorAll('iframe')[3].src = document.querySelectorAll('iframe')[3].src
   }
   event.target.value = ''
 }
-addEventListeners(
-  elements('input', 5 - 1), 'input', inputListener,
-  document, 'keydown', listener,
-  document, 'dblclick', toggle
-)
-const addInputListeners = (...a) => {
-  for (let i = 0; i < a.length; i += 2)
-    elements('input', a[i]).addEventListener('input', a[i + 1])
-}
-addInputListeners(
-  1 - 1, event => smallInput(event, 1),
-  2 - 1, event => smallInput(event, 2),
-  3 - 1, event => smallInput(event, 3),
-  4 - 1, event => smallInput(event, 4),
-  1 - 1, reload,
-  2 - 1, reload,
-  3 - 1, reload,
-  4 - 1, reload
-)
+document.querySelectorAll('input')[5 - 1].addEventListener('input', inputListener)
+document.addEventListener('keydown', listener)
+document.addEventListener('dblclick', toggle)
+document.querySelectorAll('input')[1 - 1].addEventListener('input', event => smallInput(event, 1))
+document.querySelectorAll('input')[2 - 1].addEventListener('input', event => smallInput(event, 2))
+document.querySelectorAll('input')[3 - 1].addEventListener('input', event => smallInput(event, 3))
+document.querySelectorAll('input')[4 - 1].addEventListener('input', event => smallInput(event, 4))
+document.querySelectorAll('input')[1 - 1].addEventListener('input', reload)
+document.querySelectorAll('input')[2 - 1].addEventListener('input', reload)
+document.querySelectorAll('input')[3 - 1].addEventListener('input', reload)
+document.querySelectorAll('input')[4 - 1].addEventListener('input', reload)
