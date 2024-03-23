@@ -93,7 +93,13 @@ const smallInput = (event, iframeNumber) => {
   : changeChannel(iframeNumber, event.target.value)
   event.target.value = ''
 }
-u( 'addEventListener',
+const addEventListeners = (...a) => {
+  for (let i = 0; i < a.length; i += 3)
+    a[i]['addEventListener'](
+      a[i + 1], a[i + 2]
+    )
+}
+addEventListeners(
   elements('input', 5 - 1), 'input', inputListener,
   document, 'keydown', listener,
   document, 'dblclick', toggle,
