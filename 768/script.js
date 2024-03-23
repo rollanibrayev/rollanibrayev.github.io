@@ -99,6 +99,14 @@ const addEventListeners = (...a) => {
       a[i + 1], a[i + 2]
     )
 }
+const reload = event => {
+  if (event.target.value == 'r' || event.target.value == 'R') {
+    elements('iframe', 0).src = elements('iframe', 0).src
+    elements('iframe', 1).src = elements('iframe', 1).src
+    elements('iframe', 2).src = elements('iframe', 2).src
+    elements('iframe', 3).src = elements('iframe', 3).src
+  }
+}
 addEventListeners(
   elements('input', 5 - 1), 'input', inputListener,
   document, 'keydown', listener,
@@ -106,5 +114,9 @@ addEventListeners(
   elements('input', 1 - 1), 'input', event => smallInput(event, 1),
   elements('input', 2 - 1), 'input', event => smallInput(event, 2),
   elements('input', 3 - 1), 'input', event => smallInput(event, 3),
-  elements('input', 4 - 1), 'input', event => smallInput(event, 4)
+  elements('input', 4 - 1), 'input', event => smallInput(event, 4),
+  elements('input', 1 - 1), 'input', reload,
+  elements('input', 2 - 1), 'input', reload,
+  elements('input', 3 - 1), 'input', reload,
+  elements('input', 4 - 1), 'input', reload
 )
