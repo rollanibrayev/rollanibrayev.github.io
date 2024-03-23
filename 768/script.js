@@ -1,10 +1,8 @@
 document.body.style = 'overflow: hidden'
-const elements = (name, number) => {
-  const elements = document.querySelectorAll(name)
+const elements = (name, number) =>
   number == undefined
-  ? elements
-  : elements[number]
-}
+  ? document.querySelectorAll(name)
+  : document.querySelectorAll(name)[number];
 const
 start = 'https://player.twitch.tv/?',
 iframes = elements('iframe'),
