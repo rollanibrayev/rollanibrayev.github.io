@@ -3,7 +3,7 @@ const elements = (name, number) => {
   const elements = document.querySelectorAll(name)
   number == undefined
   ? elements
-  : elements[number];
+  : elements[number]
 }
 const
 start = 'https://player.twitch.tv/?',
