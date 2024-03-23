@@ -89,10 +89,14 @@ const smallInput = (event, iframeNumber) => {
 }
 const reload = event => {
   if (event.target.value == 'r' || event.target.value == 'R') {
-    document.querySelectorAll('iframe')[0].src = document.querySelectorAll('iframe')[0].src
-    document.querySelectorAll('iframe')[1].src = document.querySelectorAll('iframe')[1].src
-    document.querySelectorAll('iframe')[2].src = document.querySelectorAll('iframe')[2].src
-    document.querySelectorAll('iframe')[3].src = document.querySelectorAll('iframe')[3].src
+    const old0 = document.querySelectorAll('iframe')[0].src
+    const old1 = document.querySelectorAll('iframe')[1].src
+    const old2 = document.querySelectorAll('iframe')[2].src
+    const old3 = document.querySelectorAll('iframe')[3].src
+    document.querySelectorAll('iframe')[0].src = old0
+    document.querySelectorAll('iframe')[1].src = old1
+    document.querySelectorAll('iframe')[2].src = old2
+    document.querySelectorAll('iframe')[3].src = old3
   }
   event.target.value = ''
 }
