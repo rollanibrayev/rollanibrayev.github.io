@@ -22,7 +22,7 @@ fullsize = iframeNumber => {
   `
 },
 changeChannel = (iframeNumber, channel) =>
-  iframes[iframeNumber].src = start + muted + 'volume=0.25&quality=720p60&' +
+  iframes[iframeNumber - 1].src = start + muted + 'volume=0.25&quality=720p60&' +
   'parent=rollanibrayev.github.io&channel=' + channel.split('/').pop()
 ,
 channels = [],

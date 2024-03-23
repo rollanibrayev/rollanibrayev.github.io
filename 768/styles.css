@@ -1,3 +1,7 @@
+:root {
+  --px640: calc(32000vw/683);
+  --px360: calc(18000vw/683)
+}
 body {
   margin: 0;
   background-color: 000
@@ -7,15 +11,15 @@ body::-webkit-scrollbar{
   height: 0
 }
 iframe {
-  width: calc(32000vw/683);
-  height: calc(18000vw/683);
+  width: var(--px640);
+  height: var(--px360);
   border: 0;
   position: absolute
 }
 iframe:nth-of-type(1) { z-index: 1 }
-iframe:nth-of-type(2) { left: calc(32000vw/683); top: calc(18000vw/683); transform: translateY(-50%) }
-iframe:nth-of-type(3) { left: calc(16000vw/683); top: calc(18000vw/683) }
-iframe:nth-of-type(4) { left: calc(32000vw/683); top: calc(18000vw/683) }
+iframe:nth-of-type(2) { left: var(--px640);           top: var(--px360); transform: translateY(-50%) }
+iframe:nth-of-type(3) { left: calc(var(--px640) / 2); top: var(--px360) }
+iframe:nth-of-type(4) { left: var(--px640);           top: var(--px360) }
 input {
   position: absolute;
   background-color: transparent;
