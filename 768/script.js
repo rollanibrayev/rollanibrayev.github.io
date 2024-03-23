@@ -106,6 +106,7 @@ const reload = event => {
     elements('iframe', 2).src = elements('iframe', 2).src
     elements('iframe', 3).src = elements('iframe', 3).src
   }
+  event.target.value = ''
 }
 addEventListeners(
   elements('input', 5 - 1), 'input', inputListener,
