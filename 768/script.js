@@ -86,23 +86,13 @@ u( 'addEventListener',
   document, 'keydown', listener,
   document, 'dblclick', toggle
 )
-document.querySelectorAll('input')[1 - 1].addEventListener('input', event => {
-  if (event.target.value == 'm' || event.target.value == 'M') toggleSound(1)
-  else changeChannel(1, event.target.value)
+const smallInput = (event, iframeNumber) => {
+  event.target.value == 'm' || event.target.value == 'M'
+  ? toggleSound(iframeNumber)
+  : changeChannel(iframeNumber, event.target.value)
   event.target.value = ''
-})
-document.querySelectorAll('input')[2 - 1].addEventListener('input', event => {
-  if (event.target.value == 'm' || event.target.value == 'M') toggleSound(2)
-  else changeChannel(2, event.target.value)
-  event.target.value = ''
-})
-document.querySelectorAll('input')[3 - 1].addEventListener('input', event => {
-  if (event.target.value == 'm' || event.target.value == 'M') toggleSound(3)
-  else changeChannel(3, event.target.value)
-  event.target.value = ''
-})
-document.querySelectorAll('input')[4 - 1].addEventListener('input', event => {
-  if (event.target.value == 'm' || event.target.value == 'M') toggleSound(4)
-  else changeChannel(4, event.target.value)
-  event.target.value = ''
-})
+}
+document.querySelectorAll('input')[1 - 1].addEventListener('input', event => smallInput(event, 1))
+document.querySelectorAll('input')[2 - 1].addEventListener('input', event => smallInput(event, 2))
+document.querySelectorAll('input')[3 - 1].addEventListener('input', event => smallInput(event, 3))
+document.querySelectorAll('input')[4 - 1].addEventListener('input', event => smallInput(event, 4))
