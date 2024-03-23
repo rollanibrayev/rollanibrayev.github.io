@@ -29,3 +29,15 @@ const addEventListeners = (...a) => {
 const changeChannel = (iframeNumber, channel) =>
   iframes[iframeNumber - 1].src = start + muted + 'quality=720p60&' +
   'parent=rollanibrayev.github.io&channel=' + channel.split('/').pop()
+const listener = event => event.key === 'F' || event.key === 'f' ? toggle(event) :1
+const toggleSound = iframeNumbers => {
+  Array.from(String(iframeNumbers)).forEach(iframeNumber => {
+    const
+    iframe = iframes[iframeNumber - 1],
+    src = iframe.src;
+    iframe.src =
+      src[26] == 'm'
+      ? start + src.slice(37)
+      : start + 'muted=true&' + src.slice(25)
+  })
+}

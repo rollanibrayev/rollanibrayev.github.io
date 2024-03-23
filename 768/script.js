@@ -8,17 +8,6 @@ style = `
 iframes = document.querySelectorAll('iframe'),
 inputs = document.querySelectorAll('input'),
 muted = 'muted=true&',
-toggleSound = iframeNumbers => {
-  Array.from(String(iframeNumbers)).forEach(iframeNumber => {
-    const
-    iframe = iframes[iframeNumber - 1],
-    src = iframe.src;
-    iframe.src =
-      src[26] == 'm'
-      ? start + src.slice(37)
-      : start + 'muted=true&' + src.slice(25)
-  })
-},
 fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
@@ -31,7 +20,6 @@ toggle = event => {
     ? document.exitFullscreen()
     : document.body.requestFullscreen()
 },
-listener = event => event.key === 'F' || event.key === 'f' ? toggle(event) :1,
 u = (m, ...a) => {
   let n =
     m[0] == 'r'
@@ -44,7 +32,28 @@ u = (m, ...a) => {
       : a[i + 1], a[i + 2]
     )
 },
-inputListener = event => {
+smallInput = (event, iframeNumber) => {
+  if (event.target.value == 'm' || event.target.value == 'M') {
+    Array.from(String(event.target.value)).forEach(iframeNumber => {
+      const
+      iframe = iframes[iframeNumber - 1],
+      src = iframe.src;
+      iframe.src =
+        src[26] == 'm'
+        ? start + src.slice(37)
+        : start + 'muted=true&' + src.slice(25)
+    })
+  }
+  if (event.target.value.length > 1) {
+    iframes[iframeNumber - 1].src = start + muted + 'quality=720p60&' +
+    'parent=rollanibrayev.github.io&channel=' + event.target.value.split('/').pop()
+  }
+  if (event.target.value == 'r' || event.target.value == 'R')
+    for (let i = 0; i < iframes.length; i++)
+      iframes[i].src = iframes[i].src
+  event.target.value = ''
+}
+inputs[5 - 1].addEventListener('input', event => {
   if (channels.length < 1)
     u( 'removeAttribute',
       document.body, 'style',
@@ -75,21 +84,8 @@ inputListener = event => {
   if (channels.length > 3)
     fullscreen(),
     event.target.remove()
-},
-smallInput = (event, iframeNumber) => {
-  if (event.target.value == 'm' || event.target.value == 'M')
-    toggleSound(iframeNumber)
-  if (event.target.value.length > 1) {
-    iframes[iframeNumber - 1].src = start + muted + 'quality=720p60&' +
-    'parent=rollanibrayev.github.io&channel=' + event.target.value.split('/').pop()
-  }
-  if (event.target.value == 'r' || event.target.value == 'R')
-    for (let i = 0; i < iframes.length; i++)
-      iframes[i].src = iframes[i].src
-  event.target.value = ''
-}
-inputs[5 - 1].addEventListener('input', inputListener)
-document.addEventListener('keydown', listener)
+})
+document.addEventListener('keydown', event => event.key === 'F' || event.key === 'f' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
 inputs[1 - 1].addEventListener('input', event => smallInput(event, 1))
 inputs[2 - 1].addEventListener('input', event => smallInput(event, 2))
