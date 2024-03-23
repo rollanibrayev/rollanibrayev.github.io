@@ -82,21 +82,24 @@ inputListener = event => {
     event.target.remove()
 }
 const smallInput = (event, iframeNumber) => {
-  event.target.value == 'm' || event.target.value == 'M'
-  ? toggleSound(iframeNumber)
-  : changeChannel(iframeNumber, event.target.value)
+  if (event.target.value == 'm' || event.target.value == 'M')
+    toggleSound(iframeNumber)
+  if (event.target.value.length > 1)
+    changeChannel(iframeNumber, event.target.value)
+  if (event.target.value == 'r' || event.target.value == 'R') {
+    document.querySelectorAll('iframe')[0].src = document.querySelectorAll('iframe')[0].src
+    document.querySelectorAll('iframe')[1].src = document.querySelectorAll('iframe')[1].src
+    document.querySelectorAll('iframe')[2].src = document.querySelectorAll('iframe')[2].src
+    document.querySelectorAll('iframe')[3].src = document.querySelectorAll('iframe')[3].src
+  }
   event.target.value = ''
 }
 const reload = event => {
   if (event.target.value == 'r' || event.target.value == 'R') {
-    const old0 = document.querySelectorAll('iframe')[0].src
-    const old1 = document.querySelectorAll('iframe')[1].src
-    const old2 = document.querySelectorAll('iframe')[2].src
-    const old3 = document.querySelectorAll('iframe')[3].src
-    document.querySelectorAll('iframe')[0].src = old0
-    document.querySelectorAll('iframe')[1].src = old1
-    document.querySelectorAll('iframe')[2].src = old2
-    document.querySelectorAll('iframe')[3].src = old3
+    document.querySelectorAll('iframe')[0].src = document.querySelectorAll('iframe')[0].src
+    document.querySelectorAll('iframe')[1].src = document.querySelectorAll('iframe')[1].src
+    document.querySelectorAll('iframe')[2].src = document.querySelectorAll('iframe')[2].src
+    document.querySelectorAll('iframe')[3].src = document.querySelectorAll('iframe')[3].src
   }
   event.target.value = ''
 }
@@ -107,7 +110,3 @@ document.querySelectorAll('input')[1 - 1].addEventListener('input', event => sma
 document.querySelectorAll('input')[2 - 1].addEventListener('input', event => smallInput(event, 2))
 document.querySelectorAll('input')[3 - 1].addEventListener('input', event => smallInput(event, 3))
 document.querySelectorAll('input')[4 - 1].addEventListener('input', event => smallInput(event, 4))
-document.querySelectorAll('input')[1 - 1].addEventListener('input', reload)
-document.querySelectorAll('input')[2 - 1].addEventListener('input', reload)
-document.querySelectorAll('input')[3 - 1].addEventListener('input', reload)
-document.querySelectorAll('input')[4 - 1].addEventListener('input', reload)
