@@ -1,6 +1,11 @@
 document.body.style = 'overflow: hidden'
+const elements = (name, number) => {
+  const elements = document.querySelectorAll(name)
+  number == undefined
+  ? elements
+  : elements[number];
+}
 const
-elements = name => document.querySelectorAll(name),
 start = 'https://player.twitch.tv/?',
 iframes = elements('iframe'),
 muted = 'muted=true&',
@@ -89,11 +94,11 @@ const smallInput = (event, iframeNumber) => {
   event.target.value = ''
 }
 u( 'addEventListener',
-  elements('input')[4], 'input', inputListener,
+  elements('input', 4), 'input', inputListener,
   document, 'keydown', listener,
   document, 'dblclick', toggle,
-  elements('input')[1 - 1], 'input', event => smallInput(event, 1),
-  elements('input')[2 - 1], 'input', event => smallInput(event, 2),
-  elements('input')[3 - 1], 'input', event => smallInput(event, 3),
-  elements('input')[4 - 1], 'input', event => smallInput(event, 4)
+  elements('input', 1 - 1), 'input', event => smallInput(event, 1),
+  elements('input', 2 - 1), 'input', event => smallInput(event, 2),
+  elements('input', 3 - 1), 'input', event => smallInput(event, 3),
+  elements('input', 4 - 1), 'input', event => smallInput(event, 4)
 )
