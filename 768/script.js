@@ -92,7 +92,7 @@ const smallInput = (event, iframeNumber) => {
   event.target.value = ''
 }
 u( 'addEventListener',
-  elements('input', 4), 'input', inputListener,
+  elements('input', 5 - 1), 'input', inputListener,
   document, 'keydown', listener,
   document, 'dblclick', toggle,
   elements('input', 1 - 1), 'input', event => smallInput(event, 1),
