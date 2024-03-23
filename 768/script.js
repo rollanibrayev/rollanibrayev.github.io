@@ -86,21 +86,9 @@ const smallInput = (event, iframeNumber) => {
     toggleSound(iframeNumber)
   if (event.target.value.length > 1)
     changeChannel(iframeNumber, event.target.value)
-  if (event.target.value == 'r' || event.target.value == 'R') {
-    document.querySelectorAll('iframe')[0].src = document.querySelectorAll('iframe')[0].src
-    document.querySelectorAll('iframe')[1].src = document.querySelectorAll('iframe')[1].src
-    document.querySelectorAll('iframe')[2].src = document.querySelectorAll('iframe')[2].src
-    document.querySelectorAll('iframe')[3].src = document.querySelectorAll('iframe')[3].src
-  }
-  event.target.value = ''
-}
-const reload = event => {
-  if (event.target.value == 'r' || event.target.value == 'R') {
-    document.querySelectorAll('iframe')[0].src = document.querySelectorAll('iframe')[0].src
-    document.querySelectorAll('iframe')[1].src = document.querySelectorAll('iframe')[1].src
-    document.querySelectorAll('iframe')[2].src = document.querySelectorAll('iframe')[2].src
-    document.querySelectorAll('iframe')[3].src = document.querySelectorAll('iframe')[3].src
-  }
+  if (event.target.value == 'r' || event.target.value == 'R')
+    for (let i = 0; i < iframes.length; i++)
+      iframes[i].src = iframes[i].src
   event.target.value = ''
 }
 document.querySelectorAll('input')[5 - 1].addEventListener('input', inputListener)
