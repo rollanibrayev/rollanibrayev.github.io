@@ -26,3 +26,6 @@ const addEventListeners = (...a) => {
       a[i + 1], a[i + 2]
     )
 }
+const changeChannel = (iframeNumber, channel) =>
+  iframes[iframeNumber - 1].src = start + muted + 'quality=720p60&' +
+  'parent=rollanibrayev.github.io&channel=' + channel.split('/').pop()
