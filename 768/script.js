@@ -22,7 +22,7 @@ fullsize = iframeNumber => {
   `
 },
 changeChannel = (iframeNumber, channel) =>
-  iframes[iframeNumber - 1].src = start + muted + 'volume=0.25&quality=720p60&' +
+  iframes[iframeNumber - 1].src = start + muted + 'quality=720p60&' +
   'parent=rollanibrayev.github.io&channel=' + channel.split('/').pop()
 ,
 channels = [],
@@ -72,18 +72,21 @@ inputListener = event => {
   if (channels.length == 3) iframes[2].style = 'left: 0'
   channels.push(event.target.value.split('/').pop())
   iframes[channels.length - 1].src =
-    start + muted + 'volume=0.25&quality=720p60&' +
+    start + muted + 'quality=720p60&' +
     'parent=rollanibrayev.github.io&channel=' +
     channels[channels.length - 1]
   channels.length == 3 ? fullscreen() :1
   event.target.value = ''
   if (channels.length > 3)
     fullscreen(),
-    event.target.setAttribute('readonly', true),
-    event.target.removeEventListener('input', inputListener)
+    event.target.remove()
 }
 u( 'addEventListener',
-  document.querySelector('input'), 'input', inputListener,
+  document.querySelectorAll('input')[4], 'input', inputListener,
   document, 'keydown', listener,
   document, 'dblclick', toggle
 )
+document.querySelectorAll('input')[1 - 1].addEventListener('input', event => { changeChannel(1, event.target.value), event.target.value = '' })
+document.querySelectorAll('input')[2 - 1].addEventListener('input', event => { changeChannel(2, event.target.value), event.target.value = '' })
+document.querySelectorAll('input')[3 - 1].addEventListener('input', event => { changeChannel(3, event.target.value), event.target.value = '' })
+document.querySelectorAll('input')[4 - 1].addEventListener('input', event => { changeChannel(4, event.target.value), event.target.value = '' })

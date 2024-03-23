@@ -38,7 +38,7 @@ const inputListener = event => {
   }
   if (appearedIframesCount == 3) iframes[2].style = 'left: 0'
   iframes[++appearedIframesCount - 1].src =
-    'https://player.twitch.tv/?muted=true&volume=0.25&quality=chunked&' +
+    'https://player.twitch.tv/?muted=true&quality=chunked&' +
     'parent=rollanibrayev.github.io&channel=' +
     event.target.value.split('/').pop()
   if (appearedIframesCount == 3) fullscreen()

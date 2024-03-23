@@ -22,17 +22,23 @@ iframe:nth-of-type(3) { left: calc(var(--px640) / 2); top: var(--px360) }
 iframe:nth-of-type(4) { left: var(--px640);           top: var(--px360) }
 input {
   position: absolute;
+  border: 0;
   background-color: transparent;
+  cursor: default;
+  outline: none;
+  caret-color: transparent;
+  padding: 0
+}
+input:nth-of-type(1) { z-index: 2; width: var(--px640); height: var(--px360) }
+input:nth-of-type(2) { z-index: 2; width: var(--px640); height: var(--px360); left: var(--px640) }
+input:nth-of-type(3) { z-index: 2; width: var(--px640); height: var(--px360); top: var(--px360) }
+input:nth-of-type(4) { z-index: 2; width: var(--px640); height: var(--px360); left: var(--px640); top: var(--px360) }
+input:nth-of-type(5) {
   width: 100vw;
   height: 100vh;
   font-size: 5.5vh;
   font-family: Calibri;
-  border: 0;
   text-align: center;
-  outline: none;
-  caret-color: transparent;
-  cursor: default;
-  padding: 0;
-  z-index: 2
+  z-index: 3
 }
 ::placeholder { color: 808080 }
