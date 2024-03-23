@@ -2,6 +2,7 @@ document.body.style = 'overflow: hidden'
 const
 start = 'https://player.twitch.tv/?',
 iframes = document.querySelectorAll('iframe'),
+inputs = document.querySelectorAll('input'),
 muted = 'muted=true&',
 toggleSound = iframeNumbers => {
   Array.from(String(iframeNumbers)).forEach(iframeNumber => {
@@ -91,10 +92,10 @@ const smallInput = (event, iframeNumber) => {
       iframes[i].src = iframes[i].src
   event.target.value = ''
 }
-document.querySelectorAll('input')[5 - 1].addEventListener('input', inputListener)
+inputs[5 - 1].addEventListener('input', inputListener)
 document.addEventListener('keydown', listener)
 document.addEventListener('dblclick', toggle)
-document.querySelectorAll('input')[1 - 1].addEventListener('input', event => smallInput(event, 1))
-document.querySelectorAll('input')[2 - 1].addEventListener('input', event => smallInput(event, 2))
-document.querySelectorAll('input')[3 - 1].addEventListener('input', event => smallInput(event, 3))
-document.querySelectorAll('input')[4 - 1].addEventListener('input', event => smallInput(event, 4))
+inputs[1 - 1].addEventListener('input', event => smallInput(event, 1))
+inputs[2 - 1].addEventListener('input', event => smallInput(event, 2))
+inputs[3 - 1].addEventListener('input', event => smallInput(event, 3))
+inputs[4 - 1].addEventListener('input', event => smallInput(event, 4))
