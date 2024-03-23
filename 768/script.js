@@ -95,7 +95,7 @@ const smallInput = (event, iframeNumber) => {
 }
 const addEventListeners = (...a) => {
   for (let i = 0; i < a.length; i += 3)
-    a[i]['addEventListener'](
+    a[i].addEventListener(
       a[i + 1], a[i + 2]
     )
 }
