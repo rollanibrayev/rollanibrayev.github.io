@@ -81,8 +81,8 @@ inputListener = event => {
   if (channels.length > 3)
     fullscreen(),
     event.target.remove()
-}
-const smallInput = (event, iframeNumber) => {
+},
+smallInput = (event, iframeNumber) => {
   if (event.target.value == 'm' || event.target.value == 'M')
     toggleSound(iframeNumber)
   if (event.target.value.length > 1)
