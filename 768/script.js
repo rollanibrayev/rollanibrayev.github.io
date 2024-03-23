@@ -1,6 +1,10 @@
 document.body.style = 'overflow: hidden'
 const
 start = 'https://player.twitch.tv/?',
+style = `
+width: calc(64000vw/683);
+height: calc(36000vw/683)
+`,
 iframes = document.querySelectorAll('iframe'),
 inputs = document.querySelectorAll('input'),
 muted = 'muted=true&',
@@ -17,10 +21,7 @@ toggleSound = iframeNumbers => {
 },
 fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
-  iframe.style += `
-    width: calc(64000vw/683);
-    height: calc(36000vw/683)
-  `
+  iframe.style += style
 },
 changeChannel = (iframeNumber, channel) =>
   iframes[iframeNumber - 1].src = start + muted + 'quality=720p60&' +
@@ -54,10 +55,7 @@ inputListener = event => {
       event.target, 'placeholder'
     ),
     fullscreen(),
-    iframes[0].style = `
-      width: calc(64000vw/683);
-      height: calc(36000vw/683)
-    `
+    iframes[0].style = style
   if (channels.length == 1) {
     window.scrollTo(0, 0)
     document.body.style = 'overflow: hidden'
