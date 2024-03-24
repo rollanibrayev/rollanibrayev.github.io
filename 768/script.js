@@ -21,18 +21,6 @@ toggle = event => {
     ? document.exitFullscreen()
     : document.body.requestFullscreen()
 },
-u = (m, ...a) => {
-  let n =
-    m[0] == 'r'
-    ? 2
-    : 3
-  for (let i = 0; i < a.length; i += n)
-    a[i][m](
-      n == 2
-      ? a[i + 1]
-      : a[i + 1], a[i + 2]
-    )
-},
 isMuted = src => src[26] == 'm' ? 1 : 0,
 smallInput = (event, iframeNumber) => {
   const value = event.target.value
@@ -66,10 +54,8 @@ smallInput = (event, iframeNumber) => {
 }
 inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter < 1)
-    u( 'removeAttribute',
-      document.body, 'style',
-      event.target, 'placeholder'
-    ),
+    document.body.removeAttribute('style'),
+    event.target.removeAttribute('placeholder'),
     fullscreen(),
     iframes[0].style = style
   if (appearedIframesCounter == 1) {
