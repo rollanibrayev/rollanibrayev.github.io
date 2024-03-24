@@ -36,8 +36,11 @@ isMuted = src => src[26] == 'm' ? 1 : 0,
 smallInput = (event, iframeNumber) => {
   const value = event.target.value
   if (value == 'm' || value == 'M') {
-    iframes[iframeNumber].src =
-      isMuted(iframes[iframeNumber].src)
+    const
+    iframe = iframes[iframeNumber],
+    src = iframe.src
+    iframe.src =
+      isMuted(src)
         ? start + src.slice(37)
         : start + 'muted=true&' + src.slice(25)
   }
