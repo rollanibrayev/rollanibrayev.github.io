@@ -1,4 +1,5 @@
 document.body.style = 'overflow: hidden'
+let appearedIframesCounter = 0
 const
 start = 'https://player.twitch.tv/?',
 style = `
@@ -12,7 +13,6 @@ fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
 },
-appearedIframesCounter = 0,
 fullscreen = event => !document.fullscreenElement ? document.body.requestFullscreen() :1,
 toggle = event => {
   event.preventDefault()
