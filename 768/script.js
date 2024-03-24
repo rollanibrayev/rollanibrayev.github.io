@@ -9,7 +9,8 @@ style = `
 iframes = document.querySelectorAll('iframe'),
 inputs = document.querySelectorAll('input'),
 muted = 'muted=true&',
-middle = 'quality=720p60&parent=rollanibrayev.github.io&channel='
+middle = 'quality=720p60&parent=rollanibrayev.github.io&channel=',
+extractChannel = url => url.split('/').pop(),
 fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
@@ -45,7 +46,7 @@ smallInput = (event, iframeNumber) => {
   if (value.length > 1) {
     iframes[iframeNumber].src =
       start + muted + middle +
-      value.split('/').pop()
+      extractChannel(value)
   }
   if (value == 'r' || value == 'R')
     for (let i = 0; i < iframes.length; i++)
@@ -73,7 +74,7 @@ inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter == 3) iframes[2].style = 'left: 0'
   iframes[++appearedIframesCounter - 1].src =
     start + muted + middle +
-    event.target.value.split('/').pop()
+    extractChannel(event.target.value)
   appearedIframesCounter == 3 ? fullscreen() :1
   event.target.value = ''
   if (appearedIframesCounter > 3)
