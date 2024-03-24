@@ -1,7 +1,6 @@
 document.body.style = 'overflow: hidden'
 let appearedIframesCounter = 0
 const
-opener = document.querySelector('a'),
 start = 'https://player.twitch.tv/?',
 style = `
   width: calc(64000vw/683);
@@ -37,12 +36,15 @@ smallInput = (event, iframeNumber) => {
           : start + muted + src.slice(26)
       break
     case 'c': case 'C':
-      opener.href = `https://www.twitch.tv/popout/${
-        isMuted(src)
-        ? src.slice(91)
-        : src.slice(80)
-      }/chat`
-      opener.click()
+      window.open(
+        `https://www.twitch.tv/popout/${
+          isMuted(src)
+          ? src.slice(91)
+          : src.slice(80)
+        }/chat`,
+        '_blank',
+        'width=600,height=400,top=100,left=100'
+      )
       break
     case 'r': case 'R':
       for (let i = 0; i < iframes.length; i++)
