@@ -36,13 +36,14 @@ smallInput = (event, iframeNumber) => {
           : start + muted + src.slice(26)
       break
     case 'c': case 'C':
-      let channel
-      let url = `https://www.twitch.tv/popout/${channel}/chat`
-      channel =
-        isMuted(iframes[iframeNumber].src)
-      // ? 
-        //: [80] first channel symbol
-      window.open(url, '_blank')
+      window.open(
+        `https://www.twitch.tv/popout/${
+          isMuted(src)
+          ? src.slice(91)
+          : src.slice(80)
+        }/chat`,
+        '_blank'
+      )
       break
     case 'r': case 'R':
       for (let i = 0; i < iframes.length; i++)
