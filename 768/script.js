@@ -57,28 +57,33 @@ smallInput = (event, iframeNumber) => {
   event.target.value = ''
 }
 inputs[4].addEventListener('input', event => {
-  if (appearedIframesCounter < 1)
-    document.body.removeAttribute('style'),
-    event.target.removeAttribute('placeholder'),
-    fullscreen(),
+  if (appearedIframesCounter < 1) {
+    document.body.removeAttribute('style')
+    event.target.removeAttribute('placeholder')
+    fullscreen()
     iframes[0].style = style
-  if (appearedIframesCounter == 1) {
-    window.scrollTo(0, 0)
-    document.body.style = 'overflow: hidden'
-    iframes[0].style = `
-      top: calc(18000vw/683);
-      transform: translateY(-50%)
-    `
-    document.fullscreenElement ? document.exitFullscreen() :1
   }
-  if (appearedIframesCounter == 2)
-    [document.body, iframes[0]].forEach(e => e.removeAttribute('style')), 
-    iframes[1].style = 'top: 0; transform: translateY(0)'
-  if (appearedIframesCounter == 3) iframes[2].style = 'left: 0'
+  switch (appearedIframesCounter) {
+    case 1:
+      window.scrollTo(0, 0)
+      document.body.style = 'overflow: hidden'
+      iframes[0].style = `
+        top: calc(18000vw/683);
+        transform: translateY(-50%)
+      `
+      document.fullscreenElement ? document.exitFullscreen() :1
+    break
+    case 2:
+      [document.body, iframes[0]].forEach(e => e.removeAttribute('style'))
+      iframes[1].style = 'top: 0; transform: translateY(0)'
+    break
+    case 3:
+      iframes[2].style = 'left: 0'
+      fullscreen()
+  }
   iframes[++appearedIframesCounter - 1].src =
     start + muted + middle +
     extractChannel(event.target.value)
-  appearedIframesCounter == 3 ? fullscreen() :1
   event.target.value = ''
   if (appearedIframesCounter > 3)
     fullscreen(),
