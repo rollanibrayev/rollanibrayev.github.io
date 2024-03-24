@@ -42,3 +42,6 @@ input:nth-of-type(5) {
   z-index: 3
 }
 ::placeholder { color: 808080 }
+a {
+  display: none
+}

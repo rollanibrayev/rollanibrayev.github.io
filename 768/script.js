@@ -1,6 +1,7 @@
 document.body.style = 'overflow: hidden'
 let appearedIframesCounter = 0
 const
+opener = document.querySelector('a'),
 start = 'https://player.twitch.tv/?',
 style = `
   width: calc(64000vw/683);
@@ -36,14 +37,12 @@ smallInput = (event, iframeNumber) => {
           : start + muted + src.slice(26)
       break
     case 'c': case 'C':
-      window.open(
-        `https://www.twitch.tv/popout/${
-          isMuted(src)
-          ? src.slice(91)
-          : src.slice(80)
-        }/chat`,
-        '_blank'
-      )
+      opener.href = `https://www.twitch.tv/popout/${
+        isMuted(src)
+        ? src.slice(91)
+        : src.slice(80)
+      }/chat`
+      opener.click()
       break
     case 'r': case 'R':
       for (let i = 0; i < iframes.length; i++)
@@ -83,8 +82,7 @@ inputs[4].addEventListener('input', event => {
       fullscreen()
   }
   iframes[++appearedIframesCounter - 1].src =
-    start + muted + middle +
-    extractChannel(event.target.value)
+    start + muted + middle + extractChannel(event.target.value)
   event.target.value = ''
   if (appearedIframesCounter > 3)
     fullscreen(),
