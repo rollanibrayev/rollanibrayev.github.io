@@ -59,7 +59,7 @@ smallInput = (event, iframeNumber) => {
       iframes[i].src = iframes[i].src
   event.target.value = ''
 }
-inputs[5 - 1].addEventListener('input', event => {
+inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter < 1)
     u( 'removeAttribute',
       document.body, 'style',
