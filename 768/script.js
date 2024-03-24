@@ -24,12 +24,12 @@ toggle = event => {
 },
 isMuted = src => src[26] == 'm' ? 1 : 0,
 smallInput = (event, iframeNumber) => {
-  const value = event.target.value
+  const
+  value = event.target.value,
+  iframe = iframes[iframeNumber],
+  src = iframe.src
   switch (value) {
     case 'm': case 'M':
-      const
-      iframe = iframes[iframeNumber],
-      src = iframe.src
       iframe.src =
         isMuted(src)
           ? start + src.slice(37)
@@ -51,7 +51,7 @@ smallInput = (event, iframeNumber) => {
       break
     default:
       if (value.length > 1)
-        iframes[iframeNumber].src =
+        iframe.src =
           start + muted + middle +
           extractChannel(value)
   }
