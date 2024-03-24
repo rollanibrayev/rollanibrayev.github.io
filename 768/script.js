@@ -72,7 +72,7 @@ inputs[4].addEventListener('input', event => {
     document.fullscreenElement ? document.exitFullscreen() :1
   }
   if (appearedIframesCounter == 2)
-    [document.body, iframes[0]].forEach(e => u('removeAttribute', e, 'style')), 
+    [document.body, iframes[0]].forEach(e => e.removeAttribute('style')), 
     iframes[1].style = 'top: 0; transform: translateY(0)'
   if (appearedIframesCounter == 3) iframes[2].style = 'left: 0'
   iframes[++appearedIframesCounter - 1].src =
