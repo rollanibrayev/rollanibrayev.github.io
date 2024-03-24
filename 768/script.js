@@ -25,32 +25,35 @@ toggle = event => {
 isMuted = src => src[26] == 'm' ? 1 : 0,
 smallInput = (event, iframeNumber) => {
   const value = event.target.value
-  if (value == 'm' || value == 'M') {
-    const
-    iframe = iframes[iframeNumber],
-    src = iframe.src
-    iframe.src =
-      isMuted(src)
-        ? start + src.slice(37)
-        : start + muted + src.slice(26)
+  switch (value) {
+    case 'm': case 'M':
+      const
+      iframe = iframes[iframeNumber],
+      src = iframe.src
+      iframe.src =
+        isMuted(src)
+          ? start + src.slice(37)
+          : start + muted + src.slice(26)
+      break
+    case 'c': case 'C':
+      let channel
+      let url = `https://www.twitch.tv/popout/${channel}/chat`
+      channel =
+        isMuted(iframes[iframeNumber].src)
+      // ? 
+        //: [80] first channel symbol
+      window.open(url, '_blank')
+      break
+    case 'r': case 'R':
+      for (let i = 0; i < iframes.length; i++)
+        iframes[i].src = iframes[i].src
+      break
+    default:
+      if (value.length > 1)
+        iframes[iframeNumber].src =
+          start + muted + middle +
+          extractChannel(value)
   }
-  if (value == 'c' || value == 'C') {
-    let channel
-    let url = `https://www.twitch.tv/popout/${channel}/chat`
-    channel =
-      isMuted(iframes[iframeNumber].src)
-     // ? 
-      //: [80] first channel symbol
-    window.open(url, '_blank')
-  }
-  if (value.length > 1) {
-    iframes[iframeNumber].src =
-      start + muted + middle +
-      extractChannel(value)
-  }
-  if (value == 'r' || value == 'R')
-    for (let i = 0; i < iframes.length; i++)
-      iframes[i].src = iframes[i].src
   event.target.value = ''
 }
 inputs[4].addEventListener('input', event => {
