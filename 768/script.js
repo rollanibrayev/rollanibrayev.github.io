@@ -49,6 +49,9 @@ smallInput = (event, iframeNumber) => {
       for (let i = 0; i < iframes.length; i++)
         iframes[i].src = iframes[i].src
       break
+    case 'k': case 'K':
+      iframes[iframeNumber].src = iframes[iframeNumber].src
+      break
     default:
       if (value.length > 1)
         iframe.src =
