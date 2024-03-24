@@ -42,8 +42,7 @@ smallInput = (event, iframeNumber) => {
           ? src.slice(91)
           : src.slice(80)
         }/chat`,
-        '_blank',
-        'width=600,height=400,top=100,left=100'
+        '_blank'
       )
       break
     case 'r': case 'R':
