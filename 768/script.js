@@ -27,37 +27,27 @@ smallInput = (event, iframeNumber) => {
   const
   value = event.target.value,
   iframe = iframes[iframeNumber],
-  src = iframe.src
-  switch (value) {
-    case 'm': case 'M':
-      iframe.src =
-        isMuted(src)
-          ? start + src.slice(37)
-          : start + muted + src.slice(26)
-      break
-    case 'c': case 'C':
-      window.open(
-        `https://www.twitch.tv/popout/${
-          isMuted(src)
-          ? src.slice(91)
-          : src.slice(80)
-        }/chat`,
-        '_blank'
-      )
-      break
-    case 'r': case 'R':
-      for (let i = 0; i < iframes.length; i++)
-        iframes[i].src = iframes[i].src
-      break
-    case 'k': case 'K':
-      iframes[iframeNumber].src = iframes[iframeNumber].src
-      break
-    default:
-      if (value.length > 1)
-        iframe.src =
-          start + muted + middle +
-          extractChannel(value)
-  }
+  src = iframe.src;
+  value === 'm' || value === 'M' ?
+    iframe.src =
+      isMuted(src)
+      ? start + src.slice(37)
+      : start + muted + src.slice(26) :
+  value === 'c' || value === 'C' ?
+    window.open(
+      `https://www.twitch.tv/popout/${
+        isMuted(src) ? src.slice(91) : src.slice(80)
+      }/chat`,
+      '_blank'
+    ) :
+  value === 'r' || value === 'R' ?
+    iframes.forEach(iframe => iframe.src = iframe.src) :
+  value === 'k' || value === 'K' ?
+    iframes[iframeNumber].src = iframes[iframeNumber].src :
+  value.length > 1 ?
+    iframe.src = start + muted + middle + extractChannel(value) :
+    null
+
   event.target.value = ''
 }
 inputs[4].addEventListener('input', event => {
