@@ -79,7 +79,7 @@ inputs[4].addEventListener('input', event => {
   }
   iframes[++appearedIframesCounter - 1].src =
     start + muted + middle + extractChannel(event.target.value)
-  if (appearedIframesCount == 3) fullscreen()
+  if (appearedIframesCounter == 3) fullscreen()
   event.target.value = ''
   if (appearedIframesCounter > 3)
     fullscreen(),
