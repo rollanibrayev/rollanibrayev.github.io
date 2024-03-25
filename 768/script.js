@@ -44,6 +44,8 @@ smallInput = (event, iframeNumber) => {
     iframes.forEach(iframe => iframe.src = iframe.src) :
   value === 'k' || value === 'K' ?
     iframes[iframeNumber].src = iframes[iframeNumber].src :
+  value === 'd' || value === 'D' ?
+    iframes[iframeNumber].src = '' :
   value.length > 1 ?
     iframe.src = start + muted + middle + extractChannel(value) :
     null
