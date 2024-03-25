@@ -10,12 +10,13 @@ iframes = document.querySelectorAll('iframe'),
 inputs = document.querySelectorAll('input'),
 muted = 'muted=true&',
 middle = 'quality=720p60&parent=rollanibrayev.github.io&channel=',
+isEqual = (value, pattern) => new RegExp(`^[${pattern}]$`).test(value),
 extractChannel = url => url.split('/').pop(),
 fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
 },
-fullscreen = event => !document.fullscreenElement ? document.body.requestFullscreen() :1,
+fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() :1,
 toggle = event => {
   event.preventDefault()
   document.fullscreenElement
@@ -28,23 +29,23 @@ smallInput = (event, iframeNumber) => {
   value = event.target.value,
   iframe = iframes[iframeNumber],
   src = iframe.src;
-  /^[mM]$/.test(value) ?
+  isEqual(value, 'mM') ?
     iframe.src =
       isMuted(src)
       ? start + src.slice(37)
       : start + muted + src.slice(26) :
-  /^[cC]$/.test(value) ?
+  isEqual(value, 'cC') ?
     window.open(
       `https://www.twitch.tv/popout/${
         isMuted(src) ? src.slice(91) : src.slice(80)
       }/chat`,
       '_blank'
     ) :
-  /^[rR]$/.test(value) ?
+  isEqual(value, 'rR') ?
     iframes.forEach(iframe => iframe.src = iframe.src) :
-  /^[kK]$/.test(value) ?
+  isEqual(value, 'kK') ?
     iframes[iframeNumber].src = iframes[iframeNumber].src :
-  /^[dD]$/.test(value) ?
+  isEqual(value, 'dD') ?
     iframes[iframeNumber].src = '' :
   value.length > 1 ?
     iframe.src = start + muted + middle + extractChannel(value) :
@@ -85,7 +86,7 @@ inputs[4].addEventListener('input', event => {
     fullscreen(),
     event.target.remove()
 })
-document.addEventListener('keydown', event => event.key === 'F' || event.key === 'f' ? toggle(event) :1)
+document.addEventListener('keydown', event => isEqual(value, 'fF') ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
 inputs[0].addEventListener('input', event => smallInput(event, 0))
 inputs[1].addEventListener('input', event => smallInput(event, 1))

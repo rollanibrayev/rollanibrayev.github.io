@@ -41,3 +41,4 @@ const toggleSound = iframeNumbers => {
       : start + 'muted=true&' + src.slice(25)
   })
 }
+const isEqualToOr = (value, case1, case2) => value == case1 || value == case2
