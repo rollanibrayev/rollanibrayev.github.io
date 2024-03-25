@@ -28,23 +28,23 @@ smallInput = (event, iframeNumber) => {
   value = event.target.value,
   iframe = iframes[iframeNumber],
   src = iframe.src;
-  value === 'm' || value === 'M' ?
+  /^[mM]$/.test(value) ?
     iframe.src =
       isMuted(src)
       ? start + src.slice(37)
       : start + muted + src.slice(26) :
-  value === 'c' || value === 'C' ?
+  /^[cC]$/.test(value) ?
     window.open(
       `https://www.twitch.tv/popout/${
         isMuted(src) ? src.slice(91) : src.slice(80)
       }/chat`,
       '_blank'
     ) :
-  value === 'r' || value === 'R' ?
+  /^[rR]$/.test(value) ?
     iframes.forEach(iframe => iframe.src = iframe.src) :
-  value === 'k' || value === 'K' ?
+  /^[kK]$/.test(value) ?
     iframes[iframeNumber].src = iframes[iframeNumber].src :
-  value === 'd' || value === 'D' ?
+  /^[dD]$/.test(value) ?
     iframes[iframeNumber].src = '' :
   value.length > 1 ?
     iframe.src = start + muted + middle + extractChannel(value) :
