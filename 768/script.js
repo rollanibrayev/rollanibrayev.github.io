@@ -86,7 +86,7 @@ inputs[4].addEventListener('input', event => {
     fullscreen(),
     event.target.remove()
 })
-document.addEventListener('keydown', event => isEqual(value, 'fF') ? toggle(event) :1)
+document.addEventListener('keydown', event => isEqual(event.key, 'fF') ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
 inputs[0].addEventListener('input', event => smallInput(event, 0))
 inputs[1].addEventListener('input', event => smallInput(event, 1))
