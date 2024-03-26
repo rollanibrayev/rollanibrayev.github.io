@@ -4,28 +4,41 @@ const
 style = `
   width: calc(64000vw/683);
   height: calc(36000vw/683)
-`,
-iframes = document.querySelectorAll('iframe'),
-inputs = document.querySelectorAll('input'),
-start = 'https://player.twitch.tv/?',
-muted = 'muted=true&',
-lowerQuality = 'quality=480p30&',
-quality = 'quality=720p60&',
-middle2 = 'parent=rollanibrayev.github.io&channel=',
-isEqual = (value, pattern) => new RegExp(`^[${pattern}]$`).test(value),
-extractChannel = url => url.split('/').pop(),
+`
+,
+iframes = document.querySelectorAll('iframe')
+,
+inputs = document.querySelectorAll('input')
+,
+start = 'https://player.twitch.tv/?'
+,
+muted = 'muted=true&'
+,
+lowerQuality = 'quality=480p30&'
+,
+quality = 'quality=720p60&'
+,
+middle2 = 'parent=rollanibrayev.github.io&channel='
+,
+isEqual = (value, pattern) => new RegExp(`^[${pattern}]$`).test(value)
+,
+extractChannel = url => url.split('/').pop()
+,
 fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
 },
-fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() :1,
+fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() :1
+,
 toggle = event => {
   event.preventDefault()
   document.fullscreenElement
     ? document.exitFullscreen()
     : document.body.requestFullscreen()
-},
-isMuted = src => src[26] == 'm' ? 1 : 0,
+}
+,
+isMuted = src => src[26] == 'm' ? 1 : 0
+,
 smallInput = (event, iframeNumber) => {
   const
   value = event.target.value,
