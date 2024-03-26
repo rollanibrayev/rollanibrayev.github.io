@@ -20,8 +20,6 @@ quality = 'quality=720p60&'
 ,
 middle2 = 'parent=rollanibrayev.github.io&channel='
 ,
-isEqual = (value, pattern) => new RegExp(`^[${pattern}]$`).test(value)
-,
 isMuted = src => src[26] == 'm' ? 1 : 0
 ,
 isLowerQuality = url =>
