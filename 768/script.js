@@ -26,12 +26,10 @@ isMuted = src => src[26] == 'm' ? 1 : 0
 ,
 isLowerQuality = url =>
   isMuted(url)
-  ?
-    url[45] == 4
+  ? url[45] == 4
     ? 1
     : 0
-  :
-    url[34] == 4
+  : url[34] == 4
     ? 1
     : 0
 ,
@@ -65,14 +63,12 @@ smallInput = (event, iframeNumber) => {
     case 'q':
       iframe.src =
         isLowerQuality(src)
-        ?
-          isMuted(src)
-            ? start + muted + quality + middle2 + src.slice(91)
-            : start + quality + middle2 + src.slice(80)
-        :
-          isMuted(src)
-            ? start + muted + lowerQuality + middle2 + src.slice(91)
-            : start + lowerQuality + middle2 + src.slice(80)
+        ? isMuted(src)
+          ? start + muted + quality + middle2 + src.slice(91)
+          : start + quality + middle2 + src.slice(80)
+        : isMuted(src)
+          ? start + muted + lowerQuality + middle2 + src.slice(91)
+          : start + lowerQuality + middle2 + src.slice(80)
       break
     case 'c':
       window.open(
