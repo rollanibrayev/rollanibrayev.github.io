@@ -54,8 +54,8 @@ smallInput = (event, iframeNumber) => {
     case 'q':
       iframe.src =
         isMuted(src)
-        ? start + muted + lowerQuality + middle2 + src.slice(37)
-        : start + lowerQuality + middle2 + src.slice(26)
+        ? start + muted + lowerQuality + middle2 + src.slice(91)
+        : start + lowerQuality + middle2 + src.slice(80)
       break
     case 'c':
       window.open(
