@@ -1,15 +1,17 @@
 document.body.style = 'overflow: hidden'
 let appearedIframesCounter = 0
 const
-start = 'https://player.twitch.tv/?',
 style = `
   width: calc(64000vw/683);
   height: calc(36000vw/683)
 `,
 iframes = document.querySelectorAll('iframe'),
 inputs = document.querySelectorAll('input'),
+start = 'https://player.twitch.tv/?',
 muted = 'muted=true&',
-middle = 'quality=720p60&parent=rollanibrayev.github.io&channel=',
+lowerQuality = 'quality=480p30&',
+quality = 'quality=720p60&',
+middle2 = 'parent=rollanibrayev.github.io&channel=',
 isEqual = (value, pattern) => new RegExp(`^[${pattern}]$`).test(value),
 extractChannel = url => url.split('/').pop(),
 fullsize = iframeNumber => {
@@ -29,28 +31,39 @@ smallInput = (event, iframeNumber) => {
   value = event.target.value,
   iframe = iframes[iframeNumber],
   src = iframe.src;
-  isEqual(value, 'mM') ?
-    iframe.src =
-      isMuted(src)
-      ? start + src.slice(37)
-      : start + muted + src.slice(26) :
-  isEqual(value, 'cC') ?
-    window.open(
-      `https://www.twitch.tv/popout/${
-        isMuted(src) ? src.slice(91) : src.slice(80)
-      }/chat`,
-      '_blank'
-    ) :
-  isEqual(value, 'rR') ?
-    iframes.forEach(iframe => iframe.src = iframe.src) :
-  isEqual(value, 'kK') ?
-    iframes[iframeNumber].src = iframes[iframeNumber].src :
-  isEqual(value, 'dD') ?
-    iframes[iframeNumber].src = '' :
-  value.length > 1 ?
-    iframe.src = start + muted + middle + extractChannel(value) :
-    null
-
+  switch (value.toLowerCase()) {
+    case 'm':
+      iframe.src =
+        isMuted(src)
+        ? start + src.slice(37)
+        : start + muted + src.slice(26)
+      break
+    case 'q':
+      iframe.src =
+        isMuted(src)
+        ? start + muted + lowerQuality + middle2 + src.slice(37)
+        : start + lowerQuality + middle2 + src.slice(26)
+      break
+    case 'c':
+      window.open(
+        `https://www.twitch.tv/popout/${
+          isMuted(src) ? src.slice(91) : src.slice(80)
+        }/chat`,
+        '_blank'
+      )
+      break
+    case 'r':
+      iframes.forEach(iframe => iframe.src = iframe.src)
+      break
+    case 'k':
+      iframes[iframeNumber].src = iframes[iframeNumber].src
+      break
+    case 'd':
+      iframes[iframeNumber].src = ''
+      break
+    default:
+      iframe.src = start + muted + quality + middle2 + extractChannel(value)
+  }
   event.target.value = ''
 }
 inputs[4].addEventListener('input', event => {
@@ -79,7 +92,7 @@ inputs[4].addEventListener('input', event => {
       fullscreen()
   }
   iframes[++appearedIframesCounter - 1].src =
-    start + muted + middle + extractChannel(event.target.value)
+    start + muted + quality + middle2 + extractChannel(event.target.value)
   if (appearedIframesCounter == 3) fullscreen()
   event.target.value = ''
   if (appearedIframesCounter > 3)
