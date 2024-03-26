@@ -64,13 +64,15 @@ smallInput = (event, iframeNumber) => {
       break
     case 'q':
       iframe.src =
-        isLowerQuality(value)
-        ? isMuted(src)
-          ? start + muted + quality + middle2 + src.slice(91)
-          : start + quality + middle2 + src.slice(80)
-        : isMuted(src)
-          ? start + muted + lowerQuality + middle2 + src.slice(91)
-          : start + lowerQuality + middle2 + src.slice(80)
+        isLowerQuality(src)
+        ?
+          isMuted(src)
+            ? start + muted + quality + middle2 + src.slice(91)
+            : start + quality + middle2 + src.slice(80)
+        :
+          isMuted(src)
+            ? start + muted + lowerQuality + middle2 + src.slice(91)
+            : start + lowerQuality + middle2 + src.slice(80)
       break
     case 'c':
       window.open(
