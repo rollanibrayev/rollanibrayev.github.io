@@ -85,36 +85,27 @@ const smallInput = (event, iframeNumber) => {
   }
   event.target.value = ''
 }
-
-const copyToClipboard = text => {
-  let textarea = document.createElement('textarea')
+const textarea = document.createElement('textarea')
+textarea.value = text
+textarea.style.position = 'fixed'
+textarea.style.opacity = 0
+textarea.style.left = '-9999px'
+document.body.appendChild(textarea)
+const saveText = text => {
   textarea.value = text
-  textarea.style.position = 'fixed'
-  textarea.style.opacity = 0
-  document.body.appendChild(textarea)
-  textarea.select()
-  document.execCommand('copy')
-  document.body.removeChild(textarea)
 }
 
-const returnClipboardText = () => {
-  let textarea = document.createElement('textarea')
-  textarea.style.position = 'fixed'
-  textarea.style.opacity = 0
-  textarea.style.left = '-9999px'
-  document.body.appendChild(textarea)
-  textarea.select()
-  document.execCommand('paste')
+const getSavedText = () => {
   let clipboardText = textarea.value
-  document.body.removeChild(textarea)
+  textarea.value = ''
   return clipboardText
 }
 
 const smallInputClick = iframeNumber =>
-  copyToClipboard(iframeNumber)
+  saveText(iframeNumber)
 
 const smallInputMouseUp = iframeNumber => {
-  let text = returnClipboardText()
+  let text = getSavedText()
   const mouseUppedIframeSrc = iframes[iframeNumber].src
   const clickedIframeSrc = iframes[text].src
   if (text = iframeNumber) return
