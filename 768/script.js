@@ -85,18 +85,18 @@ const smallInput = (event, iframeNumber) => {
   }
   event.target.value = ''
 }
-let clickedIframeNumber
+let mouseDownedIframeNumber
 
 const smallInputMouseDown = iframeNumber => {
-  clickedIframeNumber = iframeNumber
+  mouseDownedIframeNumber = iframeNumber
 }
 
 const smallInputMouseUp = iframeNumber => {
+  const mouseDownedIframeSrc = iframes[mouseDownedIframeNumber].src
   const mouseUppedIframeSrc = iframes[iframeNumber].src
-  const clickedIframeSrc = iframes[clickedIframeNumber].src
-  if (clickedIframeNumber = iframeNumber) return
-  iframes[clickedIframeNumber].src = mouseUppedIframeSrc
-  iframes[iframeNumber].src = clickedIframeSrc
+  if (mouseDownedIframeNumber == iframeNumber) return
+  iframes[mouseDownedIframeNumber].src = mouseUppedIframeSrc
+  iframes[iframeNumber].src = mouseDownedIframeSrc
 }
 
 inputs[0].addEventListener('mousedown', event => smallInputMouseDown(0))
