@@ -1,28 +1,18 @@
 document.body.style = 'overflow: hidden'
 let appearedIframesCounter = 0
-const
-style = `
+const style = `
   width: calc(64000vw/683);
   height: calc(36000vw/683)
 `
-,
-iframes = document.querySelectorAll('iframe')
-,
-inputs = document.querySelectorAll('input')
-,
-start = 'https://player.twitch.tv/?'
-,
-muted = 'muted=true&'
-,
-lowerQuality = 'quality=360p30&'
-,
-quality = 'quality=720p60&'
-,
-middle2 = 'parent=rollanibrayev.github.io&channel='
-,
-isMuted = src => src[26] == 'm' ? 1 : 0
-,
-isLowerQuality = url =>
+const iframes = document.querySelectorAll('iframe')
+const inputs = document.querySelectorAll('input')
+const start = 'https://player.twitch.tv/?'
+const muted = 'muted=true&'
+const lowerQuality = 'quality=360p30&'
+const quality = 'quality=720p60&'
+const middle2 = 'parent=rollanibrayev.github.io&channel='
+const isMuted = src => src[26] == 'm' ? 1 : 0
+const isLowerQuality = url =>
   isMuted(url)
   ? url[45] == 4
     ? 1
@@ -30,23 +20,19 @@ isLowerQuality = url =>
   : url[34] == 4
     ? 1
     : 0
-,
-extractChannel = url => url.split('/').pop()
-,
-fullsize = iframeNumber => {
+const extractChannel = url => url.split('/').pop()
+const fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
-},
-fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() :1
-,
-toggle = event => {
+}
+const fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() :1
+const toggle = event => {
   event.preventDefault()
   document.fullscreenElement
     ? document.exitFullscreen()
     : document.body.requestFullscreen()
 }
-,
-smallInput = (event, iframeNumber) => {
+const smallInput = (event, iframeNumber) => {
   const
   value = event.target.value
   ,
@@ -59,6 +45,7 @@ smallInput = (event, iframeNumber) => {
   i8 = middle2 + src.slice(80)
   ,
   sm = start + muted
+  ;
   switch (value.toLowerCase()) {
     case 'm':
       iframe.src =
@@ -98,6 +85,44 @@ smallInput = (event, iframeNumber) => {
   }
   event.target.value = ''
 }
+
+const copyToClipboard = text => {
+  let textarea = document.createElement("textarea")
+  textarea.value = text
+  textarea.style.position = 'fixed'
+  textarea.style.opacity = 0
+  document.body.appendChild(textarea)
+  textarea.select()
+  document.execCommand("copy")
+  document.body.removeChild(textarea)
+}
+
+const smallInputClick = iframeNumber =>
+  copyToClipboard(iframeNumber)
+
+const smallInputMouseUp = iframeNumber => {
+  let text
+  navigator.clipboard.readText()
+    .then(text => {
+      text = text
+    })
+  const mouseUppedIframeSrc = iframe[iframeNumber].src
+  const clickedIframeSrc = iframe[text].src
+  if (text = iframeNumber) return
+  iframe[text].src = mouseUppedIframeSrc
+  iframe[iframeNumber].src = clickedIframeSrc
+}
+
+inputs[0].addEventListener('click', event => smallInputClick(0))
+inputs[1].addEventListener('click', event => smallInputClick(1))
+inputs[2].addEventListener('click', event => smallInputClick(2))
+inputs[3].addEventListener('click', event => smallInputClick(3))
+
+inputs[0].addEventListener('mouseup', event => smallInputMouseUp(0))
+inputs[1].addEventListener('mouseup', event => smallInputMouseUp(1))
+inputs[2].addEventListener('mouseup', event => smallInputMouseUp(2))
+inputs[3].addEventListener('mouseup', event => smallInputMouseUp(3))
+
 inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter < 1) {
     document.body.removeAttribute('style')
@@ -137,3 +162,4 @@ inputs[0].addEventListener('input', event => smallInput(event, 0))
 inputs[1].addEventListener('input', event => smallInput(event, 1))
 inputs[2].addEventListener('input', event => smallInput(event, 2))
 inputs[3].addEventListener('input', event => smallInput(event, 3))
+
