@@ -87,25 +87,34 @@ const smallInput = (event, iframeNumber) => {
 }
 
 const copyToClipboard = text => {
-  let textarea = document.createElement("textarea")
+  let textarea = document.createElement('textarea')
   textarea.value = text
   textarea.style.position = 'fixed'
   textarea.style.opacity = 0
   document.body.appendChild(textarea)
   textarea.select()
-  document.execCommand("copy")
+  document.execCommand('copy')
   document.body.removeChild(textarea)
+}
+
+const returnClipboardText = () => {
+  let textarea = document.createElement('textarea')
+  textarea.style.position = 'fixed'
+  textarea.style.opacity = 0
+  textarea.style.left = '-9999px'
+  document.body.appendChild(textarea)
+  textarea.select()
+  document.execCommand('paste')
+  let clipboardText = textarea.value
+  document.body.removeChild(textarea)
+  return clipboardText
 }
 
 const smallInputClick = iframeNumber =>
   copyToClipboard(iframeNumber)
 
 const smallInputMouseUp = iframeNumber => {
-  let text
-  navigator.clipboard.readText()
-    .then(t => {
-      text = t
-    })
+  let text = returnClipboardText()
   const mouseUppedIframeSrc = iframes[iframeNumber].src
   const clickedIframeSrc = iframes[text].src
   if (text = iframeNumber) return
@@ -162,4 +171,3 @@ inputs[0].addEventListener('input', event => smallInput(event, 0))
 inputs[1].addEventListener('input', event => smallInput(event, 1))
 inputs[2].addEventListener('input', event => smallInput(event, 2))
 inputs[3].addEventListener('input', event => smallInput(event, 3))
-
