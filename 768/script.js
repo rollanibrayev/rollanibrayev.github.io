@@ -80,10 +80,10 @@ smallInput = (event, iframeNumber) => {
       iframes.forEach(iframe => iframe.src = iframe.src)
       break
     case 'k':
-      iframes[iframeNumber].src = iframes[iframeNumber].src
+      iframe.src = iframe.src
       break
     case 'd':
-      iframes[iframeNumber].src = ''
+      iframe.src = ''
       break
     default:
       iframe.src = start + muted + quality + middle2 + extractChannel(value)
