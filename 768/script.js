@@ -14,7 +14,7 @@ start = 'https://player.twitch.tv/?'
 ,
 muted = 'muted=true&'
 ,
-lowerQuality = 'quality=480p30&'
+lowerQuality = 'quality=360p30&'
 ,
 quality = 'quality=720p60&'
 ,
