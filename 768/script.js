@@ -99,15 +99,15 @@ const smallInputMouseUp = iframeNumber => {
   iframes[iframeNumber].src = clickedIframeSrc
 }
 
-inputs[0].addEventListener('click', event => smallInputClick(0))
-inputs[1].addEventListener('click', event => smallInputClick(1))
-inputs[2].addEventListener('click', event => smallInputClick(2))
-inputs[3].addEventListener('click', event => smallInputClick(3))
+inputs[0].addEventListener('click', event => { smallInputClick(0) } )
+inputs[1].addEventListener('click', event => { smallInputClick(1) } )
+inputs[2].addEventListener('click', event => { smallInputClick(2) } )
+inputs[3].addEventListener('click', event => { smallInputClick(3) } )
 
-inputs[0].addEventListener('mouseup', event => smallInputMouseUp(0))
-inputs[1].addEventListener('mouseup', event => smallInputMouseUp(1))
-inputs[2].addEventListener('mouseup', event => smallInputMouseUp(2))
-inputs[3].addEventListener('mouseup', event => smallInputMouseUp(3))
+inputs[0].addEventListener('mouseup', event => { smallInputMouseUp(0) } )
+inputs[1].addEventListener('mouseup', event => { smallInputMouseUp(1) } )
+inputs[2].addEventListener('mouseup', event => { smallInputMouseUp(2) } )
+inputs[3].addEventListener('mouseup', event => { smallInputMouseUp(3) } )
 
 inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter < 1) {
