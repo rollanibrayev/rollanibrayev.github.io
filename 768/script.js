@@ -48,25 +48,33 @@ toggle = event => {
 ,
 smallInput = (event, iframeNumber) => {
   const
-  value = event.target.value,
-  iframe = iframes[iframeNumber],
-  src = iframe.src;
+  value = event.target.value
+  ,
+  iframe = iframes[iframeNumber]
+  ,
+  src = iframe.src
+  ,
+  i9 = middle2 + src.slice(91)
+  ,
+  i8 = middle2 + src.slice(80)
+  ,
+  sm = start + muted
   switch (value.toLowerCase()) {
     case 'm':
       iframe.src =
         isMuted(src)
         ? start + src.slice(37)
-        : start + muted + src.slice(26)
+        : sm + src.slice(26)
       break
     case 'q':
       iframe.src =
         isLowerQuality(src)
         ? isMuted(src)
-          ? start + muted + quality + middle2 + src.slice(91)
-          : start + quality + middle2 + src.slice(80)
+          ? sm + quality + i9
+          : start + quality + i8
         : isMuted(src)
-          ? start + muted + lowerQuality + middle2 + src.slice(91)
-          : start + lowerQuality + middle2 + src.slice(80)
+          ? sm + lowerQuality + i9
+          : start + lowerQuality + i8
       break
     case 'c':
       window.open(
@@ -86,7 +94,7 @@ smallInput = (event, iframeNumber) => {
       iframe.removeAttribute('src')
       break
     default:
-      iframe.src = start + muted + quality + middle2 + extractChannel(value)
+      iframe.src = sm + quality + middle2 + extractChannel(value)
   }
   event.target.value = ''
 }
