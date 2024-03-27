@@ -103,8 +103,8 @@ const smallInputClick = iframeNumber =>
 const smallInputMouseUp = iframeNumber => {
   let text
   navigator.clipboard.readText()
-    .then(text => {
-      text = text
+    .then(t => {
+      text = t
     })
   const mouseUppedIframeSrc = iframes[iframeNumber].src
   const clickedIframeSrc = iframes[text].src
