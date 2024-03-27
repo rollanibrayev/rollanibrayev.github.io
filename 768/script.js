@@ -106,11 +106,11 @@ const smallInputMouseUp = iframeNumber => {
     .then(text => {
       text = text
     })
-  const mouseUppedIframeSrc = iframe[iframeNumber].src
-  const clickedIframeSrc = iframe[text].src
+  const mouseUppedIframeSrc = iframes[iframeNumber].src
+  const clickedIframeSrc = iframes[text].src
   if (text = iframeNumber) return
-  iframe[text].src = mouseUppedIframeSrc
-  iframe[iframeNumber].src = clickedIframeSrc
+  iframes[text].src = mouseUppedIframeSrc
+  iframes[iframeNumber].src = clickedIframeSrc
 }
 
 inputs[0].addEventListener('click', event => smallInputClick(0))
