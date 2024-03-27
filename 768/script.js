@@ -85,29 +85,24 @@ const smallInput = (event, iframeNumber) => {
   }
   event.target.value = ''
 }
+
 let mouseDownedIframeNumber
-
-const smallInputMouseDown = iframeNumber => {
-  mouseDownedIframeNumber = iframeNumber
-}
-
 const smallInputMouseUp = iframeNumber => {
-  const mouseDownedIframeSrc = iframes[mouseDownedIframeNumber].src
-  const mouseUppedIframeSrc = iframes[iframeNumber].src
   if (mouseDownedIframeNumber == iframeNumber) return
+  const mouseUppedIframeSrc = iframes[iframeNumber].src
+  iframes[iframeNumber].src = iframes[mouseDownedIframeNumber].src
   iframes[mouseDownedIframeNumber].src = mouseUppedIframeSrc
-  iframes[iframeNumber].src = mouseDownedIframeSrc
 }
 
-inputs[0].addEventListener('mousedown', event => smallInputMouseDown(0))
-inputs[1].addEventListener('mousedown', event => smallInputMouseDown(1))
-inputs[2].addEventListener('mousedown', event => smallInputMouseDown(2))
-inputs[3].addEventListener('mousedown', event => smallInputMouseDown(3))
+inputs[0].addEventListener('mousedown', () => { mouseDownedIframeNumber = 0 })
+inputs[1].addEventListener('mousedown', () => { mouseDownedIframeNumber = 1 })
+inputs[2].addEventListener('mousedown', () => { mouseDownedIframeNumber = 2 })
+inputs[3].addEventListener('mousedown', () => { mouseDownedIframeNumber = 3 })
 
-inputs[0].addEventListener('mouseup', event => smallInputMouseUp(0))
-inputs[1].addEventListener('mouseup', event => smallInputMouseUp(1))
-inputs[2].addEventListener('mouseup', event => smallInputMouseUp(2))
-inputs[3].addEventListener('mouseup', event => smallInputMouseUp(3))
+inputs[0].addEventListener('mouseup', () => smallInputMouseUp(0))
+inputs[1].addEventListener('mouseup', () => smallInputMouseUp(1))
+inputs[2].addEventListener('mouseup', () => smallInputMouseUp(2))
+inputs[3].addEventListener('mouseup', () => smallInputMouseUp(3))
 
 inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter < 1) {
