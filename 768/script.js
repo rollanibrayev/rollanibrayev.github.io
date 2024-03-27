@@ -33,19 +33,12 @@ const toggle = event => {
     : document.body.requestFullscreen()
 }
 const smallInput = (event, iframeNumber) => {
-  const
-  value = event.target.value
-  ,
-  iframe = iframes[iframeNumber]
-  ,
-  src = iframe.src
-  ,
-  i9 = middle2 + src.slice(91)
-  ,
-  i8 = middle2 + src.slice(80)
-  ,
-  sm = start + muted
-  ;
+  const value = event.target.value
+  const iframe = iframes[iframeNumber]
+  const src = iframe.src
+  const i9 = middle2 + src.slice(91)
+  const i8 = middle2 + src.slice(80)
+  const sm = start + muted
   switch (value.toLowerCase()) {
     case 'm':
       iframe.src =
