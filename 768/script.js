@@ -85,30 +85,17 @@ const smallInput = (event, iframeNumber) => {
   }
   event.target.value = ''
 }
-const textarea = document.createElement('textarea')
-textarea.style.position = 'fixed'
-textarea.style.opacity = 0
-textarea.style.left = '-9999px'
-document.body.appendChild(textarea)
-const saveText = text => {
-  textarea.value = text
-}
+let clickedIframeNumber
 
-const getSavedText = () => {
-  let clipboardText = textarea.value
-  textarea.value = ''
-  return clipboardText
+const smallInputClick = iframeNumber => {
+  clickedIframeNumber = iframeNumber
 }
-
-const smallInputClick = iframeNumber =>
-  saveText(iframeNumber)
 
 const smallInputMouseUp = iframeNumber => {
-  let text = getSavedText()
   const mouseUppedIframeSrc = iframes[iframeNumber].src
-  const clickedIframeSrc = iframes[text].src
-  if (text = iframeNumber) return
-  iframes[text].src = mouseUppedIframeSrc
+  const clickedIframeSrc = iframes[clickedIframeNumber].src
+  if (clickedIframeNumber = iframeNumber) return
+  iframes[clickedIframeNumber].src = mouseUppedIframeSrc
   iframes[iframeNumber].src = clickedIframeSrc
 }
 
