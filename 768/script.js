@@ -88,10 +88,10 @@ const smallInputMouseUp = iframeNumber => {
 }
 
 inputs.forEach(
-  number => {
-    inputs[number].addEventListener('mousedown', () => mouseDownedIframeNumber = number )
-    inputs[number].addEventListener('mouseup', () => smallInputMouseUp(number))
-    inputs[number].addEventListener('input', event => smallInput(event, number))
+  (input, index) => {
+    input.addEventListener('mousedown', () => mouseDownedIframeNumber = index )
+    input.addEventListener('mouseup', () => smallInputMouseUp(index))
+    input.addEventListener('input', event => smallInput(event, index))
   }
 )
 
