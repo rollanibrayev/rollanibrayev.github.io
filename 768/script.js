@@ -87,15 +87,13 @@ const smallInputMouseUp = iframeNumber => {
   iframes[mouseDownedIframeNumber].src = mouseUppedIframeSrc
 }
 
-inputs[0].addEventListener('mousedown', () => mouseDownedIframeNumber = 0 )
-inputs[1].addEventListener('mousedown', () => mouseDownedIframeNumber = 1 )
-inputs[2].addEventListener('mousedown', () => mouseDownedIframeNumber = 2 )
-inputs[3].addEventListener('mousedown', () => mouseDownedIframeNumber = 3 )
-
-inputs[0].addEventListener('mouseup', () => smallInputMouseUp(0))
-inputs[1].addEventListener('mouseup', () => smallInputMouseUp(1))
-inputs[2].addEventListener('mouseup', () => smallInputMouseUp(2))
-inputs[3].addEventListener('mouseup', () => smallInputMouseUp(3))
+inputs.forEach(
+  number => {
+    inputs[number].addEventListener('mousedown', () => mouseDownedIframeNumber = number )
+    inputs[number].addEventListener('mouseup', () => smallInputMouseUp(number))
+    inputs[number].addEventListener('input', event => smallInput(event, number))
+  }
+)
 
 inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter < 1) {
@@ -132,7 +130,3 @@ inputs[4].addEventListener('input', event => {
 })
 document.addEventListener('keydown', event => event.key.toLowerCase() == 'f' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
-inputs[0].addEventListener('input', event => smallInput(event, 0))
-inputs[1].addEventListener('input', event => smallInput(event, 1))
-inputs[2].addEventListener('input', event => smallInput(event, 2))
-inputs[3].addEventListener('input', event => smallInput(event, 3))
