@@ -83,7 +83,7 @@ smallInput = (event, iframeNumber) => {
       iframe.src = iframe.src
       break
     case 'd':
-      iframe.src = ''
+      iframe.removeAttribute('src')
       break
     default:
       iframe.src = start + muted + quality + middle2 + extractChannel(value)
