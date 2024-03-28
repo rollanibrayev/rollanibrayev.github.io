@@ -26,7 +26,7 @@ const isLowerQuality = url => {
     ? 1
     : 0
 }
-const extractChannel = url => urlConfig.split('/').pop()
+const extractChannel = url => url.split('/').pop()
 const fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
