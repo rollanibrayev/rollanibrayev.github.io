@@ -134,7 +134,8 @@ inputs[4].addEventListener('input', event => {
   event.target.value = ''
   if (appearedIframesCounter > 3)
     fullscreen(),
-    event.target.remove()
+    event.target.remove(),
+    appearedIframesCounter = undefined
 })
 document.addEventListener('keydown', event => event.key.toLowerCase() == 'f' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
