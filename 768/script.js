@@ -6,11 +6,15 @@ const style = `
 `
 const iframes = document.querySelectorAll('iframe')
 const inputs = document.querySelectorAll('input')
-const start = 'https://player.twitch.tv/?'
-const muted = 'muted=true&'
-const lowerQuality = 'quality=360p30&'
-const quality = 'quality=720p60&'
-const middle2 = 'parent=rollanibrayev.github.io&channel='
+const url = {
+  start: 'https://player.twitch.tv/?',
+  muted: 'muted=true&',
+  quality: {
+    low: 'quality=360p30&',
+    high: 'quality=720p60&'
+  },
+  middle2: 'parent=rollanibrayev.github.io&channel='
+}
 const isMuted = src => src[26] == 'm' ? 1 : 0
 const isLowerQuality = url =>
   isMuted(url)
@@ -36,25 +40,25 @@ const smallInput = (event, iframeNumber) => {
   const value = event.target.value
   const iframe = iframes[iframeNumber]
   const src = iframe.src
-  const i9 = middle2 + src.slice(91)
-  const i8 = middle2 + src.slice(80)
-  const sm = start + muted
+  const i9 = url.middle2 + src.slice(91)
+  const i8 = url.middle2 + src.slice(80)
+  const sm = url.start + url.muted
   switch (value.toLowerCase()) {
     case 'm':
       iframe.src =
         isMuted(src)
-        ? start + src.slice(37)
+        ? url.start + src.slice(37)
         : sm + src.slice(26)
       break
     case 'q':
       iframe.src =
         isLowerQuality(src)
         ? isMuted(src)
-          ? sm + quality + i9
-          : start + quality + i8
+          ? sm + url.quality.high + i9
+          : url.start + url.quality.high + i8
         : isMuted(src)
-          ? sm + lowerQuality + i9
-          : start + lowerQuality + i8
+          ? sm + url.quality.low + i9
+          : url.start + url.quality.low + i8
       break
     case 'c':
       window.open(
@@ -74,7 +78,8 @@ const smallInput = (event, iframeNumber) => {
       iframe.removeAttribute('src')
       break
     default:
-      iframe.src = sm + quality + middle2 + extractChannel(value)
+      if (value.length > 1)
+        iframe.src = sm + url.quality.high + url.middle2 + extractChannel(value)
   }
   event.target.value = ''
 }
@@ -121,7 +126,7 @@ inputs[4].addEventListener('input', event => {
       fullscreen()
   }
   iframes[++appearedIframesCounter - 1].src =
-    start + muted + quality + middle2 + extractChannel(event.target.value)
+    url.start + url.muted + url.quality.high + url.middle2 + extractChannel(event.target.value)
   if (appearedIframesCounter == 3) fullscreen()
   event.target.value = ''
   if (appearedIframesCounter > 3)
