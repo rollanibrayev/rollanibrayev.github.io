@@ -16,14 +16,16 @@ const url = {
   middle2: 'parent=rollanibrayev.github.io&channel='
 }
 const isMuted = src => src[26] == 'm' ? 1 : 0
-const isLowerQuality = url =>
-  isMuted(url)
-  ? url[45] == 3
+const isLowerQuality = url => {
+  const indicator = url.quality.low[8]
+  return isMuted(url)
+  ? url[45] == indicator
     ? 1
     : 0
-  : url[34] == 3
+  : url[34] == indicator
     ? 1
     : 0
+}
 const extractChannel = url => url.split('/').pop()
 const fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
