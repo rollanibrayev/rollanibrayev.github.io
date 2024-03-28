@@ -18,10 +18,10 @@ const url = {
 const isMuted = src => src[26] == 'm' ? 1 : 0
 const isLowerQuality = url =>
   isMuted(url)
-  ? url[45] == 4
+  ? url[45] == 3
     ? 1
     : 0
-  : url[34] == 4
+  : url[34] == 3
     ? 1
     : 0
 const extractChannel = url => url.split('/').pop()
