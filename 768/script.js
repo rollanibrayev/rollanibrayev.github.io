@@ -6,7 +6,7 @@ const style = `
 `
 const iframes = document.querySelectorAll('iframe')
 const inputs = document.querySelectorAll('input')
-const url = {
+const urlConfig = {
   start: 'https://player.twitch.tv/?',
   muted: 'muted=true&',
   quality: {
@@ -17,7 +17,7 @@ const url = {
 }
 const isMuted = src => src[26] == 'm' ? 1 : 0
 const isLowerQuality = url => {
-  const indicator = url.quality.low[8]
+  const indicator = urlConfig.quality.low[8]
   return isMuted(url)
   ? url[45] == indicator
     ? 1
@@ -26,7 +26,7 @@ const isLowerQuality = url => {
     ? 1
     : 0
 }
-const extractChannel = url => url.split('/').pop()
+const extractChannel = url => urlConfig.split('/').pop()
 const fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
@@ -42,25 +42,25 @@ const smallInput = (event, iframeNumber) => {
   const value = event.target.value
   const iframe = iframes[iframeNumber]
   const src = iframe.src
-  const i9 = url.middle2 + src.slice(91)
-  const i8 = url.middle2 + src.slice(80)
-  const sm = url.start + url.muted
+  const i9 = urlConfig.middle2 + src.slice(91)
+  const i8 = urlConfig.middle2 + src.slice(80)
+  const sm = urlConfig.start + urlConfig.muted
   switch (value.toLowerCase()) {
     case 'm':
       iframe.src =
         isMuted(src)
-        ? url.start + src.slice(37)
+        ? urlConfig.start + src.slice(37)
         : sm + src.slice(26)
       break
     case 'q':
       iframe.src =
         isLowerQuality(src)
         ? isMuted(src)
-          ? sm + url.quality.high + i9
-          : url.start + url.quality.high + i8
+          ? sm + urlConfig.quality.high + i9
+          : urlConfig.start + urlConfig.quality.high + i8
         : isMuted(src)
-          ? sm + url.quality.low + i9
-          : url.start + url.quality.low + i8
+          ? sm + urlConfig.quality.low + i9
+          : urlConfig.start + urlConfig.quality.low + i8
       break
     case 'c':
       window.open(
@@ -81,7 +81,7 @@ const smallInput = (event, iframeNumber) => {
       break
     default:
       if (value.length > 1)
-        iframe.src = sm + url.quality.high + url.middle2 + extractChannel(value)
+        iframe.src = sm + urlConfig.quality.high + urlConfig.middle2 + extractChannel(value)
   }
   event.target.value = ''
 }
@@ -128,7 +128,7 @@ inputs[4].addEventListener('input', event => {
       fullscreen()
   }
   iframes[++appearedIframesCounter - 1].src =
-    url.start + url.muted + url.quality.high + url.middle2 + extractChannel(event.target.value)
+    urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
   if (appearedIframesCounter == 3) fullscreen()
   event.target.value = ''
   if (appearedIframesCounter > 3)
