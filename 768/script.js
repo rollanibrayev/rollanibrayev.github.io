@@ -92,6 +92,7 @@ const smallInputMouseUp = iframeNumber => {
   const mouseUppedIframeSrc = iframes[iframeNumber].src
   iframes[iframeNumber].src = iframes[mouseDownedIframeNumber].src
   iframes[mouseDownedIframeNumber].src = mouseUppedIframeSrc
+  mouseDownedIframeNumber = undefined
 }
 
 inputs.forEach(
