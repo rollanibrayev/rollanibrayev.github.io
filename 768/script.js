@@ -30,15 +30,14 @@ const fullscreen = () => !document.fullscreenElement ? document.body.requestFull
 const toggle = event => {
   event.preventDefault()
   document.fullscreenElement
-    ? document.exitFullscreen()
-    : document.body.requestFullscreen()
+  ? document.exitFullscreen()
+  : document.body.requestFullscreen()
 }
 
 
 inputs[4].addEventListener('input', event => {
   fullscreen()
-  if (appearedIframesCounter < 1)
-    event.target.removeAttribute('placeholder')
+  if (appearedIframesCounter < 1) event.target.removeAttribute('placeholder')
   iframes[++appearedIframesCounter - 1].src =
     urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
   event.target.value = ''
@@ -50,7 +49,7 @@ inputs[4].addEventListener('input', event => {
 const leftCoordinate = 'calc(32000vw/683)'
 const topCoordinate = 'calc(18000vw/683)'
 
-[iframes, inputs].forEach((element) => {
+[iframes, inputs].forEach(element => {
   element[1].style.left = leftCoordinate
   element[2].style.top = topCoordinate
   element[3].style.left = leftCoordinate
@@ -73,6 +72,7 @@ inputs.forEach(
       iframes[mouseDownedQuarter].style.top = mouseUppedQuarterTopCoordinate
       inputs[mouseDownedQuarter].style.left = mouseUppedQuarterLeftCoordinate
       inputs[mouseDownedQuarter].style.top = mouseUppedQuarterTopCoordinate
+      mouseDownedQuarter = undefined
     })
     input.addEventListener('input', event => {
       const value = event.target.value
