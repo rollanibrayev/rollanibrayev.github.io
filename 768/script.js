@@ -49,12 +49,13 @@ inputs[4].addEventListener('input', event => {
 
 const leftCoordinate = 'calc(32000vw/683)'
 const topCoordinate = 'calc(18000vw/683)'
-inputs[1].style = `left: ${leftCoordinate}`
-inputs[2].style = `top: ${topCoordinate}`
-inputs[3].style = `left: ${leftCoordinate}; top: ${topCoordinate}`
-iframes[1].style = `left: ${leftCoordinate}`
-iframes[2].style = `top: ${topCoordinate}`
-iframes[3].style = `left: ${leftCoordinate}; top: ${topCoordinate}`
+
+[iframes, inputs].forEach((element) => {
+  element[1].style.left = leftCoordinate
+  element[2].style.top = topCoordinate
+  element[3].style.left = leftCoordinate
+  element[3].style.top = topCoordinate
+})
 
 let mouseDownedQuarter
 inputs.forEach(
