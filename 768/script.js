@@ -1,9 +1,5 @@
 document.body.style = 'overflow: hidden'
 let appearedIframesCounter = 0
-const style = `
-  width: calc(64000vw/683);
-  height: calc(36000vw/683)
-`
 const iframes = document.querySelectorAll('iframe')
 const inputs = document.querySelectorAll('input')
 const urlConfig = {
@@ -27,6 +23,10 @@ const isLowerQuality = url => {
     : 0
 }
 const extractChannel = url => url.split('/').pop()
+const style = `
+  width: calc(64000vw/683);
+  height: calc(36000vw/683)
+`
 const fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
@@ -38,6 +38,49 @@ const toggle = event => {
     ? document.exitFullscreen()
     : document.body.requestFullscreen()
 }
+
+
+inputs[4].addEventListener('input', event => {
+  if (appearedIframesCounter < 1) {
+    document.body.removeAttribute('style')
+    event.target.removeAttribute('placeholder')
+    fullscreen()
+    iframes[0].style = style
+  }
+  switch (appearedIframesCounter) {
+    case 1:
+      window.scrollTo(0, 0)
+      document.body.style = 'overflow: hidden'
+      iframes[0].style = `
+        top: calc(18000vw/683);
+        transform: translateY(-50%)
+      `
+      document.fullscreenElement ? document.exitFullscreen() :1
+    break
+    case 2:
+      [document.body, iframes[0]].forEach(e => e.removeAttribute('style'))
+      iframes[1].style = 'top: 0; transform: translateY(0)'
+    break
+    case 3:
+      iframes[2].style = 'left: 0'
+      fullscreen()
+  }
+  iframes[++appearedIframesCounter - 1].src =
+    urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
+  if (appearedIframesCounter == 3) fullscreen()
+  event.target.value = ''
+  if (appearedIframesCounter > 3)
+    fullscreen(),
+    event.target.remove(),
+    appearedIframesCounter = undefined
+})
+
+const leftCoordinate = 'calc(32000vw/683)'
+const topCoordinate = 'calc(18000vw/683)'
+inputs[1].style = `left: ${leftCoordinate}`
+inputs[2].style = `top: ${topCoordinate}`
+inputs[3].style = `left: ${leftCoordinate}; top: ${topCoordinate}`
+
 const smallInput = (event, iframeNumber) => {
   const value = event.target.value
   const iframe = iframes[iframeNumber]
@@ -103,39 +146,5 @@ inputs.forEach(
   }
 )
 
-inputs[4].addEventListener('input', event => {
-  if (appearedIframesCounter < 1) {
-    document.body.removeAttribute('style')
-    event.target.removeAttribute('placeholder')
-    fullscreen()
-    iframes[0].style = style
-  }
-  switch (appearedIframesCounter) {
-    case 1:
-      window.scrollTo(0, 0)
-      document.body.style = 'overflow: hidden'
-      iframes[0].style = `
-        top: calc(18000vw/683);
-        transform: translateY(-50%)
-      `
-      document.fullscreenElement ? document.exitFullscreen() :1
-    break
-    case 2:
-      [document.body, iframes[0]].forEach(e => e.removeAttribute('style'))
-      iframes[1].style = 'top: 0; transform: translateY(0)'
-    break
-    case 3:
-      iframes[2].style = 'left: 0'
-      fullscreen()
-  }
-  iframes[++appearedIframesCounter - 1].src =
-    urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
-  if (appearedIframesCounter == 3) fullscreen()
-  event.target.value = ''
-  if (appearedIframesCounter > 3)
-    fullscreen(),
-    event.target.remove(),
-    appearedIframesCounter = undefined
-})
 document.addEventListener('keydown', event => event.key.toLowerCase() == 'f' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
