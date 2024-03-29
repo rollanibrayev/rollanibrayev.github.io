@@ -43,3 +43,7 @@ const toggleSound = iframeNumbers => {
 }
 const isEqualToOr = (value, case1, case2) => value == case1 || value == case2
 const isEqual = (value, pattern) => new RegExp(`^[${pattern}]$`).test(value)
+const fullsize = iframeNumber => {
+  const iframe = iframes[iframeNumber]
+  iframe.style += style
+}
