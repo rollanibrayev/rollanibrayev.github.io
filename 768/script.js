@@ -38,25 +38,6 @@ const toggle = event => {
     ? document.exitFullscreen()
     : document.body.requestFullscreen()
 }
-
-const leftCoordinate = 'calc(32000vw/683)'
-const topCoordinate = 'calc(18000vw/683)'
-const iframesCoordinatesStyles = {
-  0: { left: 0,              top: 0 },
-  1: { left: leftCoordinate, top: 0 },
-  2: { left: 0,              top: topCoordinate },
-  3: { left: leftCoordinate, top: topCoordinate }
-}
-
-let mouseDownedIframeNumber
-const smallInputMouseUp = iframeNumber => {
-  if (mouseDownedIframeNumber == iframeNumber) return
-    iframes[iframeNumber].style.left = iframesCoordinatesStyles[iframeNumber].left
-    iframes[iframeNumber].style.top = iframesCoordinatesStyles[iframeNumber].top
-    iframes[mouseDownedIframeNumber].style.left = iframesCoordinatesStyles[mouseDownedIframeNumber].left
-    iframes[mouseDownedIframeNumber].style.top = iframesCoordinatesStyles[mouseDownedIframeNumber].top
-    mouseDownedIframeNumber = undefined
-}
 const smallInput = (event, iframeNumber) => {
   const value = event.target.value
   const iframe = iframes[iframeNumber]
@@ -103,6 +84,15 @@ const smallInput = (event, iframeNumber) => {
         iframe.src = sm + urlConfig.quality.high + urlConfig.middle2 + extractChannel(value)
   }
   event.target.value = ''
+}
+
+let mouseDownedIframeNumber
+const smallInputMouseUp = iframeNumber => {
+  if (mouseDownedIframeNumber == iframeNumber) return
+  const mouseUppedIframeSrc = iframes[iframeNumber].src
+  iframes[iframeNumber].src = iframes[mouseDownedIframeNumber].src
+  iframes[mouseDownedIframeNumber].src = mouseUppedIframeSrc
+  mouseDownedIframeNumber = undefined
 }
 
 inputs.forEach(
