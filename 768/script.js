@@ -56,15 +56,22 @@ iframes[1].style = `left: ${leftCoordinate}`
 iframes[2].style = `top: ${topCoordinate}`
 iframes[3].style = `left: ${leftCoordinate}; top: ${topCoordinate}`
 
-let mouseDownedIframeNumber
+let mouseDownedQuarter
 inputs.forEach(
   (input, index) => {
-    input.addEventListener('mousedown', () => mouseDownedIframeNumber = index )
+    input.addEventListener('mousedown', () => mouseDownedQuarter = index )
     input.addEventListener('mouseup', () => {
-      if (mouseDownedIframeNumber == index) return
-      const mouseUppedIframeStyle = iframes[index].style
-      iframes[index].style = iframes[mouseDownedIframeNumber].style
-      iframes[mouseDownedIframeNumber].style = mouseUppedIframeStyle
+      if (mouseDownedQuarter == index) return
+      const mouseUppedQuarterLeftCoordinate = iframes[index].style.left
+      const mouseUppedQuarterTopCoordinate = iframes[index].style.top
+      iframes[index].style.left = iframes[mouseDownedQuarter].style.left
+      iframes[index].style.top = iframes[mouseDownedQuarter].style.top
+      inputs[index].style.left = inputs[mouseDownedQuarter].style.left
+      inputs[index].style.top = inputs[mouseDownedQuarter].style.top
+      iframes[mouseDownedQuarter].style.left = mouseUppedQuarterLeftCoordinate
+      iframes[mouseDownedQuarter].style.top = mouseUppedQuarterTopCoordinate
+      inputs[mouseDownedQuarter].style.left = mouseUppedQuarterLeftCoordinate
+      inputs[mouseDownedQuarter].style.top = mouseUppedQuarterTopCoordinate
     })
     input.addEventListener('input', event => {
       const value = event.target.value
