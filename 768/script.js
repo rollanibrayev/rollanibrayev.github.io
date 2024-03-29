@@ -80,7 +80,7 @@ const smallInput = (event, iframeNumber) => {
       iframe.removeAttribute('src')
       break
     default:
-      if (value.length > 1)
+      if (value[1])
         iframe.src = sm + urlConfig.quality.high + urlConfig.middle2 + extractChannel(value)
   }
   event.target.value = ''
