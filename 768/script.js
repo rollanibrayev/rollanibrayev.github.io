@@ -39,13 +39,13 @@ const toggle = event => {
     : document.body.requestFullscreen()
 }
 
-const left = 'calc(32000vw/683)'
-const top = 'calc(18000vw/683)'
+const leftCoordinate = 'calc(32000vw/683)'
+const topCoordinate = 'calc(18000vw/683)'
 const iframesCoordinatesStyles = {
-  0: { left: 0,    top: 0 },
-  1: { left: left, top: 0 },
-  2: { left: 0,    top: top },
-  3: { left: left, top: top }
+  0: { left: 0,              top: 0 },
+  1: { left: leftCoordinate, top: 0 },
+  2: { left: 0,              top: topCoordinate },
+  3: { left: leftCoordinate, top: topCoordinate }
 }
 
 let mouseDownedIframeNumber
