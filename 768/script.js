@@ -38,68 +38,78 @@ const toggle = event => {
     ? document.exitFullscreen()
     : document.body.requestFullscreen()
 }
-const smallInput = (event, iframeNumber) => {
-  const value = event.target.value
-  const iframe = iframes[iframeNumber]
-  const src = iframe.src
-  const i9 = urlConfig.middle2 + src.slice(91)
-  const i8 = urlConfig.middle2 + src.slice(80)
-  const sm = urlConfig.start + urlConfig.muted
-  switch (value.toLowerCase()) {
-    case 'm':
-      iframe.src =
-        isMuted(src)
-        ? urlConfig.start + src.slice(37)
-        : sm + src.slice(26)
-      break
-    case 'q':
-      iframe.src =
-        isLowerQuality(src)
-        ? isMuted(src)
-          ? sm + urlConfig.quality.high + i9
-          : urlConfig.start + urlConfig.quality.high + i8
-        : isMuted(src)
-          ? sm + urlConfig.quality.low + i9
-          : urlConfig.start + urlConfig.quality.low + i8
-      break
-    case 'c':
-      window.open(
-        `https://www.twitch.tv/popout/${
-          isMuted(src) ? src.slice(91) : src.slice(80)
-        }/chat`,
-        '_blank'
-      )
-      break
-    case 'r':
-      iframes.forEach(iframe => iframe.src = iframe.src)
-      break
-    case 'k':
-      iframe.src = iframe.src
-      break
-    case 'd':
-      iframe.removeAttribute('src')
-      break
-    default:
-      if (value[1])
-        iframe.src = sm + urlConfig.quality.high + urlConfig.middle2 + extractChannel(value)
-  }
-  event.target.value = ''
+
+const left = 'calc(32000vw/683)'
+const top = 'calc(18000vw/683)'
+const iframesCoordinatesStyles = {
+  0: { left: 0,    top: 0 },
+  1: { left: left, top: 0 },
+  2: { left: 0,    top: top },
+  3: { left: left, top: top }
 }
 
 let mouseDownedIframeNumber
-const smallInputMouseUp = iframeNumber => {
-  if (mouseDownedIframeNumber == iframeNumber) return
-  const mouseUppedIframeSrc = iframes[iframeNumber].src
-  iframes[iframeNumber].src = iframes[mouseDownedIframeNumber].src
-  iframes[mouseDownedIframeNumber].src = mouseUppedIframeSrc
-  mouseDownedIframeNumber = undefined
-}
 
 inputs.forEach(
   (input, index) => {
-    input.addEventListener('mousedown', () => mouseDownedIframeNumber = index )
-    input.addEventListener('mouseup', () => smallInputMouseUp(index))
-    input.addEventListener('input', event => smallInput(event, index))
+    input.addEventListener('mousedown', () => {
+      mouseDownedIframeNumber = index
+    } )
+    input.addEventListener('mouseup', () => {
+      if (mouseDownedIframeNumber == index) return
+      iframes[index].style.left = iframesCoordinatesStyles[index].left
+      iframes[index].style.top = iframesCoordinatesStyles[index].top
+      iframes[mouseDownedIframeNumber].style.left = iframesCoordinatesStyles[mouseDownedIframeNumber].left
+      iframes[mouseDownedIframeNumber].style.top = iframesCoordinatesStyles[mouseDownedIframeNumber].top
+      mouseDownedIframeNumber = undefined
+    })
+    input.addEventListener('input', event => {
+      const value = event.target.value
+      const iframe = iframes[index]
+      const src = iframe.src
+      const i9 = urlConfig.middle2 + src.slice(91)
+      const i8 = urlConfig.middle2 + src.slice(80)
+      const sm = urlConfig.start + urlConfig.muted
+      switch (value.toLowerCase()) {
+        case 'm':
+          iframe.src =
+            isMuted(src)
+            ? urlConfig.start + src.slice(37)
+            : sm + src.slice(26)
+          break
+        case 'q':
+          iframe.src =
+            isLowerQuality(src)
+            ? isMuted(src)
+              ? sm + urlConfig.quality.high + i9
+              : urlConfig.start + urlConfig.quality.high + i8
+            : isMuted(src)
+              ? sm + urlConfig.quality.low + i9
+              : urlConfig.start + urlConfig.quality.low + i8
+          break
+        case 'c':
+          window.open(
+            `https://www.twitch.tv/popout/${
+              isMuted(src) ? src.slice(91) : src.slice(80)
+            }/chat`,
+            '_blank'
+          )
+          break
+        case 'r':
+          iframes.forEach(iframe => iframe.src = iframe.src)
+          break
+        case 'k':
+          iframe.src = iframe.src
+          break
+        case 'd':
+          iframe.removeAttribute('src')
+          break
+        default:
+          if (value[1])
+            iframe.src = sm + urlConfig.quality.high + urlConfig.middle2 + extractChannel(value)
+      }
+      event.target.value = ''
+    })
   }
 )
 
