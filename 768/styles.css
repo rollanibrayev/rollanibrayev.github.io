@@ -4,23 +4,20 @@
 }
 body {
   margin: 0;
-  background-color: 000
-}
-body::-webkit-scrollbar{
-  width: 0;
-  height: 0
+  background-color: 000;
+  overflow: hidden
 }
 iframe {
   width: var(--half-width);
   height: var(--half-height);
   border: 0;
-  position: absolute
+  position: absolute;
+  z-index: 1
 }
-iframe:nth-of-type(1) { z-index: 1 }
-iframe:nth-of-type(2) { left:      var(--half-width)     ;      top: var(--half-height); transform: translateY(-50%) }
-iframe:nth-of-type(3) { left: calc(var(--half-width) / 2);      top: var(--half-height) }
-iframe:nth-of-type(4) { left:      var(--half-width)     ;      top: var(--half-height) }
 input {
+  z-index: 2;
+  width: var(--half-width);
+  height: var(--half-height);
   position: absolute;
   border: 0;
   background-color: transparent;
@@ -29,16 +26,12 @@ input {
   caret-color: transparent;
   padding: 0
 }
-input:nth-of-type(1) { z-index: 2; width: var(--half-width); height: var(--half-height) }
-input:nth-of-type(2) { z-index: 2; width: var(--half-width); height: var(--half-height) }
-input:nth-of-type(3) { z-index: 2; width: var(--half-width); height: var(--half-height) }
-input:nth-of-type(4) { z-index: 2; width: var(--half-width); height: var(--half-height) }
 input:nth-of-type(5) {
+  z-index: 3;
   width: 100vw;
   height: 100vh;
   font-size: 5.5vh;
   font-family: Calibri;
-  text-align: center;
-  z-index: 3
+  text-align: center
 }
 ::placeholder { color: 808080 }
