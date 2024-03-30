@@ -4,16 +4,12 @@ body {
   overflow: hidden
 }
 iframe {
-  width: var(--half-width);
-  height: var(--half-height);
   border: 0;
   position: absolute;
   z-index: 1
 }
 input {
   z-index: 2;
-  width: var(--half-width);
-  height: var(--half-height);
   position: absolute;
   border: 0;
   background-color: transparent;
