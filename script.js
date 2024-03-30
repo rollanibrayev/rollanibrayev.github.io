@@ -89,14 +89,14 @@ inputs.forEach(
       const i9 = urlConfig.middle2 + src.slice(91)
       const i8 = urlConfig.middle2 + src.slice(80)
       const sm = urlConfig.start + urlConfig.muted
-      switch (value.toLowerCase()) {
-        case 'm':
+      switch (value.toUpperCase()) {
+        case 'M':
           iframe.src =
             isMuted(src)
             ? urlConfig.start + src.slice(37)
             : sm + src.slice(26)
           break
-        case 'q':
+        case 'Q':
           iframe.src =
             isLowerQuality(src)
             ? isMuted(src)
@@ -106,7 +106,7 @@ inputs.forEach(
               ? sm + urlConfig.quality.low + i9
               : urlConfig.start + urlConfig.quality.low + i8
           break
-        case 'c':
+        case 'C':
           window.open(
             `https://www.twitch.tv/popout/${
               isMuted(src) ? src.slice(91) : src.slice(80)
@@ -114,13 +114,13 @@ inputs.forEach(
             '_blank'
           )
           break
-        case 'r':
+        case 'R':
           iframes.forEach(iframe => iframe.src = iframe.src)
           break
-        case 'k':
+        case 'K':
           iframe.src = iframe.src
           break
-        case 'd':
+        case 'D':
           iframe.removeAttribute('src')
           break
         default:
@@ -131,5 +131,5 @@ inputs.forEach(
     })
   }
 )
-document.addEventListener('keydown', event => event.key.toLowerCase() == 'f' ? toggle(event) :1)
+document.addEventListener('keydown', event => event.key.toUpperCase() == 'F' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
