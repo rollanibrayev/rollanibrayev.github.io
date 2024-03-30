@@ -5,12 +5,10 @@ iframes.forEach(iframe => {
   iframe.style.height = topCoordinate
 })
 const inputs = document.querySelectorAll('input')
-inputs.forEach(input => {
+inputs.slice(0, 4).forEach(input => {
   input.style.width = leftCoordinate
   input.style.height = topCoordinate
 })
-input[4].style.width = '100vw'
-input[4].style.height = '100vh'
 const urlConfig = {
   start: 'https://player.twitch.tv/?',
   muted: 'muted=true&',
