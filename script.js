@@ -8,7 +8,8 @@ iframes.forEach(iframe => {
   iframe.style.height = topCoordinate
 })
 const inputs = document.querySelectorAll('input')
-inputs.forEach(input => {
+inputs.forEach((input, index) => {
+  if (index > 3) return
   input.style.width = leftCoordinate
   input.style.height = topCoordinate
 })
