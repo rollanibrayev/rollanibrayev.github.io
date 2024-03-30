@@ -19,6 +19,8 @@ input {
   padding: 0
 }
 input:nth-of-type(5) {
+  width: 100vw;
+  height: 100vh;
   z-index: 3;
   font-size: 5.5vh;
   font-family: Calibri;
