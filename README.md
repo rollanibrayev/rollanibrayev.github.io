@@ -1,4 +1,4 @@
-- drag 4 twitch thumbnails to anywhere on the screen
+- drag 4 twitch stream thumbnails to anywhere on the screen
 - now you can
 - - change positions of the streams by dragging them onto each other
 - - change streams by dragging a thumbnail to the stream you want to replace
