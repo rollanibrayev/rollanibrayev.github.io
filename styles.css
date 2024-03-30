@@ -20,8 +20,6 @@ input {
 }
 input:nth-of-type(5) {
   z-index: 3;
-  width: 100vw;
-  height: 100vh;
   font-size: 5.5vh;
   font-family: Calibri;
   text-align: center
