@@ -4,15 +4,11 @@ const inputs = document.querySelectorAll('input')
 const urlConfig = {
   start: 'https://player.twitch.tv/?',
   muted: 'muted=true&',
-  quality: {
-    low: 'quality=360p30&',
-    high: 'quality=720p60&'
-  },
   middle2: 'parent=rollanibrayev.github.io&channel='
 }
 const isMuted = src => src[26] == 'm' ? 1 : 0
 const isLowerQuality = url => {
-  const indicator = urlConfig.quality.low[8]
+  const indicator = quality.low[8]
   return isMuted(url)
   ? url[45] == indicator
     ? 1
@@ -22,10 +18,6 @@ const isLowerQuality = url => {
     : 0
 }
 const extractChannel = url => url.split('/').pop()
-const fullsize = iframeNumber => {
-  const iframe = iframes[iframeNumber]
-  iframe.style += style
-}
 const fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() :1
 const toggle = event => {
   event.preventDefault()
@@ -34,20 +26,17 @@ const toggle = event => {
   : document.body.requestFullscreen()
 }
 
-
 inputs[4].addEventListener('input', event => {
   fullscreen()
   if (appearedIframesCounter < 1) event.target.removeAttribute('placeholder')
   iframes[++appearedIframesCounter - 1].src =
-    urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
+    urlConfig.start + urlConfig.muted + quality.high + urlConfig.middle2 + extractChannel(event.target.value)
   event.target.value = ''
   if (appearedIframesCounter > 3)
     event.target.remove(),
     appearedIframesCounter = undefined
 })
 
-const leftCoordinate = 'calc(32000vw/683)'
-const topCoordinate = 'calc(18000vw/683)'
 
 iframes[1].style.left = leftCoordinate
 iframes[2].style.top = topCoordinate
@@ -94,11 +83,11 @@ inputs.forEach(
           iframe.src =
             isLowerQuality(src)
             ? isMuted(src)
-              ? sm + urlConfig.quality.high + i9
-              : urlConfig.start + urlConfig.quality.high + i8
+              ? sm + quality.high + i9
+              : urlConfig.start + quality.high + i8
             : isMuted(src)
-              ? sm + urlConfig.quality.low + i9
-              : urlConfig.start + urlConfig.quality.low + i8
+              ? sm + quality.low + i9
+              : urlConfig.start + quality.low + i8
           break
         case 'c':
           window.open(
@@ -119,7 +108,7 @@ inputs.forEach(
           break
         default:
           if (value[1])
-            iframe.src = sm + urlConfig.quality.high + urlConfig.middle2 + extractChannel(value)
+            iframe.src = sm + quality.high + urlConfig.middle2 + extractChannel(value)
       }
       event.target.value = ''
     })
