@@ -47,3 +47,8 @@ const fullsize = iframeNumber => {
   const iframe = iframes[iframeNumber]
   iframe.style += style
 }
+
+const fullsize = iframeNumber => {
+  const iframe = iframes[iframeNumber]
+  iframe.style += style
+}
