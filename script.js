@@ -13,8 +13,6 @@ inputs.forEach((input, index) => {
   input.style.width = leftCoordinate
   input.style.height = topCoordinate
 })
-inputs[4].style.width = '100vw'
-inputs[4].style.height = '100vh'
 const urlConfig = {
   start: 'https://player.twitch.tv/?',
   muted: 'muted=true&',
