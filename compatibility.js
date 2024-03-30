@@ -1,6 +1,7 @@
-const leftCoordinate = 'calc(32000vw/683)'
-const topCoordinate = 'calc(18000vw/683)'
+const is768 = window.screen.height == 768
+const leftCoordinate = `calc(${is768 ? '32000vw/683' : '50vw'})`
+const topCoordinate = `calc(${is768 ? '18000vw/683' : '28.125vw'})`
 const quality = {
-  low: 'quality=360p30&',
-  high: 'quality=720p60&'
+  low: `quality=${is768 ? '360p30' : '720p60'}&`,
+  high: `quality=${is768 ? '720p60' : '1080p60'}&`
 }
