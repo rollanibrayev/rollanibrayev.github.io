@@ -4,7 +4,7 @@
 - - change streams by dragging a thumbnail to the stream you want to replace
 - - after clicking on a stream you can
 - - - press M to unmute/mute
+- - - press C to open the stream's chat
 - - - press Q to decrease/increase quality of the stream
 - - - press R to refresh all the streams
 - - - press K to refresh a stream
-- - - press C to open the stream's chat
