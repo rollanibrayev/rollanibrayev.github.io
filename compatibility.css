@@ -1,0 +1,4 @@
+:root {
+  --half-width: calc(32000vw/683);
+  --half-height: calc(18000vw/683)
+}
