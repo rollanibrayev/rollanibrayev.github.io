@@ -1,6 +1,6 @@
 - drag 4 twitch stream thumbnails to anywhere on the screen
 - now you can
-- - change positions of the streams by dragging them onto each other
+- - switch positions of the streams by dragging them onto each other
 - - change streams by dragging a thumbnail to the stream you want to replace
 - - after clicking on a stream you can press
 - - - M to unmute/mute
