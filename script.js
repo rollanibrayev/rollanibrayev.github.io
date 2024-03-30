@@ -34,7 +34,6 @@ const isLowerQuality = url => {
     : 0
 }
 const extractChannel = url => url.split('/').pop()
-const fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() :1
 const toggle = event => {
   event.preventDefault()
   document.fullscreenElement
@@ -43,7 +42,7 @@ const toggle = event => {
 }
 
 inputs[4].addEventListener('input', event => {
-  fullscreen()
+  document.body.requestFullscreen()
   if (appearedIframesCounter < 1) event.target.removeAttribute('placeholder')
   iframes[++appearedIframesCounter - 1].src =
     urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
