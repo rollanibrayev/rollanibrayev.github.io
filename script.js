@@ -21,7 +21,6 @@ const urlConfig = {
     high: `quality=${is768 ? '720p60' : 'chunked'}&`
   },
   middle2: 'parent=rollanibrayev.github.io&channel='
-  
 }
 const isMuted = src => src[26] == 'm' ? 1 : 0
 const isLowerQuality = url => {
