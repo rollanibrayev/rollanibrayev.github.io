@@ -8,3 +8,4 @@
 - - - Q to decrease/increase quality of the stream
 - - - R to refresh all the streams
 - - - K to refresh a stream
+- press F or double click the screen to enter/exit fullscreen
