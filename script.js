@@ -35,14 +35,14 @@ const isLowerQuality = url => {
 }
 const extractChannel = url => url.split('/').pop()
 const toggle = event => {
-  if (event) event.preventDefault()
+  event.preventDefault()
   document.fullscreenElement
   ? document.exitFullscreen()
   : document.body.requestFullscreen()
 }
-
+const fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() : null
 inputs[4].addEventListener('input', event => {
-  document.body.requestFullscreen()
+  fullscreen()
   if (appearedIframesCounter < 1) event.target.removeAttribute('placeholder')
   iframes[++appearedIframesCounter - 1].src =
     urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
