@@ -19,7 +19,7 @@ const urlConfig = {
   muted: 'muted=true&',
   quality: {
     low: `quality=${is768 ? '360p30' : '720p60'}&`,
-    high: `quality=${is768 ? '720p60' : '1080p60'}&`
+    high: `quality=${is768 ? '720p60' : 'chunked'}&`
   },
   middle2: 'parent=rollanibrayev.github.io&channel='
   
