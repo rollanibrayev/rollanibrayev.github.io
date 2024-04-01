@@ -9,7 +9,7 @@ iframes.forEach(iframe => {
 })
 const inputs = document.querySelectorAll('input')
 inputs.forEach((input, index) => {
-  if (index > 3) return
+  if (index > inputs.length - 2) return
   input.style.width = leftCoordinate
   input.style.height = topCoordinate
 })
@@ -86,6 +86,8 @@ inputs.forEach(
       const i9 = urlConfig.middle2 + src.slice(91)
       const i8 = urlConfig.middle2 + src.slice(80)
       const sm = urlConfig.start + urlConfig.muted
+      const l = urlConfig.quality.low
+      const h = urlConfig.quality.high
       switch (value.toUpperCase()) {
         case 'M':
           iframe.src =
@@ -97,11 +99,11 @@ inputs.forEach(
           iframe.src =
             isLowerQuality(src)
             ? isMuted(src)
-              ? sm + urlConfig.quality.high + i9
-              : urlConfig.start + urlConfig.quality.high + i8
+              ? sm + h + i9
+              : urlConfig.start + h + i8
             : isMuted(src)
-              ? sm + urlConfig.quality.low + i9
-              : urlConfig.start + urlConfig.quality.low + i8
+              ? sm + l + i9
+              : urlConfig.start + l + i8
           break
         case 'C':
           window.open(
