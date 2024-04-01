@@ -52,7 +52,7 @@ const toggle = event => {
 }
 const fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() : null
 inputs[4].addEventListener('input', event => {
-  fullscreen()
+  if (appearedIframesCounter > 1) fullscreen()
   if (appearedIframesCounter < 1) event.target.removeAttribute('placeholder')
   iframes[++appearedIframesCounter - 1].src =
     urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
