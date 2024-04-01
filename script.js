@@ -78,7 +78,6 @@ inputs.forEach(
       iframes[mouseDownedQuarter].style.top = mouseUppedQuarterTopCoordinate
       inputs[mouseDownedQuarter].style.left = mouseUppedQuarterLeftCoordinate
       inputs[mouseDownedQuarter].style.top = mouseUppedQuarterTopCoordinate
-      mouseDownedQuarter = undefined
     })
     input.addEventListener('input', event => {
       const value = event.target.value
@@ -131,3 +130,4 @@ inputs.forEach(
 )
 document.addEventListener('keydown', event => event.key.toUpperCase() == 'F' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
+document.addEventListener('mousedown', () => mouseDownedQuarter = undefined)
