@@ -7,7 +7,7 @@
 - - - M to unmute/mute
 - - - C to open the stream's chat
 - - - Q to decrease/increase quality of the stream
-- - - R to refresh all the streams
-- - - K to refresh a stream
+- - - R to reload all streams
+- - - K to reload the stream
 - - - D to remove the stream
 - press F or double click the screen to enter/exit fullscreen
