@@ -13,6 +13,16 @@ inputs.forEach((input, index) => {
   input.style.width = leftCoordinate
   input.style.height = topCoordinate
 })
+
+iframes[1].style.left = leftCoordinate
+iframes[2].style.top = topCoordinate
+iframes[3].style.left = leftCoordinate
+iframes[3].style.top = topCoordinate
+inputs[1].style.left = leftCoordinate
+inputs[2].style.top = topCoordinate
+inputs[3].style.left = leftCoordinate
+inputs[3].style.top = topCoordinate
+
 const urlConfig = {
   start: 'https://player.twitch.tv/?',
   muted: 'muted=true&',
@@ -52,32 +62,22 @@ inputs[4].addEventListener('input', event => {
     appearedIframesCounter = undefined
 })
 
-
-iframes[1].style.left = leftCoordinate
-iframes[2].style.top = topCoordinate
-iframes[3].style.left = leftCoordinate
-iframes[3].style.top = topCoordinate
-inputs[1].style.left = leftCoordinate
-inputs[2].style.top = topCoordinate
-inputs[3].style.left = leftCoordinate
-inputs[3].style.top = topCoordinate
-
-let mouseDownedQuarter
+let mouseDownedInput
 inputs.forEach(
   (input, index) => {
-    input.addEventListener('mousedown', () => mouseDownedQuarter = index )
+    input.addEventListener('mousedown', () => mouseDownedInput = index )
     input.addEventListener('mouseup', () => {
-      if (mouseDownedQuarter == index) return
+      if (mouseDownedInput == index) return
       const mouseUppedQuarterLeftCoordinate = iframes[index].style.left
       const mouseUppedQuarterTopCoordinate = iframes[index].style.top
-      iframes[index].style.left = iframes[mouseDownedQuarter].style.left
-      iframes[index].style.top = iframes[mouseDownedQuarter].style.top
-      inputs[index].style.left = inputs[mouseDownedQuarter].style.left
-      inputs[index].style.top = inputs[mouseDownedQuarter].style.top
-      iframes[mouseDownedQuarter].style.left = mouseUppedQuarterLeftCoordinate
-      iframes[mouseDownedQuarter].style.top = mouseUppedQuarterTopCoordinate
-      inputs[mouseDownedQuarter].style.left = mouseUppedQuarterLeftCoordinate
-      inputs[mouseDownedQuarter].style.top = mouseUppedQuarterTopCoordinate
+      iframes[index].style.left = iframes[mouseDownedInput].style.left
+      iframes[index].style.top = iframes[mouseDownedInput].style.top
+      inputs[index].style.left = inputs[mouseDownedInput].style.left
+      inputs[index].style.top = inputs[mouseDownedInput].style.top
+      iframes[mouseDownedInput].style.left = mouseUppedQuarterLeftCoordinate
+      iframes[mouseDownedInput].style.top = mouseUppedQuarterTopCoordinate
+      inputs[mouseDownedInput].style.left = mouseUppedQuarterLeftCoordinate
+      inputs[mouseDownedInput].style.top = mouseUppedQuarterTopCoordinate
     })
     input.addEventListener('input', event => {
       const value = event.target.value
@@ -132,4 +132,4 @@ inputs.forEach(
 )
 document.addEventListener('keydown', event => event.key.toUpperCase() == 'F' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
-document.addEventListener('mousedown', () => mouseDownedQuarter = undefined)
+document.addEventListener('mousedown', () => mouseDownedInput = undefined)
