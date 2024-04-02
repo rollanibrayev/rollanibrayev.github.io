@@ -57,7 +57,7 @@ inputs[4].addEventListener('input', event => {
   iframes[++appearedIframesCounter - 1].src =
     urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
   event.target.value = ''
-  if (appearedIframesCounter > 3)
+  if (appearedIframesCounter > iframes.length - 1)
     event.target.remove(),
     appearedIframesCounter = undefined
 })
