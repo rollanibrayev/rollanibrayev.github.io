@@ -1,6 +1,6 @@
 const is768 = window.screen.height == 768
-const leftCoordinate = `calc(${is768 ? '32000vw/683' : '50vw'})`
-const topCoordinate = `calc(${is768 ? '18000vw/683' : '28.125vw'})`
+const leftCoordinate = `calc(${ is768 ? '32000vw/683' : '50vw' })`
+const topCoordinate = `calc(${ is768 ? '18000vw/683' : '28.125vw' })`
 let appearedIframesCounter = 0
 const iframes = document.querySelectorAll('iframe')
 iframes.forEach(iframe => {
@@ -27,8 +27,8 @@ const urlConfig = {
   start: 'https://player.twitch.tv/?',
   muted: 'muted=true&',
   quality: {
-    low: `quality=${is768 ? '360p30' : '720p60'}&`,
-    high: `quality=${is768 ? '720p60' : 'chunked'}&`
+    low: `quality=${ is768 ? '360p30' : '720p60' }&`,
+    high: `quality=${ is768 ? '720p60' : 'chunked' }&`
   },
   middle2: 'parent=rollanibrayev.github.io&channel='
 }
