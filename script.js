@@ -132,4 +132,4 @@ inputs.forEach(
 )
 document.addEventListener('keydown', event => event.key.toUpperCase() == 'F' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
-document.addEventListener('mousedown', () => mouseDownedInput = undefined)
+document.addEventListener('mouseup', () => mouseDownedInput = undefined)
