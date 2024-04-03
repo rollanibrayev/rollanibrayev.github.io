@@ -58,8 +58,7 @@ inputs[4].addEventListener('input', event => {
     urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
   event.target.value = ''
   if (appearedIframesCounter > iframes.length - 1)
-    event.target.remove(),
-    appearedIframesCounter = undefined
+    event.target.remove()
 })
 
 let mouseDownedInput
@@ -132,4 +131,3 @@ inputs.forEach(
 )
 document.addEventListener('keydown', event => event.key.toUpperCase() == 'F' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
-document.addEventListener('mouseup', () => mouseDownedInput = undefined)
