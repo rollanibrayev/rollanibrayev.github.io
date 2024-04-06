@@ -43,7 +43,7 @@ const isLowerQuality = url => {
     ? 1
     : 0
 }
-const extractChannel = url => url.split('/').pop()
+const extractChannel = url => url.slice(22)
 const toggle = event => {
   event.preventDefault()
   document.fullscreenElement
