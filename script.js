@@ -19,8 +19,8 @@ inputs[3].style.top = topCoordinate
 
 const start = 'https://player.twitch.tv/?'
 const muted = 'muted=true&'
-const low = `quality=${ is768 ? '360p30' : '720p60' }&`
-const high = `quality=${ is768 ? '720p60' : 'chunked' }&`
+const low = `quality=${ is768 ? '360p30&' : '720p60&' }&`
+const high = `quality=${ is768 ? '720p60&' : 'chunked' }&`
 const middle = 'parent=rollanibrayev.github.io&channel='
 
 let appearedIframesCounter = 0
@@ -81,26 +81,18 @@ inputs.forEach( (input, index) => {
         iframe.src =
           isLowerQuality(src)
           ? isMuted(src)
-            ? start + muted + high + middle + src.slice(is768 ? 91 : 92)
-            : start + high + middle + src.slice(is768 ? 80 : 81)
+            ? start + muted + high + middle + src.slice(92)
+            : start + high + middle + src.slice(81)
           : isMuted(src)
-            ? start + muted + low + middle + src.slice(is768 ? 91 : 92)
-            : start + low + middle + src.slice(is768 ? 80 : 81)
+            ? start + muted + low + middle + src.slice(92)
+            : start + low + middle + src.slice(81)
         break
       case 'C':
         window.open(
           `https://www.twitch.tv/popout/${
             isMuted(src)
-            ? src.slice(
-              !is768 && !isLowerQuality(src)
-              ? 92
-              : 91
-            )
-            : src.slice(
-              !is768 && !isLowerQuality(src)
-              ? 81
-              : 80
-            )
+            ? src.slice(92)
+            : src.slice(81)
           }/chat`,
           '_blank'
         )
