@@ -91,8 +91,16 @@ inputs.forEach( (input, index) => {
         window.open(
           `https://www.twitch.tv/popout/${
             isMuted(src)
-            ? src.slice(is768 ? 91 : 92)
-            : src.slice(is768 ? 80 : 81)
+            ? src.slice(
+              !is768 && !isLowerQuality(src)
+              ? 92
+              : 91
+            )
+            : src.slice(
+              !is768 && !isLowerQuality(src)
+              ? 81
+              : 80
+            )
           }/chat`,
           '_blank'
         )
