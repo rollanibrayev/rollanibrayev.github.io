@@ -28,7 +28,6 @@ const url = {
 }
 
 let appearedIframesCounter = 0
-let mouseDownedInputIndex
 inputs[4].addEventListener('input', event => {
   const fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() : null
   if (appearedIframesCounter > 1) fullscreen()
@@ -41,6 +40,7 @@ inputs[4].addEventListener('input', event => {
     event.target.remove()
 })
 
+let mouseDownedInputIndex
 inputs.forEach( (input, index) => {
   if (index > 3) return
   input.style.width = leftCoordinate
