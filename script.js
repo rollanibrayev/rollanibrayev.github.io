@@ -79,28 +79,20 @@ inputs.forEach( (input, index) => {
         break
       case 'Q':
         iframe.src =
-          is768
-          ? isLowerQuality(src)
-            ? isMuted(src)
-              ? start + muted + high + middle + src.slice(91)
-              : start + high + middle + src.slice(80)
-            : isMuted(src)
-              ? start + muted + low + middle + src.slice(91)
-              : start + low + middle + src.slice(80)
-          : isLowerQuality(src)
-            ? isMuted(src)
-              ? start + muted + high + middle + src.slice(92)
-              : start + high + middle + src.slice(81)
-            : isMuted(src)
-              ? start + muted + low + middle + src.slice(92)
-              : start + low + middle + src.slice(81)
+          isLowerQuality(src)
+          ? isMuted(src)
+            ? start + muted + high + middle + src.slice(is768 ? 91 : 92)
+            : start + high + middle + src.slice(is768 ? 80 : 81)
+          : isMuted(src)
+            ? start + muted + low + middle + src.slice(is768 ? 91 : 92)
+            : start + low + middle + src.slice(is768 ? 80 : 81)
         break
       case 'C':
         window.open(
           `https://www.twitch.tv/popout/${
-            is768
-            ? isMuted(src) ? src.slice(91) : src.slice(80)
-            : isMuted(src) ? src.slice(92) : src.slice(81)
+            isMuted(src)
+            ? src.slice(is768 ? 91 : 92)
+            : src.slice(is768 ? 80 : 81)
           }/chat`,
           '_blank'
         )
