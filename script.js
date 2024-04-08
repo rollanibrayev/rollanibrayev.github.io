@@ -44,26 +44,21 @@ inputs.forEach( (input, index) => {
   input.addEventListener('mousedown', () => mouseDownedInputIndex = index )
   input.addEventListener('mouseup', () => {
     if (mouseDownedInputIndex == index) return
-    const mouseUppedQuarterLeftCoordinate = iframes[index].style.left
-    const mouseUppedQuarterTopCoordinate = iframes[index].style.top
+    const mouseUppedInputLeftCoordinate = iframes[index].style.left
+    const mouseUppedInputTopCoordinate = iframes[index].style.top
     iframes[index].style.left = iframes[mouseDownedInputIndex].style.left
     iframes[index].style.top = iframes[mouseDownedInputIndex].style.top
     inputs[index].style.left = inputs[mouseDownedInputIndex].style.left
     inputs[index].style.top = inputs[mouseDownedInputIndex].style.top
-    iframes[mouseDownedInputIndex].style.left = mouseUppedQuarterLeftCoordinate
-    iframes[mouseDownedInputIndex].style.top = mouseUppedQuarterTopCoordinate
-    inputs[mouseDownedInputIndex].style.left = mouseUppedQuarterLeftCoordinate
-    inputs[mouseDownedInputIndex].style.top = mouseUppedQuarterTopCoordinate
+    iframes[mouseDownedInputIndex].style.left = mouseUppedInputLeftCoordinate
+    iframes[mouseDownedInputIndex].style.top = mouseUppedInputTopCoordinate
+    inputs[mouseDownedInputIndex].style.left = mouseUppedInputLeftCoordinate
+    inputs[mouseDownedInputIndex].style.top = mouseUppedInputTopCoordinate
   })
   input.addEventListener('input', event => {
     const value = event.target.value
     const iframe = iframes[index]
     const src = iframe.src
-    const i9 = middle + src.slice(91)
-    const i8 = middle + src.slice(80)
-    const sm = start + muted
-    const l = low
-    const h = high
     const isMuted = src => src[26] == 'm' ? 1 : 0
     const isLowerQuality = src => {
       const indicator = low[8]
@@ -80,17 +75,17 @@ inputs.forEach( (input, index) => {
         iframe.src =
           isMuted(src)
           ? start + src.slice(37)
-          : sm + src.slice(26)
+          : start + muted + src.slice(26)
         break
       case 'Q':
         iframe.src =
           isLowerQuality(src)
           ? isMuted(src)
-            ? sm + h + i9
-            : start + h + i8
+            ? start + muted + high + middle + src.slice(91)
+            : start + high + middle + src.slice(80)
           : isMuted(src)
-            ? sm + l + i9
-            : start + l + i8
+            ? start + muted + low + middle + src.slice(91)
+            : start + low + middle + src.slice(80)
         break
       case 'C':
         window.open(
@@ -111,7 +106,7 @@ inputs.forEach( (input, index) => {
         break
       default:
         if (value[1])
-          iframe.src = sm + high + middle + extractChannel(value)
+          iframe.src = start + muted + high + middle + extractChannel(value)
     }
     event.target.value = ''
   })
