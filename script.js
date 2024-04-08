@@ -98,7 +98,9 @@ inputs.forEach( (input, index) => {
       case 'C':
         window.open(
           `https://www.twitch.tv/popout/${
-            isMuted(src) ? src.slice(91) : src.slice(80)
+            is768
+            ? isMuted(src) ? src.slice(91) : src.slice(80)
+            : isMuted(src) ? src.slice(92) : src.slice(81)
           }/chat`,
           '_blank'
         )
