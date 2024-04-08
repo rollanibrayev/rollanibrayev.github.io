@@ -28,7 +28,7 @@ inputs[4].addEventListener('input', event => {
   const fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() : null
   if (appearedIframesCounter > 1) fullscreen()
   if (appearedIframesCounter < 1) event.target.removeAttribute('placeholder')
-  const extractChannel = link => link.slice(22)
+  const extractChannel = url => url.slice(22)
   iframes[++appearedIframesCounter - 1].src =
     start + muted + high + middle + extractChannel(event.target.value)
   event.target.value = ''
