@@ -8,11 +8,6 @@ iframes.forEach(iframe => {
   iframe.style.height = topCoordinate
 })
 const inputs = document.querySelectorAll('input')
-inputs.forEach((input, index) => {
-  if (index > inputs.length - 2) return
-  input.style.width = leftCoordinate
-  input.style.height = topCoordinate
-})
 
 iframes[1].style.left = leftCoordinate
 iframes[2].style.top = topCoordinate
@@ -61,6 +56,8 @@ inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter > iframes.length - 1)
     event.target.remove(),
     inputs.forEach( (input, index) => {
+      input.style.width = leftCoordinate
+      input.style.height = topCoordinate
       input.addEventListener('mousedown', () => mouseDownedInput = index )
       input.addEventListener('mouseup', () => {
         if (mouseDownedInput == index) return
