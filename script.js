@@ -17,7 +17,6 @@ inputs[2].style.top = topCoordinate
 inputs[3].style.left = leftCoordinate
 inputs[3].style.top = topCoordinate
 
-
 const url = {
   start: 'https://player.twitch.tv/?',
   muted: 'muted=true&',
