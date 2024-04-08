@@ -82,10 +82,10 @@ inputs.forEach( (input, index) => {
           isLowerQuality(src)
           ? isMuted(src)
             ? start + muted + high + middle + src.slice(is768 ? 92 : 91)
-            : start + high + middle + src.slice(is768 ? 81 : 80)
+            : start +         high + middle + src.slice(is768 ? 81 : 80)
           : isMuted(src)
             ? start + muted + low + middle + src.slice(is768 ? 91 : 92)
-            : start + low + middle + src.slice(is768 ? 80 : 81)
+            : start +         low + middle + src.slice(is768 ? 80 : 81)
         break
       case 'C':
         window.open(
