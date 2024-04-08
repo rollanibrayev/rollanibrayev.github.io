@@ -33,13 +33,13 @@ const urlConfig = {
   middle2: 'parent=rollanibrayev.github.io&channel='
 }
 const isMuted = src => src[26] == 'm' ? 1 : 0
-const isLowerQuality = url => {
+const isLowerQuality = src => {
   const indicator = urlConfig.quality.low[8]
-  return isMuted(url)
-  ? url[45] == indicator
+  return isMuted(src)
+  ? src[45] == indicator
     ? 1
     : 0
-  : url[34] == indicator
+  : src[34] == indicator
     ? 1
     : 0
 }
@@ -51,6 +51,7 @@ const toggle = event => {
   : document.body.requestFullscreen()
 }
 const fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() : null
+let mouseDownedInput
 inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter > 1) fullscreen()
   if (appearedIframesCounter < 1) event.target.removeAttribute('placeholder')
@@ -58,76 +59,72 @@ inputs[4].addEventListener('input', event => {
     urlConfig.start + urlConfig.muted + urlConfig.quality.high + urlConfig.middle2 + extractChannel(event.target.value)
   event.target.value = ''
   if (appearedIframesCounter > iframes.length - 1)
-    event.target.remove()
+    event.target.remove(),
+    inputs.forEach( (input, index) => {
+      input.addEventListener('mousedown', () => mouseDownedInput = index )
+      input.addEventListener('mouseup', () => {
+        if (mouseDownedInput == index) return
+        const mouseUppedQuarterLeftCoordinate = iframes[index].style.left
+        const mouseUppedQuarterTopCoordinate = iframes[index].style.top
+        iframes[index].style.left = iframes[mouseDownedInput].style.left
+        iframes[index].style.top = iframes[mouseDownedInput].style.top
+        inputs[index].style.left = inputs[mouseDownedInput].style.left
+        inputs[index].style.top = inputs[mouseDownedInput].style.top
+        iframes[mouseDownedInput].style.left = mouseUppedQuarterLeftCoordinate
+        iframes[mouseDownedInput].style.top = mouseUppedQuarterTopCoordinate
+        inputs[mouseDownedInput].style.left = mouseUppedQuarterLeftCoordinate
+        inputs[mouseDownedInput].style.top = mouseUppedQuarterTopCoordinate
+      })
+      input.addEventListener('input', event => {
+        const value = event.target.value
+        const iframe = iframes[index]
+        const src = iframe.src
+        const i9 = urlConfig.middle2 + src.slice(91)
+        const i8 = urlConfig.middle2 + src.slice(80)
+        const sm = urlConfig.start + urlConfig.muted
+        const l = urlConfig.quality.low
+        const h = urlConfig.quality.high
+        switch (value.toUpperCase()) {
+          case 'M':
+            iframe.src =
+              isMuted(src)
+              ? urlConfig.start + src.slice(37)
+              : sm + src.slice(26)
+            break
+          case 'Q':
+            iframe.src =
+              isLowerQuality(src)
+              ? isMuted(src)
+                ? sm + h + i9
+                : urlConfig.start + h + i8
+              : isMuted(src)
+                ? sm + l + i9
+                : urlConfig.start + l + i8
+            break
+          case 'C':
+            window.open(
+              `https://www.twitch.tv/popout/${
+                isMuted(src) ? src.slice(91) : src.slice(80)
+              }/chat`,
+              '_blank'
+            )
+            break
+          case 'R':
+            iframes.forEach(iframe => iframe.src = iframe.src)
+            break
+          case 'K':
+            iframe.src = iframe.src
+            break
+          case 'D':
+            iframe.removeAttribute('src')
+            break
+          default:
+            if (value[1])
+              iframe.src = sm + urlConfig.quality.high + urlConfig.middle2 + extractChannel(value)
+        }
+        event.target.value = ''
+      })
+    } )
 })
-
-let mouseDownedInput
-inputs.forEach(
-  (input, index) => {
-    input.addEventListener('mousedown', () => mouseDownedInput = index )
-    input.addEventListener('mouseup', () => {
-      if (mouseDownedInput == index) return
-      const mouseUppedQuarterLeftCoordinate = iframes[index].style.left
-      const mouseUppedQuarterTopCoordinate = iframes[index].style.top
-      iframes[index].style.left = iframes[mouseDownedInput].style.left
-      iframes[index].style.top = iframes[mouseDownedInput].style.top
-      inputs[index].style.left = inputs[mouseDownedInput].style.left
-      inputs[index].style.top = inputs[mouseDownedInput].style.top
-      iframes[mouseDownedInput].style.left = mouseUppedQuarterLeftCoordinate
-      iframes[mouseDownedInput].style.top = mouseUppedQuarterTopCoordinate
-      inputs[mouseDownedInput].style.left = mouseUppedQuarterLeftCoordinate
-      inputs[mouseDownedInput].style.top = mouseUppedQuarterTopCoordinate
-    })
-    input.addEventListener('input', event => {
-      const value = event.target.value
-      const iframe = iframes[index]
-      const src = iframe.src
-      const i9 = urlConfig.middle2 + src.slice(91)
-      const i8 = urlConfig.middle2 + src.slice(80)
-      const sm = urlConfig.start + urlConfig.muted
-      const l = urlConfig.quality.low
-      const h = urlConfig.quality.high
-      switch (value.toUpperCase()) {
-        case 'M':
-          iframe.src =
-            isMuted(src)
-            ? urlConfig.start + src.slice(37)
-            : sm + src.slice(26)
-          break
-        case 'Q':
-          iframe.src =
-            isLowerQuality(src)
-            ? isMuted(src)
-              ? sm + h + i9
-              : urlConfig.start + h + i8
-            : isMuted(src)
-              ? sm + l + i9
-              : urlConfig.start + l + i8
-          break
-        case 'C':
-          window.open(
-            `https://www.twitch.tv/popout/${
-              isMuted(src) ? src.slice(91) : src.slice(80)
-            }/chat`,
-            '_blank'
-          )
-          break
-        case 'R':
-          iframes.forEach(iframe => iframe.src = iframe.src)
-          break
-        case 'K':
-          iframe.src = iframe.src
-          break
-        case 'D':
-          iframe.removeAttribute('src')
-          break
-        default:
-          if (value[1])
-            iframe.src = sm + urlConfig.quality.high + urlConfig.middle2 + extractChannel(value)
-      }
-      event.target.value = ''
-    })
-  }
-)
 document.addEventListener('keydown', event => event.key.toUpperCase() == 'F' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
