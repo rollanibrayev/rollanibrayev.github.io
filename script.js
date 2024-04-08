@@ -17,15 +17,11 @@ inputs[2].style.top = topCoordinate
 inputs[3].style.left = leftCoordinate
 inputs[3].style.top = topCoordinate
 
-const url = {
-  start: 'https://player.twitch.tv/?',
-  muted: 'muted=true&',
-  quality: {
-    low: `quality=${ is768 ? '360p30' : '720p60' }&`,
-    high: `quality=${ is768 ? '720p60' : 'chunked' }&`
-  },
-  middle2: 'parent=rollanibrayev.github.io&channel='
-}
+const start = 'https://player.twitch.tv/?'
+const muted = 'muted=true&'
+const low = `quality=${ is768 ? '360p30' : '720p60' }&`
+const high = `quality=${ is768 ? '720p60' : 'chunked' }&`
+const middle = 'parent=rollanibrayev.github.io&channel='
 
 let appearedIframesCounter = 0
 inputs[4].addEventListener('input', event => {
@@ -34,7 +30,7 @@ inputs[4].addEventListener('input', event => {
   if (appearedIframesCounter < 1) event.target.removeAttribute('placeholder')
   const extractChannel = link => link.slice(22)
   iframes[++appearedIframesCounter - 1].src =
-    url.start + url.muted + url.quality.high + url.middle2 + extractChannel(event.target.value)
+    start + muted + high + middle + extractChannel(event.target.value)
   event.target.value = ''
   if (appearedIframesCounter > iframes.length - 1)
     event.target.remove()
@@ -63,14 +59,14 @@ inputs.forEach( (input, index) => {
     const value = event.target.value
     const iframe = iframes[index]
     const src = iframe.src
-    const i9 = url.middle2 + src.slice(91)
-    const i8 = url.middle2 + src.slice(80)
-    const sm = url.start + url.muted
-    const l = url.quality.low
-    const h = url.quality.high
+    const i9 = middle + src.slice(91)
+    const i8 = middle + src.slice(80)
+    const sm = start + muted
+    const l = low
+    const h = high
     const isMuted = src => src[26] == 'm' ? 1 : 0
     const isLowerQuality = src => {
-      const indicator = url.quality.low[8]
+      const indicator = low[8]
       return isMuted(src)
       ? src[45] == indicator
         ? 1
@@ -83,7 +79,7 @@ inputs.forEach( (input, index) => {
       case 'M':
         iframe.src =
           isMuted(src)
-          ? url.start + src.slice(37)
+          ? start + src.slice(37)
           : sm + src.slice(26)
         break
       case 'Q':
@@ -91,10 +87,10 @@ inputs.forEach( (input, index) => {
           isLowerQuality(src)
           ? isMuted(src)
             ? sm + h + i9
-            : url.start + h + i8
+            : start + h + i8
           : isMuted(src)
             ? sm + l + i9
-            : url.start + l + i8
+            : start + l + i8
         break
       case 'C':
         window.open(
@@ -115,7 +111,7 @@ inputs.forEach( (input, index) => {
         break
       default:
         if (value[1])
-          iframe.src = sm + url.quality.high + url.middle2 + extractChannel(value)
+          iframe.src = sm + high + middle + extractChannel(value)
     }
     event.target.value = ''
   })
