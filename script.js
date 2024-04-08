@@ -79,13 +79,21 @@ inputs.forEach( (input, index) => {
         break
       case 'Q':
         iframe.src =
-          isLowerQuality(src)
+          is768
+          ? isLowerQuality(src)
+            ? isMuted(src)
+              ? start + muted + high + middle + src.slice(91)
+              : start + high + middle + src.slice(80)
+            : isMuted(src)
+              ? start + muted + low + middle + src.slice(91)
+              : start + low + middle + src.slice(80)
+          : isLowerQuality(src)
           ? isMuted(src)
-            ? start + muted + high + middle + src.slice(91)
-            : start + high + middle + src.slice(80)
+            ? start + muted + high + middle + src.slice(92)
+            : start + high + middle + src.slice(81)
           : isMuted(src)
-            ? start + muted + low + middle + src.slice(91)
-            : start + low + middle + src.slice(80)
+            ? start + muted + low + middle + src.slice(92)
+            : start + low + middle + src.slice(81)
         break
       case 'C':
         window.open(
