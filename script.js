@@ -83,8 +83,8 @@ inputs.forEach( (input, index) => {
           middle +
           src.slice(
             isQualityChunked
-              ? isMuted ? 92 : 81
-              : isMuted ? 91 : 80
+            ? isMuted ? 92 : 81
+            : isMuted ? 91 : 80
           )
         break
       case 'C':
