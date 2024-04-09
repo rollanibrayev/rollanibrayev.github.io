@@ -68,6 +68,11 @@ inputs.forEach( (input, index) => {
       ? true
       : false
     const isQualityChunked = !is768 && !isLowerQuality
+    const channel = src.slice(
+      isQualityChunked
+      ? isMuted ? 92 : 81
+      : isMuted ? 91 : 80
+    )
     switch (value.toUpperCase()) {
       case 'M':
         iframe.src =
@@ -81,21 +86,11 @@ inputs.forEach( (input, index) => {
           (isMuted ? muted : '') +
           (isLowerQuality ? high : low) +
           middle +
-          src.slice(
-            isQualityChunked
-            ? isMuted ? 92 : 81
-            : isMuted ? 91 : 80
-          )
+          channel
         break
       case 'C':
         window.open(
-          `https://www.twitch.tv/popout/${
-            src.slice(
-              isQualityChunked
-              ? isMuted ? 92 : 81
-              : isMuted ? 91 : 80
-            )
-          }/chat`,
+          `https://www.twitch.tv/popout/${ channel }/chat`,
           '_blank'
         )
         break
