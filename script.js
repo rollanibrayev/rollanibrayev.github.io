@@ -72,23 +72,19 @@ inputs.forEach( (input, index) => {
       case 'M':
         iframe.src =
           start +
-          isMuted ? '' : muted +
+          (isMuted ? '' : muted) +
           src.slice( isMuted ? 37 : 26 )
         break
       case 'Q':
         iframe.src =
           start +
-          isMuted ? muted : '' +
-          isLowerQuality ? high : low +
+          (isMuted ? muted : '') +
+          (isLowerQuality ? high : low) +
           middle +
           src.slice(
-            isMuted
-            ? isQualityChunked
-              ? 92
-              : 91
-            : isQualityChunked
-             ? 81
-             : 80
+            isQualityChunked
+              ? isMuted ? 92 : 81
+              : isMuted ? 91 : 80
           )
         break
       case 'C':
