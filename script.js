@@ -59,47 +59,44 @@ inputs.forEach( (input, index) => {
     const value = event.target.value
     const iframe = iframes[index]
     const src = iframe.src
-    const isMuted = src => src[26] == 'm' ? 1 : 0
-    const isLowerQuality = src => {
-      const indicator = low[8]
-      return isMuted(src)
-      ? src[45] == indicator
-        ? 1
-        : 0
-      : src[34] == indicator
-        ? 1
-        : 0
-    }
+    const isMuted =
+      src[26] == 'm'
+      ? true
+      : false
+    const isLowerQuality =
+      src[ isMuted ? 45 : 34 ] == low[8]
+      ? true
+      : false
     switch (value.toUpperCase()) {
       case 'M':
         iframe.src =
-          isMuted(src)
-          ? start + src.slice(37)
-          : start + muted + src.slice(26)
+          start +
+          isMuted ? '' : muted +
+          src.slice( isMuted ? 37 : 26 )
         break
       case 'Q':
         iframe.src =
-          isLowerQuality(src)
-          ? isMuted(src)
-            ? start + muted + high + middle + src.slice(is768 ? 92 : 91)
-            : start +         high + middle + src.slice(is768 ? 81 : 80)
-          : isMuted(src)
-            ? start + muted + low + middle + src.slice(is768 ? 91 : 92)
-            : start +         low + middle + src.slice(is768 ? 80 : 81)
+          start +
+          isMuted ? muted : '' +
+          isLowerQuality ? high : low +
+          middle +
+          src.slice(
+            isMuted
+            ? !is768 && !isLowerQuality
+              ? 92
+              : 91
+            : !is768 && !isLowerQuality
+             ? 81
+             : 80
+          )
         break
       case 'C':
         window.open(
           `https://www.twitch.tv/popout/${
-            isMuted(src)
-            ? src.slice(
-              !is768 && !isLowerQuality(src)
-              ? 92
-              : 91
-            )
-            : src.slice(
-              !is768 && !isLowerQuality(src)
-              ? 81
-              : 80
+            src.slice(
+              !is768 && !isLowerQuality
+              ? isMuted ? 92 : 81
+              : isMuted ? 91 : 80
             )
           }/chat`,
           '_blank'
