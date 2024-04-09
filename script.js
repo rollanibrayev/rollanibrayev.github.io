@@ -63,11 +63,11 @@ inputs.forEach( (input, index) => {
       src[26] == 'm'
       ? true
       : false
-    const isLowerQuality =
+    const isQualityLow =
       src[ isMuted ? 45 : 34 ] == low[8]
       ? true
       : false
-    const isQualityChunked = !is768 && !isLowerQuality
+    const isQualityChunked = !is768 && !isQualityLow
     const channel = src.slice(
       isQualityChunked
       ? isMuted ? 92 : 81
@@ -84,7 +84,7 @@ inputs.forEach( (input, index) => {
         iframe.src =
           start +
           (isMuted ? muted : '') +
-          (isLowerQuality ? high : low) +
+          (isQualityLow ? high : low) +
           middle +
           channel
         break
