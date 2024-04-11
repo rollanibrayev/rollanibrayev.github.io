@@ -79,6 +79,12 @@ inputs.forEach( (input, index) => {
           (isMuted ? '' : muted) +
           src.slice( isMuted ? 37 : 26 )
         break
+      case 'C':
+        window.open(
+          `https://www.twitch.tv/popout/${ channel }/chat`,
+          '_blank'
+        )
+        break
       case 'Q':
         iframe.src =
           start +
@@ -87,17 +93,11 @@ inputs.forEach( (input, index) => {
           middle +
           channel
         break
-      case 'C':
-        window.open(
-          `https://www.twitch.tv/popout/${ channel }/chat`,
-          '_blank'
-        )
+      case 'K':
+        iframe.src = iframe.src
         break
       case 'R':
         iframes.forEach(iframe => iframe.src = iframe.src)
-        break
-      case 'K':
-        iframe.src = iframe.src
         break
       case 'D':
         iframe.removeAttribute('src')
