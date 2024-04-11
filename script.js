@@ -26,8 +26,7 @@ const extractChannel = url => url.slice(22)
 
 let appearedIframesCounter = 0
 inputs[4].addEventListener('input', event => {
-  const fullscreen = () => !document.fullscreenElement ? document.body.requestFullscreen() : null
-  if (appearedIframesCounter > 1) fullscreen()
+  if (appearedIframesCounter > 1) !document.fullscreenElement ? document.body.requestFullscreen() :1
   if (appearedIframesCounter < 1) event.target.removeAttribute('placeholder')
   iframes[++appearedIframesCounter - 1].src =
     start + muted + high + middle + extractChannel(event.target.value)
