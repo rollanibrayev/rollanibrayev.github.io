@@ -93,10 +93,10 @@ inputs.forEach( (input, index) => {
           middle +
           channel
         break
-      case 'K':
+      case 'R':
         iframe.src = iframe.src
         break
-      case 'R':
+      case 'K':
         iframes.forEach(iframe => iframe.src = iframe.src)
         break
       case 'D':
