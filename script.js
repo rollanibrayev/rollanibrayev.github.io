@@ -1,7 +1,7 @@
+const iframes = document.querySelectorAll('iframe')
 const is768 = window.screen.height == 768
 const leftCoordinate = `calc(${ is768 ? '32000vw/683' : '50vw' })`
 const topCoordinate = `calc(${ is768 ? '18000vw/683' : '28.125vw' })`
-const iframes = document.querySelectorAll('iframe')
 const inputs = document.querySelectorAll('input')
 
 iframes.forEach(iframe => {
