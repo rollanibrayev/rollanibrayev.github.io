@@ -1,6 +1,5 @@
 - go to https://rollanibrayev.github.io
-- drag 4 twitch stream thumbnails to anywhere on the page
-- now you can
+- drag 4 twitch stream thumbnails to anywhere on the page, now you can
 - - switch positions of the streams by dragging them onto each other
 - - change streams by dragging a thumbnail to the stream you want to replace
 - - after clicking on a stream you can press
