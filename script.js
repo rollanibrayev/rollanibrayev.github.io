@@ -118,4 +118,3 @@ const toggle = event => {
 }
 document.addEventListener('keydown', event => event.key.toUpperCase() == 'F' ? toggle(event) :1)
 document.addEventListener('dblclick', toggle)
-// https://clips.twitch.tv/CoweringLivelyHamsterPanicBasket-crFzoP9rx_RKA1tn
