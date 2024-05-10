@@ -1,0 +1,7 @@
+body {
+  background-color:#000;
+  display: flex;
+}
+div:first-of-type {
+  margin-right: 5%
+}
