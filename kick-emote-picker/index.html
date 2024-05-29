@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <title>Kick Emote Picker</title>
 <style>
@@ -80,7 +79,7 @@ let imgCount
       )
       div.appendChild(img)
       if (++imgCount == 10) {
-        div.innerHTML += '<br>'
+        div.appendChild(document.createElement('br'))
         imgCount = 0
       }
     }
