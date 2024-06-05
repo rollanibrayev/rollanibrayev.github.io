@@ -36,7 +36,7 @@ inputs[4].addEventListener('input', event => {
 })
 
 let mouseDownedInputIndex
-inputs.forEach( (input, index) => {
+inputs.forEach((input, index) => {
   if (index > 3) return
   input.style.width = leftCoordinate
   input.style.height = topCoordinate
@@ -58,19 +58,17 @@ inputs.forEach( (input, index) => {
     const value = event.target.value
     const iframe = iframes[index]
     const src = iframe.src
-    const isMuted =
-      src[26] == 'm'
-      ? true
-      : false
-    const isQualityLow =
-      src[ isMuted ? 45 : 34 ] == low[8]
-      ? true
-      : false
+    const isMuted = src[26] == 'm'
+    const isQualityLow = src[ isMuted ? 45 : 34 ] == low[8]
     const isQualityChunked = !is768 && !isQualityLow
     const channel = src.slice(
       isQualityChunked
-      ? isMuted ? 92 : 81
-      : isMuted ? 91 : 80
+        ? isMuted
+          ? 92
+          : 81
+        : isMuted
+          ? 91
+          : 80
     )
     switch (value.toUpperCase()) {
       case 'M':
@@ -108,7 +106,7 @@ inputs.forEach( (input, index) => {
     }
     event.target.value = ''
   })
-} )
+})
 
 const toggle = event => {
   event.preventDefault()
