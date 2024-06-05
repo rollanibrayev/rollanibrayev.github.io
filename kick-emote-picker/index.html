@@ -14,8 +14,10 @@ body {
   margin-top: 0;
 }
 div {
-  text-align: center;
   width: 700px;
+}
+p {
+  text-align: center;
 }
 </style>
 <body></body>
@@ -69,7 +71,7 @@ data.forEach(element => {
   if (isNaN(+element)) {
     imgCount = 0
     div = document.createElement('div')
-    div.innerHTML = `${element}<br>`
+    div.innerHTML = `<p>${element}</p>`
     document.body.appendChild(div)
   } else {
     const img = document.createElement('img')
