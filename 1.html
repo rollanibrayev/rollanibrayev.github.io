@@ -1,0 +1,123 @@
+<title>Twitch Streams Viewer</title>
+<style>/**/
+body {
+  margin: 0;
+  background-color: 000;
+  overflow: hidden
+}
+iframe {
+  border: 0;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+}
+input {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: default;
+  outline: none;
+  caret-color: transparent;
+  padding: 0
+}
+input:nth-of-type(2) {
+  z-index: 3;
+  font-size: 5.5vh;
+  font-family: Calibri;
+  text-align: center
+}
+::placeholder { color: 808080 }
+</style>
+<iframe></iframe>
+<input>
+<input placeholder =
+  'drag a twitch stream thumbnails to anywhere on the page'
+>
+<script>//
+const iframe = document.querySelector('iframe')
+const inputs = document.querySelectorAll('input')
+const is768 = window.screen.height == 768
+
+iframe.style.width = is768 ? 1280 : 1920
+iframe.style.height = is768 ? 720 : 1080
+
+const start = 'https://player.twitch.tv/?'
+const muted = 'muted=true&'
+const low = `quality=${ is768 ? '360p30' : '720p60' }&`
+const high = `quality=${ is768 ? '720p60' : 'chunked' }&`
+const middle = 'parent=rollanibrayev.github.io&channel='
+const extractChannel = url => url.slice(22)
+
+inputs[1].addEventListener('input', event => {
+  !document.fullscreenElement ? document.body.requestFullscreen() :1
+  iframe.src = start + muted + high + middle + extractChannel(event.target.value)
+  event.target.remove()
+})
+
+inputs[0].addEventListener('input', event => {
+  const value = event.target.value
+  const src = iframe.src
+  const isMuted = src[26] == 'm'
+  const isQualityLow = src[ isMuted ? 45 : 34 ] == low[8]
+  const isQualityChunked = !is768 && !isQualityLow
+  const channel = src.slice(
+    isQualityChunked
+      ? isMuted
+        ? 92
+        : 81
+      : isMuted
+        ? 91
+        : 80
+  )
+  switch (value.toUpperCase()) {
+    case 'M':
+      iframe.src =
+        start +
+        (isMuted ? '' : muted) +
+        src.slice( isMuted ? 37 : 26 )
+      break
+    case 'C':
+      window.open(
+        `https://www.twitch.tv/popout/${ channel }/chat`,
+        '_blank'
+      )
+      break
+    case 'Q':
+      iframe.src =
+        start +
+        (isMuted ? muted : '') +
+        (isQualityLow ? high : low) +
+        middle +
+        channel
+      break
+    case 'R':
+      iframe.src = iframe.src
+      break
+    case 'K':
+      iframe.src = iframe.src
+      break
+    case 'D':
+      iframe.removeAttribute('src')
+      break
+    default:
+      if (value[1])
+        iframe.src = start + muted + high + middle + extractChannel(value)
+  }
+  event.target.value = ''
+})
+
+const toggle = event => {
+  event.preventDefault()
+  document.fullscreenElement
+  ? document.exitFullscreen()
+  : document.body.requestFullscreen()
+}
+document.addEventListener('keydown', event => event.key.toUpperCase() == 'F' ? toggle(event) :1)
+document.addEventListener('dblclick', toggle)
+</script>
