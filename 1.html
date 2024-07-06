@@ -49,8 +49,8 @@ iframe.style.height = is768 ? 720 : 1080
 
 const start = 'https://player.twitch.tv/?'
 const muted = 'muted=true&'
-const low = `quality=${ is768 ? '360p30' : '720p60' }&`
-const high = `quality=${ is768 ? '720p60' : 'chunked' }&`
+const low = `quality=720p60&`
+const high = `quality=chunked&`
 const middle = 'parent=rollanibrayev.github.io&channel='
 const extractChannel = url => url.slice(22)
 
