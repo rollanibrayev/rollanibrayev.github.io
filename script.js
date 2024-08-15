@@ -17,12 +17,12 @@ inputs[2].style.top = topCoordinate
 inputs[3].style.left = leftCoordinate
 inputs[3].style.top = topCoordinate
 
-const start = 'https://player.twitch.tv/?volume=1&'
+const start = 'https://player.twitch.tv/?'
 const muted = 'muted=true&'
 const low = `quality=${ is768 ? '360p30' : '720p60' }&`
 const high = `quality=${ is768 ? '720p60' : 'chunked' }&`
 const middle = 'parent=rollanibrayev.github.io&channel='
-const extractChannel = url => url.slice(22 + 9)
+const extractChannel = url => url.slice(22)
 
 let appearedIframesCounter = 0
 inputs[4].addEventListener('input', event => {
@@ -58,24 +58,24 @@ inputs.forEach((input, index) => {
     const value = event.target.value
     const iframe = iframes[index]
     const src = iframe.src
-    const isMuted = src[26 + 9] == 'm'
-    const isQualityLow = src[ isMuted ? 45 + 9 : 34 + 9 ] == low[8]
+    const isMuted = src[26] == 'm'
+    const isQualityLow = src[ isMuted ? 45 : 34 ] == low[8]
     const isQualityChunked = !is768 && !isQualityLow
     const channel = src.slice(
       isQualityChunked
         ? isMuted
-          ? 92 + 9
-          : 81 + 9
+          ? 92
+          : 81
         : isMuted
-          ? 91 + 9
-          : 80 + 9
+          ? 91
+          : 80
     )
     switch (value.toUpperCase()) {
       case 'M':
         iframe.src =
           start +
           (isMuted ? '' : muted) +
-          src.slice( isMuted ? 37 + 9 : 26 + 9 )
+          src.slice( isMuted ? 37 : 26 )
         break
       case 'C':
         window.open(
