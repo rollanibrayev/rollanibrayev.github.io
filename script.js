@@ -73,9 +73,9 @@ inputs.forEach((input, index) => {
     switch (value.toUpperCase()) {
       case 'M':
         iframe.src =
-          start +
-          (isMuted ? '' : muted) +
-          src.slice( isMuted ? 37 : 26 )
+            start
+          + (isMuted ? '' : muted)
+          + src.slice( isMuted ? 37 : 26 )
         break
       case 'C':
         window.open(
@@ -85,11 +85,11 @@ inputs.forEach((input, index) => {
         break
       case 'Q':
         iframe.src =
-          start +
-          (isMuted ? muted : '') +
-          (isQualityLow ? high : low) +
-          middle +
-          channel
+            start
+          + (isMuted ? muted : '')
+          + (isQualityLow ? high : low)
+          + middle
+          + channel
         break
       case 'R':
         iframe.src = iframe.src
