@@ -67,7 +67,7 @@ const data = `
 `
   .trim()
   .split(/\s+/)
-  .filter(item => /^\d+$/.test(item))
+  .map(String)
 ;
 let div
 let imgCount
