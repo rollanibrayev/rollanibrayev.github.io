@@ -68,7 +68,7 @@ const data = `
 `
   .trim()
   .split(/\s+/)
-  .map(String)
+  .filter(item => /^\d+$/.test(item))
 ;
 data.forEach((element, index) => {
   document.querySelectorAll('img')[index].addEventListener('click', () =>
