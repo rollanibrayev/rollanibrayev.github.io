@@ -67,10 +67,8 @@ const data = `
   .split(/\s+/)
   .map(String)
 ;
-const IMGs = document.querySelectorAll('img')
 data.forEach((element, index) => {
-  const img = IMGs[index]
-  img.addEventListener('click', () =>
+  document.querySelectorAll('img')[index].addEventListener('click', () =>
     navigator.clipboard.writeText(`[emote:${element}:]`)
   )
 })
