@@ -72,7 +72,7 @@ const data = `
 ;
 data.forEach((element, index) => {
   document.querySelectorAll('img')[index].addEventListener('click', () =>
-    navigator.clipboard.writeText(`[emote:${element}:]`)
+    navigator.clipboard.writeText(element)
   )
 })
 </script>
