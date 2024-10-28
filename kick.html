@@ -61,10 +61,6 @@ inputs [3].style.left = leftCoordinate
 inputs [3].style.top  = topCoordinate
 
 const start          = 'https://player.kick.com/'
-const muted          = 'muted=true&'
-const low            = `quality=${ is768 ? '360p30' : '720p60' }&`
-const high           = `quality=${ is768 ? '720p60' : 'chunked' }&`
-const middle         = 'parent=rollanibrayev.github.io&channel='
 const extractChannel = url => url.slice(17)
 
 let appearedIframesCounter = 0
@@ -100,39 +96,12 @@ inputs.forEach((input, index) => {
   input.addEventListener('input', event => {
     const value = event.target.value
     const iframe = iframes[index]
-    const src = iframe.src
-    const isMuted = src[26] == 'm'
-    const isQualityLow = src[ isMuted ? 45 : 34 ] == low[8]
-    const isQualityChunked = !is768 && !isQualityLow
-    const channel = src.slice(
-      isQualityChunked
-        ? isMuted
-          ? 92
-          : 81
-        : isMuted
-          ? 91
-          : 80
-    )
     switch (value.toUpperCase()) {
-      case 'M':
-        iframe.src =
-            start
-          + (isMuted ? '' : muted)
-          + src.slice( isMuted ? 37 : 26 )
-        break
       case 'C':
         window.open(
-          `https://www.twitch.tv/popout/${ channel }/chat`,
+          `https://kick.com/popout/${ iframe.src.slice(17) }/chat`,
           '_blank'
         )
-        break
-      case 'Q':
-        iframe.src =
-            start
-          + (isMuted ? muted : '')
-          + (isQualityLow ? high : low)
-          + middle
-          + channel
         break
       case 'R':
         iframe.src = iframe.src
